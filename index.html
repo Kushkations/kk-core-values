@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cashaw Management — Core Values / Valores Fundamentales</title>
+<style>
+  :root {
+    --bg: #0f1410;
+    --card: #1a231c;
+    --card-border: #2b3a2e;
+    --gold: #d4a944;
+    --green: #7fb069;
+    --text: #f2f0e9;
+    --muted: #a8b0a4;
+    --accent-dark: #141b16;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    line-height: 1.5;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 32px 20px 60px; }
+  header { text-align: center; padding: 28px 0 36px; }
+  .brand {
+    font-size: 13px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold); font-weight: 600;
+  }
+  h1 { font-size: 34px; margin-top: 10px; font-weight: 800; }
+  h1 .es { display: block; font-size: 20px; color: var(--muted); font-weight: 500; margin-top: 4px; }
+  .intro {
+    color: var(--muted); font-size: 15px; max-width: 560px; margin: 18px auto 0;
+  }
+  .lang-toggle {
+    display: flex; justify-content: center; gap: 8px; margin-top: 24px;
+  }
+  .lang-toggle button {
+    background: var(--card); color: var(--text); border: 1px solid var(--card-border);
+    padding: 8px 22px; border-radius: 999px; font-size: 14px; font-weight: 600;
+    cursor: pointer; transition: all .15s;
+  }
+  .lang-toggle button.active { background: var(--gold); color: #1a1508; border-color: var(--gold); }
+  .value {
+    background: var(--card); border: 1px solid var(--card-border);
+    border-radius: 14px; padding: 24px 22px; margin-bottom: 16px;
+    display: flex; gap: 18px; align-items: flex-start;
+  }
+  .num {
+    flex-shrink: 0; width: 44px; height: 44px; border-radius: 12px;
+    background: var(--accent-dark); border: 1px solid var(--gold);
+    color: var(--gold); font-size: 20px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .value h2 { font-size: 20px; font-weight: 800; }
+  .value h2 .es-title {
+    display: block; color: var(--gold); font-weight: 700;
+    font-size: 16px; margin-top: 4px;
+  }
+  [data-lang="en"] .es-title { display: none; }
+  [data-lang="es"] .value h2 .es-title { font-size: 20px; margin-top: 0; }
+  [data-lang="both"] p .es-only, [data-lang="both"] .motto .es-only {
+    display: block; margin-top: 6px;
+  }
+  .value p.desc { margin-top: 6px; font-size: 15px; color: var(--text); }
+  .daily {
+    margin-top: 10px; font-size: 13.5px; color: var(--muted);
+    border-left: 3px solid var(--green); padding-left: 10px;
+  }
+  .daily strong { color: var(--green); }
+  footer {
+    text-align: center; margin-top: 40px; color: var(--muted); font-size: 13px;
+  }
+  footer .motto { color: var(--gold); font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+  [data-lang="en"] .es-only { display: none; }
+  [data-lang="es"] .en-only { display: none; }
+  @media (max-width: 480px) {
+    h1 { font-size: 26px; }
+    .value { padding: 18px 16px; gap: 14px; }
+    .num { width: 38px; height: 38px; font-size: 17px; }
+  }
+</style>
+</head>
+<body data-lang="both">
+<div class="wrap">
+  <header>
+    <div class="brand">Cashaw Management · KushKations</div>
+    <h1>Our Core Values <span class="es">Nuestros Valores Fundamentales</span></h1>
+    <p class="intro">
+      <span class="en-only">This is how we work. Every unit, every guest, every day.</span>
+      <span class="es-only" lang="es">Así trabajamos. Cada unidad, cada huésped, cada día.</span>
+    </p>
+    <div class="lang-toggle">
+      <button id="btn-both" class="active" onclick="setLang('both')">EN + ES</button>
+      <button id="btn-en" onclick="setLang('en')">English</button>
+      <button id="btn-es" onclick="setLang('es')">Español</button>
+    </div>
+  </header>
+
+  <div class="value">
+    <div class="num">1</div>
+    <div>
+      <h2><span class="en-only">Own It</span><span class="es-title" lang="es">Hazlo Tuyo</span></h2>
+      <p class="desc">
+        <span class="en-only">If we see it, we solve it. No "that's not my job." Every unit you touch carries your name.</span>
+        <span class="es-only" lang="es">Si lo vemos, lo resolvemos. Nada de "eso no me toca." Cada unidad que tocas lleva tu nombre.</span>
+      </p>
+      <p class="daily">
+        <span class="en-only"><strong>Daily:</strong> See a burned-out bulb, a stain, a loose handle? Fix it or report it with a photo — same visit.</span>
+        <span class="es-only" lang="es"><strong>Diario:</strong> ¿Ves un foco quemado, una mancha, una manija floja? Arréglalo o repórtalo con foto — en la misma visita.</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="value">
+    <div class="num">2</div>
+    <div>
+      <h2><span class="en-only">Integrity Always</span><span class="es-title" lang="es">Integridad Siempre</span></h2>
+      <p class="desc">
+        <span class="en-only">Do it right even when nobody checks. What we say matches what we do — with guests, with each other, with the company.</span>
+        <span class="es-only" lang="es">Hazlo bien aunque nadie te revise. Lo que decimos es lo que hacemos — con los huéspedes, entre nosotros, con la empresa.</span>
+      </p>
+      <p class="daily">
+        <span class="en-only"><strong>Daily:</strong> If a checklist item didn't get done, say so. An honest "not yet" beats a fake "done" every time.</span>
+        <span class="es-only" lang="es"><strong>Diario:</strong> Si algo del checklist no se hizo, dilo. Un "todavía no" honesto vale más que un "listo" falso.</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="value">
+    <div class="num">3</div>
+    <div>
+      <h2><span class="en-only">We Find a Way</span><span class="es-title" lang="es">Encontramos la Manera</span></h2>
+      <p class="desc">
+        <span class="en-only">Persistence and determination. "No" isn't an answer — it's a starting point. Problem in a unit? We solve it before checkout, not after.</span>
+        <span class="es-only" lang="es">Persistencia y determinación. "No" no es una respuesta — es un punto de partida. ¿Problema en una unidad? Lo resolvemos antes del checkout, no después.</span>
+      </p>
+      <p class="daily">
+        <span class="en-only"><strong>Daily:</strong> Supply missing? Part not available? Call, borrow, improvise — and tell the team what you did so we're covered.</span>
+        <span class="es-only" lang="es"><strong>Diario:</strong> ¿Falta material? ¿No hay repuesto? Llama, consigue, improvisa — y avisa al equipo qué hiciste para estar cubiertos.</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="value">
+    <div class="num">4</div>
+    <div>
+      <h2><span class="en-only">One Team</span><span class="es-title" lang="es">Un Solo Equipo</span></h2>
+      <p class="desc">
+        <span class="en-only">Cleaners, maintenance, VAs — we win together. When one of us needs help, we show up. Nobody succeeds alone here.</span>
+        <span class="es-only" lang="es">Limpieza, mantenimiento, asistentes — ganamos juntos. Cuando uno necesita ayuda, ahí estamos. Aquí nadie triunfa solo.</span>
+      </p>
+      <p class="daily">
+        <span class="en-only"><strong>Daily:</strong> Finished early? Ask who needs a hand. Found a problem outside your job? Flag it for the right person — don't leave it for the next guy.</span>
+        <span class="es-only" lang="es"><strong>Diario:</strong> ¿Terminaste temprano? Pregunta quién necesita ayuda. ¿Encontraste un problema fuera de tu trabajo? Avísale a la persona correcta — no lo dejes para el siguiente.</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="value">
+    <div class="num">5</div>
+    <div>
+      <h2><span class="en-only">Better Than Yesterday</span><span class="es-title" lang="es">Mejor Que Ayer</span></h2>
+      <p class="desc">
+        <span class="en-only">We consistently improve. Every mistake becomes a fix, every week we raise the standard. We don't repeat errors — we retire them.</span>
+        <span class="es-only" lang="es">Mejoramos constantemente. Cada error se convierte en una mejora, cada semana subimos el estándar. No repetimos errores — los eliminamos.</span>
+      </p>
+      <p class="daily">
+        <span class="en-only"><strong>Daily:</strong> Made a mistake or found a better way? Share it in the team chat so the whole team gets better with you.</span>
+        <span class="es-only" lang="es"><strong>Diario:</strong> ¿Cometiste un error o encontraste una mejor manera? Compártelo en el chat para que todo el equipo mejore contigo.</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="value">
+    <div class="num">6</div>
+    <div>
+      <h2><span class="en-only">The Guest Feels It</span><span class="es-title" lang="es">El Huésped Lo Siente</span></h2>
+      <p class="desc">
+        <span class="en-only">Our success is measured by the guest experience. A spotless unit, a fast repair, a hot tub that works — the guest should feel our work from the moment they walk in.</span>
+        <span class="es-only" lang="es">Nuestro éxito se mide por la experiencia del huésped. Una unidad impecable, una reparación rápida, un jacuzzi que funciona — el huésped debe sentir nuestro trabajo desde que entra.</span>
+      </p>
+      <p class="daily">
+        <span class="en-only"><strong>Daily:</strong> Before you leave a unit, ask yourself: "Would I pay to stay here tonight?" If not, it's not done.</span>
+        <span class="es-only" lang="es"><strong>Diario:</strong> Antes de salir de una unidad, pregúntate: "¿Yo pagaría por quedarme aquí esta noche?" Si no, no está lista.</span>
+      </p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="motto">
+      <span class="en-only">We don't just clean and fix — we build the best short-term rental company in Denver.</span>
+      <span class="es-only" lang="es">No solo limpiamos y reparamos — construimos la mejor empresa de rentas a corto plazo de Denver.</span>
+    </div>
+    Cashaw Management · KushKations · Denver, CO
+  </footer>
+</div>
+<script>
+  function setLang(lang) {
+    document.body.setAttribute('data-lang', lang);
+    ['both','en','es'].forEach(function(l) {
+      document.getElementById('btn-' + l).classList.toggle('active', l === lang);
+    });
+  }
+</script>
+</body>
+</html>
