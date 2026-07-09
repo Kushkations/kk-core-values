@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Brand Packet · Cashaw Management &amp; KushKations</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dark:#1e3120; --darkest:#0d1f0f; --deep:#2d4a30; --mid:#3d6f42; --bright:#65bc7b;
+    --light:#a8d5b5; --gold:#d4a944; --ground:#f8faf8; --card:#ffffff; --ink:#2a2a2a;
+    --muted:#667066; --rule:#dfe8df; --shadow:0 2px 14px rgba(30,49,32,0.09);
+  }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:var(--ground); color:var(--ink); font-family:'Inter',-apple-system,sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  .serif { font-family:'Playfair Display',Georgia,serif; }
+
+  /* Nav */
+  .topnav { position:sticky; top:0; z-index:50; background:var(--dark); display:flex; align-items:center; gap:1rem; padding:0.6rem 1.2rem; overflow-x:auto; white-space:nowrap; }
+  .topnav .brand { font-family:'Playfair Display',Georgia,serif; font-weight:700; color:#fff; font-size:0.95rem; letter-spacing:0.04em; }
+  .topnav .brand span { color:var(--bright); }
+  .topnav a { color:var(--light); text-decoration:none; font-size:0.8rem; font-weight:500; padding:0.25rem 0.5rem; border-radius:6px; }
+  .topnav a:hover, .topnav a:focus-visible { background:rgba(255,255,255,0.1); color:#fff; outline:none; }
+
+  /* Hero */
+  .hero { background:linear-gradient(135deg,#0d1f0f 0%,#1e3120 40%,#2d4a30 100%); color:#fff; text-align:center; padding:4.5rem 1.5rem 3.5rem; position:relative; }
+  .hero::after { content:""; position:absolute; inset:auto 0 0 0; height:4px; background:linear-gradient(90deg,var(--mid),var(--bright),var(--gold)); }
+  .hero img.logo { max-height:90px; max-width:80%; filter:brightness(0) invert(1); margin-bottom:1.2rem; }
+  .hero .wordmark { font-family:'Playfair Display',Georgia,serif; font-weight:700; font-size:clamp(2rem,7vw,3rem); margin:0; }
+  .hero .wordmark span { color:var(--bright); }
+  .hero .wordmark .tm { font-size:0.45em; vertical-align:super; opacity:0.7; color:#fff; }
+  .hero .parent { font-size:0.8rem; font-weight:300; letter-spacing:0.3em; text-transform:uppercase; color:var(--light); margin:0.7rem 0 2rem; }
+  .hero .doc-title { font-family:'Playfair Display',Georgia,serif; font-style:italic; font-size:1.6rem; color:var(--gold); margin:0 0 0.5rem; }
+  .hero .version { font-size:0.75rem; letter-spacing:0.15em; text-transform:uppercase; color:rgba(255,255,255,0.6); }
+  .stats { display:flex; justify-content:center; gap:2.5rem; flex-wrap:wrap; margin-top:2.2rem; }
+  .stat { text-align:center; }
+  .stat b { display:block; font-family:'Playfair Display',Georgia,serif; font-size:1.7rem; color:var(--bright); font-variant-numeric:tabular-nums; }
+  .stat small { font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--light); }
+
+  main { max-width:860px; margin:0 auto; padding:2.5rem 1.25rem 4rem; display:flex; flex-direction:column; gap:2.2rem; }
+  section.page { background:var(--card); border:1px solid var(--rule); border-radius:14px; box-shadow:var(--shadow); padding:2.3rem clamp(1.3rem,5vw,2.7rem); scroll-margin-top:4rem; }
+  .page-head { display:flex; align-items:baseline; gap:1rem; border-bottom:2px solid var(--rule); padding-bottom:0.9rem; margin-bottom:1.4rem; }
+  .page-head .no { font-family:'Playfair Display',Georgia,serif; font-weight:700; font-size:1.8rem; color:var(--bright); line-height:1; }
+  .page-head h2 { font-family:'Playfair Display',Georgia,serif; font-weight:600; font-size:1.4rem; margin:0; }
+  .page-head p { margin:0.1rem 0 0; font-size:0.76rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted); font-weight:600; }
+  section.page > p { max-width:68ch; }
+  section.page h3 { font-size:0.78rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--mid); margin:1.5rem 0 0.5rem; }
+  .rules { margin:0.3rem 0 0; padding-left:1.2rem; }
+  .rules li { margin-bottom:0.45rem; font-size:0.94rem; }
+  .rules li::marker { color:var(--bright); }
+  .do { color:var(--mid); font-weight:600; }
+  .dont { color:#a04040; font-weight:600; }
+  a.ext { color:var(--mid); text-decoration-color:var(--bright); }
+
+  /* Brand family */
+  .brands { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1.1rem; margin-top:0.5rem; }
+  .brand-card { border:1px solid var(--rule); border-radius:10px; padding:1.15rem 1.25rem; position:relative; }
+  .brand-card h4 { font-family:'Playfair Display',Georgia,serif; font-size:1.1rem; margin:0 0 0.35rem; padding-right:4.5rem; }
+  .brand-card p { font-size:0.87rem; margin:0; color:var(--muted); }
+  .badge { position:absolute; top:0.95rem; right:0.95rem; font-size:0.62rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:0.18rem 0.55rem; border-radius:20px; }
+  .badge.active { background:#e2f2e6; color:#2d6a38; }
+  .badge.confirm { background:#f4ecd7; color:#8a6d1d; }
+
+  /* Values */
+  section.values-page { background:var(--dark); border:none; color:#fff; }
+  section.values-page .page-head { border-color:rgba(168,213,181,0.3); }
+  section.values-page .page-head .no { color:var(--gold); }
+  section.values-page .page-head h2 { color:#fff; }
+  section.values-page .page-head p { color:var(--light); }
+  section.values-page > p.lede { color:rgba(255,255,255,0.85); font-weight:300; max-width:68ch; }
+  .values-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:1rem; margin-top:1.3rem; }
+  .val { background:rgba(255,255,255,0.05); border:1px solid rgba(168,213,181,0.25); border-radius:10px; padding:1.2rem 1.25rem; }
+  .val .n { font-family:'Playfair Display',Georgia,serif; font-weight:700; color:var(--gold); font-size:0.9rem; }
+  .val h4 { font-family:'Playfair Display',Georgia,serif; font-weight:600; font-size:1.3rem; margin:0.1rem 0 0.05rem; color:#fff; }
+  .val .es-word { font-size:0.76rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--bright); font-weight:700; margin:0 0 0.55rem; }
+  .val p.en { font-size:0.92rem; margin:0 0 0.5rem; color:rgba(255,255,255,0.92); }
+  .val p.es { font-size:0.85rem; margin:0; color:var(--light); border-top:1px dashed rgba(168,213,181,0.3); padding-top:0.5rem; }
+  .values-note { margin-top:1.3rem; text-align:center; font-size:0.85rem; color:var(--light); font-style:italic; }
+
+  /* Swatches / type / contact — same as v1 */
+  .swatches { display:grid; grid-template-columns:repeat(auto-fill,minmax(145px,1fr)); gap:0.9rem; margin-top:0.5rem; }
+  .swatch { border:1px solid var(--rule); border-radius:10px; overflow:hidden; }
+  .swatch .chip { height:60px; }
+  .swatch .meta { padding:0.5rem 0.7rem; font-size:0.76rem; line-height:1.45; }
+  .swatch .meta strong { display:block; font-size:0.8rem; }
+  .swatch .meta code { color:var(--muted); font-family:ui-monospace,Menlo,monospace; }
+  .type-demo { border:1px solid var(--rule); border-radius:10px; padding:1.25rem 1.4rem; margin-top:0.5rem; }
+  .type-demo .th { font-family:'Playfair Display',Georgia,serif; font-weight:600; font-size:1.6rem; margin:0 0 0.15rem; }
+  .type-demo .ts { font-family:'Playfair Display',Georgia,serif; font-style:italic; font-size:1.05rem; color:var(--mid); margin:0 0 0.7rem; }
+  .type-demo .tb { font-size:0.94rem; margin:0 0 0.7rem; }
+  .type-demo .tl { font-size:0.7rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); margin:0; }
+  .contact-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:1rem; margin-top:0.5rem; }
+  .contact-grid > div { border:1px solid var(--rule); border-radius:10px; padding:1rem 1.15rem; font-size:0.88rem; overflow-wrap:anywhere; }
+  .contact-grid strong { display:block; font-size:0.72rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--mid); margin-bottom:0.3rem; }
+
+  /* Roadmap */
+  .roadmap { margin:0.4rem 0 0; padding:0; list-style:none; }
+  .roadmap li { display:flex; gap:0.7rem; align-items:baseline; padding:0.55rem 0.2rem; border-bottom:1px solid var(--rule); font-size:0.93rem; }
+  .roadmap li:last-child { border-bottom:none; }
+  .roadmap .st { flex-shrink:0; font-size:0.62rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; padding:0.15rem 0.5rem; border-radius:20px; }
+  .st.have { background:#e2f2e6; color:#2d6a38; }
+  .st.need { background:#f9e2e0; color:#9c3a33; }
+  .st.decide { background:#f4ecd7; color:#8a6d1d; }
+
+  footer { text-align:center; padding:0 1.5rem 3rem; color:var(--muted); font-size:0.8rem; }
+  footer .tagline { font-family:'Playfair Display',Georgia,serif; font-style:italic; font-size:1.05rem; color:var(--mid); margin-bottom:0.4rem; }
+</style>
+</head>
+<body>
+
+<nav class="topnav" aria-label="Sections">
+  <span class="brand">KUSH<span>KATIONS</span></span>
+  <a href="#who">Who We Are</a>
+  <a href="#family">Brand Family</a>
+  <a href="#values">Core Values</a>
+  <a href="#colors">Colors</a>
+  <a href="#type">Type</a>
+  <a href="#voice">Voice</a>
+  <a href="#assets">Assets</a>
+  <a href="#approval">Approval</a>
+  <a href="#roadmap">Roadmap</a>
+</nav>
+
+<header class="hero">
+  <img class="logo" src="https://kushkations.com/wp-content/uploads/2021/10/KushKations-Trademark-logo.png" alt="KushKations logo" onerror="this.style.display='none'; document.getElementById('wm-fallback').style.display='block';">
+  <p class="wordmark" id="wm-fallback" style="display:none;">KUSH<span>KATIONS</span><span class="tm">™</span></p>
+  <p class="parent">A Cashaw Management Brand · Denver, Colorado</p>
+  <p class="doc-title">Digital Brand Packet</p>
+  <p class="version">Living document · v2 · Updated July 9, 2026</p>
+  <div class="stats">
+    <div class="stat"><b>21</b><small>Properties</small></div>
+    <div class="stat"><b>4.87★</b><small>Avg. Rating</small></div>
+    <div class="stat"><b>1,773+</b><small>Reviews</small></div>
+    <div class="stat"><b>6</b><small>Core Values</small></div>
+  </div>
+</header>
+
+<main>
+
+  <section class="page" id="who">
+    <div class="page-head"><span class="no">01</span><div><h2>Who We Are</h2><p>Quiénes Somos</p></div></div>
+    <p><strong>Cashaw Management</strong> operates a portfolio of 21 vacation rental properties across the Denver metro under the consumer brand <strong>KushKations™</strong>, with in-house cleaning, maintenance, and virtual assistant teams. We build a business that runs on systems, not heroes.</p>
+    <h3>Positioning</h3>
+    <p class="serif" style="font-style:italic; font-size:1.15rem; color:var(--mid); margin-top:0.2rem;">"Luxury Group Stays, 420-Friendly."</p>
+    <p style="font-size:0.9rem; color:var(--muted);">A boutique portfolio of 420-friendly luxury rentals built for groups: hot tubs, game rooms, theaters, and a real host on the other end. Book direct and save 5%.</p>
+  </section>
+
+  <section class="page" id="family">
+    <div class="page-head"><span class="no">02</span><div><h2>The Brand Family</h2><p>Our Names &amp; When to Use Them</p></div></div>
+    <div class="brands">
+      <div class="brand-card"><span class="badge active">Active</span>
+        <h4>KushKations™</h4>
+        <p>Consumer brand. Guests, website, social, ads. Always one word, two capital Ks, ™ in formal materials. Never "Kush Kations" or "Kushkations".</p>
+      </div>
+      <div class="brand-card"><span class="badge active">Active</span>
+        <h4>Cashaw Management Inc.</h4>
+        <p>Parent company. Contracts, payroll, vendors, team. Tagline: "Committed to securing your success." 500 E. 84th Ave., Suite A1, Thornton, CO 80229.</p>
+      </div>
+      <div class="brand-card"><span class="badge confirm">Confirm</span>
+        <h4>All Exclusive BNB</h4>
+        <p>AEBNB, ESTD 2022. Logos on file in Drive. Status and current use to be confirmed.</p>
+      </div>
+      <div class="brand-card"><span class="badge confirm">Confirm</span>
+        <h4>Same-Day BNB</h4>
+        <p>Logo on file in Drive. Status and current use to be confirmed.</p>
+      </div>
+      <div class="brand-card"><span class="badge confirm">Confirm</span>
+        <h4>Clearsite</h4>
+        <p>Logo files on file in Drive (Brand Packet Logo folder). Status and current use to be confirmed.</p>
+      </div>
+    </div>
+    <h3>Simple rule</h3>
+    <p style="margin-top:0.2rem;">If a guest sees it: <strong>KushKations™</strong>. If the team or a vendor sees it: <strong>Cashaw Management</strong>.</p>
+  </section>
+
+  <section class="page values-page" id="values">
+    <div class="page-head"><span class="no">03</span><div><h2>Core Values</h2><p>Valores Fundamentales</p></div></div>
+    <p class="lede">Six words. They apply to everyone, including Shaquan. Every decision gets checked against them, in every unit, every day. <span style="opacity:0.75;">(Seis palabras. Aplican a todos. Cada decisión se mide contra estos valores.)</span></p>
+    <div class="values-grid">
+      <div class="val"><span class="n">1</span><h4>Ownership</h4><p class="es-word">Responsabilidad</p>
+        <p class="en">If we see it, we solve it. No "not my job." Every unit you touch carries your name.</p>
+        <p class="es">Si lo vemos, lo resolvemos. Nada de "no es mi trabajo". Cada unidad que tocas lleva tu nombre.</p></div>
+      <div class="val"><span class="n">2</span><h4>Integrity</h4><p class="es-word">Integridad</p>
+        <p class="en">Do it right even when nobody checks. An honest "not yet" beats a fake "done."</p>
+        <p class="es">Hazlo bien aunque nadie te revise. Un "todavía no" honesto vale más que un "listo" falso.</p></div>
+      <div class="val"><span class="n">3</span><h4>Persistence</h4><p class="es-word">Persistencia</p>
+        <p class="en">"No" is a starting point. We find a way.</p>
+        <p class="es">El "no" es un punto de partida. Encontramos la manera.</p></div>
+      <div class="val"><span class="n">4</span><h4>Team</h4><p class="es-word">Equipo</p>
+        <p class="en">Cleaners, maintenance, VAs: we win together. Nobody succeeds alone.</p>
+        <p class="es">Limpieza, mantenimiento, VAs: ganamos juntos. Nadie triunfa solo.</p></div>
+      <div class="val"><span class="n">5</span><h4>Growth</h4><p class="es-word">Crecimiento</p>
+        <p class="en">Better than yesterday. We don't repeat errors, we retire them.</p>
+        <p class="es">Mejor que ayer. No repetimos errores, los retiramos.</p></div>
+      <div class="val"><span class="n">6</span><h4>Hospitality</h4><p class="es-word">Hospitalidad</p>
+        <p class="en">Success is measured by the guest experience. The guest feels our work.</p>
+        <p class="es">El éxito se mide por la experiencia del huésped. El huésped siente nuestro trabajo.</p></div>
+    </div>
+    <p class="values-note serif">Before you leave a unit, ask: "Would I pay to stay here tonight?" · Antes de salir de una unidad: "¿Pagaría yo por quedarme aquí esta noche?"</p>
+  </section>
+
+  <section class="page" id="colors">
+    <div class="page-head"><span class="no">04</span><div><h2>Colors</h2><p>Colores</p></div></div>
+    <div class="swatches">
+      <div class="swatch"><div class="chip" style="background:#1e3120;"></div><div class="meta"><strong>KK Dark Green</strong><code>#1e3120</code> · backgrounds, nav, footer</div></div>
+      <div class="swatch"><div class="chip" style="background:#3d6f42;"></div><div class="meta"><strong>KK Mid Green</strong><code>#3d6f42</code> · buttons, links</div></div>
+      <div class="swatch"><div class="chip" style="background:#65bc7b;"></div><div class="meta"><strong>KK Bright Green</strong><code>#65bc7b</code> · CTAs, accents</div></div>
+      <div class="swatch"><div class="chip" style="background:#a8d5b5;"></div><div class="meta"><strong>KK Light Green</strong><code>#a8d5b5</code> · soft accents</div></div>
+      <div class="swatch"><div class="chip" style="background:#d4a944;"></div><div class="meta"><strong>KK Gold</strong><code>#d4a944</code> · values, premium moments</div></div>
+      <div class="swatch"><div class="chip" style="background:#f8faf8; border-bottom:1px solid #dfe8df;"></div><div class="meta"><strong>KK Cream</strong><code>#f8faf8</code> · page backgrounds</div></div>
+    </div>
+    <h3>Rules</h3>
+    <ul class="rules">
+      <li>Never red or orange. Off-brand.</li>
+      <li>Gold is used sparingly: core values and premium moments only.</li>
+      <li><span class="dont">Open item:</span> cashawmanagement.com currently uses blue. Decide: align Cashaw to this palette, or document blue as Cashaw's own corporate color.</li>
+    </ul>
+  </section>
+
+  <section class="page" id="type">
+    <div class="page-head"><span class="no">05</span><div><h2>Typography</h2><p>Tipografía</p></div></div>
+    <div class="type-demo">
+      <p class="th">Playfair Display for headlines.</p>
+      <p class="ts">Italic for emphasis and brand phrases.</p>
+      <p class="tb">Inter for body text, buttons, and data. Clean and readable on screen and in print.</p>
+      <p class="tl">Inter Bold · All Caps · 0.2em Spacing · For Labels</p>
+    </div>
+    <p style="font-size:0.85rem; color:var(--muted); margin-top:0.8rem;">These two families only. No new fonts without approval.</p>
+  </section>
+
+  <section class="page" id="voice">
+    <div class="page-head"><span class="no">06</span><div><h2>Voice &amp; Slogans</h2><p>Voz y Eslóganes</p></div></div>
+    <h3>Taglines</h3>
+    <ul class="rules">
+      <li><strong>KushKations:</strong> <span class="serif" style="font-style:italic;">"Come Enjoy a KushKation!"</span> · Positioning line: "Luxury Group Stays, 420-Friendly."</li>
+      <li><strong>Cashaw Management:</strong> <span class="serif" style="font-style:italic;">"Committed to securing your success."</span></li>
+    </ul>
+    <h3>Tone</h3>
+    <ul class="rules">
+      <li>Guests: warm and professional. Laid-back luxury, never corporate.</li>
+      <li>Team: Spanish first, direct, no fluff.</li>
+      <li>Keywords: 420-friendly, luxury, 5-star, group stays, Denver, Colorado.</li>
+    </ul>
+    <h3>Social &amp; Proof</h3>
+    <p style="font-size:0.92rem;">Instagram/Facebook <strong>@kushkations</strong> · YouTube <strong>@kushkations4252</strong> · #KushKation #420FriendlyDenver #CannabisVacation<br>
+    Proof points to reuse in marketing: <strong>4.87★ average across 1,773+ reviews · 21 properties · book direct &amp; save 5% (code KUSHSAVE)</strong>.</p>
+  </section>
+
+  <section class="page" id="assets">
+    <div class="page-head"><span class="no">07</span><div><h2>Asset Library</h2><p>Where Everything Lives</p></div></div>
+    <div class="contact-grid">
+      <div><strong>Logos · Google Drive</strong><a class="ext" href="https://drive.google.com/drive/folders/1ECpDIlXZvKeLLbS4X8MmQg4W5IMbnu-x">Company Logo folder</a><br>Cashaw, KushKations, AEBNB, Same-Day BNB</div>
+      <div><strong>Transparent Logos</strong><a class="ext" href="https://drive.google.com/drive/folders/1AFFtk-u9Cfipyk1e8RA62u8WsKQu--PC">Brand Packet Logo folder</a><br>KushKations, Clearsite, AEBNB (no-background PNGs)</div>
+      <div><strong>KK Logo (web)</strong>kushkations.com/wp-content/uploads/2021/10/KushKations-Trademark-logo.png</div>
+      <div><strong>Core Values Live Page</strong><a class="ext" href="https://kushkations.github.io/kk-core-values/">kushkations.github.io/kk-core-values</a></div>
+      <div><strong>Websites</strong>kushkations.com · cashawmanagement.com</div>
+      <div><strong>Contact</strong>1-800-880-2157 · info@kushkations.com · info@cashawmanagement.com</div>
+    </div>
+  </section>
+
+  <section class="page" id="approval">
+    <div class="page-head"><span class="no">08</span><div><h2>Use &amp; Approval</h2><p>Uso y Aprobación</p></div></div>
+    <ul class="rules">
+      <li>All public materials (ads, flyers, posts, pages) get <strong>Shaquan's approval</strong> before release.</li>
+      <li>Internal team materials follow this packet: correct colors, fonts, and names.</li>
+      <li>Brand questions: <strong>info@kushkations.com</strong>.</li>
+    </ul>
+  </section>
+
+  <section class="page" id="roadmap">
+    <div class="page-head"><span class="no">09</span><div><h2>Roadmap</h2><p>What We Have · What's Missing</p></div></div>
+    <ul class="roadmap">
+      <li><span class="st have">Have</span>Core values, final and live (6 values, bilingual)</li>
+      <li><span class="st have">Have</span>KK color palette, fonts, tagline, logo files</li>
+      <li><span class="st have">Have</span>Logo files for all 5 brands in Drive</li>
+      <li><span class="st have">Have</span>Proof points: 4.87★, 1,773+ reviews, 21 properties</li>
+      <li><span class="st need">Need</span>Formal one-paragraph mission statement, approved by Shaquan</li>
+      <li><span class="st need">Need</span>Vector (SVG/AI) versions of all logos. Only PNG/JPEG exist today</li>
+      <li><span class="st need">Need</span>Photography style guide (what KK listing photos should look like)</li>
+      <li><span class="st need">Need</span>Email signature + letterhead templates using this system</li>
+      <li><span class="st decide">Decide</span>Cashaw color identity: align to KK greens or keep blue</li>
+      <li><span class="st decide">Decide</span>AEBNB, Same-Day BNB, Clearsite: active, on hold, or retired?</li>
+      <li><span class="st decide">Decide</span>Custom domain for this packet (e.g. brand.cashawmanagement.com)</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  <div class="tagline serif">"Come Enjoy a KushKation!"</div>
+  <div>KushKations™ · Cashaw Management Inc. · Denver, Colorado · Brand Packet v2 · July 2026</div>
+</footer>
+
+</body>
+</html>
