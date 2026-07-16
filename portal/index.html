@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cashaw Management — Brand Portal</title>
+  <meta name="description" content="The centralized brand portal for Cashaw Management: core values, brand portfolio, and operating standards.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+          },
+          colors: {
+            forest: {
+              50:  '#f2f7f4',
+              800: '#1e3120',
+              900: '#152616',
+              950: '#0d1f0f',
+            },
+            gold: {
+              300: '#e8d08a',
+              400: '#dcb44a',
+              500: '#c8992f',
+              600: '#a97e22',
+            },
+            cream: '#f2efe6',
+          },
+          keyframes: {
+            fadeUp: {
+              '0%':   { opacity: '0', transform: 'translateY(6px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            }
+          },
+          animation: {
+            fadeUp: 'fadeUp .28s ease-out both',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #0d1f0f; }
+    ::-webkit-scrollbar-thumb {
+      background: #1e3120;
+      border-radius: 4px;
+      border: 1px solid #0d1f0f;
+    }
+    ::-webkit-scrollbar-thumb:hover { background: #2c4a30; }
+    * { scrollbar-width: thin; scrollbar-color: #1e3120 #0d1f0f; }
+
+    :focus-visible {
+      outline: 2px solid #c8992f;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    /* Animated tab underline */
+    .tab-rail { position: relative; }
+    .tab-underline {
+      position: absolute;
+      bottom: -1px;
+      height: 2px;
+      background: #c8992f;
+      transition: left .3s cubic-bezier(.4,0,.2,1), width .3s cubic-bezier(.4,0,.2,1);
+      pointer-events: none;
+      border-radius: 2px 2px 0 0;
+    }
+
+    /* Core value hover/focus reveal */
+    .value-card .value-face { transition: opacity .25s ease, transform .25s ease; }
+    .value-card .value-back {
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity .25s ease, transform .25s ease;
+      pointer-events: none;
+    }
+    .value-card:hover .value-face,
+    .value-card:focus-within .value-face { opacity: 0; transform: translateY(-4px); }
+    .value-card:hover .value-back,
+    .value-card:focus-within .value-back { opacity: 1; transform: translateY(0); }
+
+    .brand-tile { transition: transform .2s ease, border-color .2s ease, background-color .2s ease; }
+    .brand-tile:hover { transform: translateY(-3px); }
+
+    .nav-link { transition: color .2s ease, background-color .2s ease, border-color .2s ease; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+      }
+      .brand-tile:hover { transform: none; }
+    }
+
+    @media print {
+      aside { display: none; }
+      .tab-content[hidden] { display: block !important; }
+    }
+  </style>
+</head>
+
+<body class="bg-forest-950 text-gray-100 font-sans min-h-screen flex flex-col md:flex-row">
+
+  <a href="#welcome" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-3 focus:left-3 focus:px-4 focus:py-2 focus:rounded-lg focus:bg-gold-500 focus:text-forest-950 focus:font-semibold">Skip to content</a>
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="w-full md:w-64 md:h-screen md:sticky md:top-0 bg-forest-900 border-b md:border-b-0 md:border-r border-forest-800 flex flex-col justify-between shrink-0 z-30">
+    <div class="p-5 md:p-6">
+      <div class="flex items-center gap-3 mb-6 md:mb-8">
+        <div class="w-10 h-10 shrink-0 rounded-full border border-gold-500 flex items-center justify-center font-serif text-gold-500 text-xl font-bold">C</div>
+        <div>
+          <h1 class="font-serif font-semibold leading-tight text-white">Cashaw Mgmt</h1>
+          <p class="text-[11px] text-gray-400 tracking-[0.15em] uppercase">Brand Portal</p>
+        </div>
+      </div>
+
+      <nav aria-label="Section navigation" class="flex flex-row md:flex-col gap-1 overflow-x-auto md:overflow-visible pb-1 md:pb-0">
+        <a href="#welcome" data-nav="welcome" class="nav-link whitespace-nowrap px-3 py-2 rounded-lg text-sm font-medium text-gray-400 hover:text-white hover:bg-forest-950/60 border border-transparent">Overview</a>
+        <a href="#core-values" data-nav="core-values" class="nav-link whitespace-nowrap px-3 py-2 rounded-lg text-sm font-medium text-gray-400 hover:text-white hover:bg-forest-950/60 border border-transparent">Core Values</a>
+        <a href="#brand-portfolio" data-nav="brand-portfolio" class="nav-link whitespace-nowrap px-3 py-2 rounded-lg text-sm font-medium text-gray-400 hover:text-white hover:bg-forest-950/60 border border-transparent">Brand Portfolio</a>
+        <a href="#operating-standards" data-nav="operating-standards" class="nav-link whitespace-nowrap px-3 py-2 rounded-lg text-sm font-medium text-gray-400 hover:text-white hover:bg-forest-950/60 border border-transparent">Operating Standards</a>
+      </nav>
+    </div>
+
+    <div class="hidden md:block p-6 border-t border-forest-800">
+      <div class="text-xs text-gray-500 leading-relaxed">
+        <p>Version 2.0 (2026)</p>
+        <p class="mt-1">Designed for internal alignment</p>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <main class="flex-1 min-w-0 p-6 md:p-12 max-w-5xl space-y-16">
+
+    <!-- ---------- Overview ---------- -->
+    <section id="welcome" class="scroll-mt-24 space-y-6">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/25 text-gold-400 text-xs font-semibold uppercase tracking-[0.12em]">
+        Operational Excellence
+      </div>
+      <h2 class="text-4xl md:text-5xl font-serif font-semibold text-white leading-tight">
+        The Collective Brand Packet
+      </h2>
+      <p class="text-lg text-gray-300 max-w-3xl leading-relaxed">
+        Welcome to the centralized hub for Cashaw Management and its portfolio of hospitality brands. Use this interactive deck to explore our corporate vision, distinct brand systems, and operational parameters.
+      </p>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4">
+        <button type="button" data-goto-brand="kush" class="brand-tile text-left bg-forest-900/40 border border-forest-800 p-4 rounded-xl hover:border-gold-500/40 hover:bg-forest-900/70">
+          <div class="w-10 h-10 rounded-full bg-[#0F2D1E] border border-[#D4AF37]/40 text-[#D4AF37] flex items-center justify-center font-serif text-lg font-bold mx-auto mb-2">K</div>
+          <span class="text-xs text-gray-300 font-medium block text-center">KushKations</span>
+          <span class="text-[10px] text-gray-500 block text-center mt-0.5">Flagship</span>
+        </button>
+        <button type="button" data-goto-brand="exclusive" class="brand-tile text-left bg-forest-900/40 border border-forest-800 p-4 rounded-xl hover:border-gold-500/40 hover:bg-forest-900/70">
+          <div class="w-10 h-10 rounded-full bg-cream text-[#c8992f] flex items-center justify-center font-serif text-lg font-bold mx-auto mb-2">A</div>
+          <span class="text-xs text-gray-300 font-medium block text-center">All Exclusive</span>
+          <span class="text-[10px] text-gray-500 block text-center mt-0.5">Premium Stays</span>
+        </button>
+        <button type="button" data-goto-brand="sameday" class="brand-tile text-left bg-forest-900/40 border border-forest-800 p-4 rounded-xl hover:border-gold-500/40 hover:bg-forest-900/70">
+          <div class="w-10 h-10 rounded-full bg-forest-800 text-[#65BC7B] flex items-center justify-center font-sans text-lg font-bold mx-auto mb-2">S</div>
+          <span class="text-xs text-gray-300 font-medium block text-center">Same-Day BNB</span>
+          <span class="text-[10px] text-gray-500 block text-center mt-0.5">Fast Turnaround</span>
+        </button>
+        <button type="button" data-goto-brand="clearsite" class="brand-tile text-left bg-forest-900/40 border border-forest-800 p-4 rounded-xl hover:border-gold-500/40 hover:bg-forest-900/70">
+          <div class="w-10 h-10 rounded-full bg-[#A8D5B5] text-[#1E3120] flex items-center justify-center font-sans text-lg font-black mx-auto mb-2">C</div>
+          <span class="text-xs text-gray-300 font-medium block text-center">Clearsite</span>
+          <span class="text-[10px] text-gray-500 block text-center mt-0.5">Services &amp; Ops</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ---------- Core Values ---------- -->
+    <section id="core-values" class="scroll-mt-24 space-y-6 pt-8 border-t border-forest-800/80">
+      <div class="space-y-2">
+        <h3 class="text-2xl font-serif font-semibold text-white">Foundation &amp; Core Values</h3>
+        <p class="text-sm text-gray-400">Our operational compass. Hover or focus any card to reveal the internal execution guide.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <article tabindex="0" class="value-card group relative bg-forest-900/30 border border-forest-800 rounded-2xl p-6 min-h-[200px] transition hover:bg-forest-900/60 hover:border-gold-500/30 focus-within:border-gold-500/40">
+          <div class="flex items-center justify-between mb-4">
+            <h4 class="text-lg font-serif font-medium text-white group-hover:text-gold-400 group-focus-within:text-gold-400 transition">1. Integrity</h4>
+            <span class="text-xs font-mono text-gray-500">Integridad</span>
+          </div>
+          <div class="relative">
+            <p class="value-face text-sm text-gray-300 leading-relaxed">
+              We stand firm in transparency. We deliver exactly what is promised to both property owners and traveling guests, leaving no room for discrepancies.
+            </p>
+            <div class="value-back absolute inset-0">
+              <span class="text-[10px] font-semibold uppercase tracking-[0.14em] text-gold-500 block mb-1.5">How we live it</span>
+              <p class="text-sm text-gold-300/90 leading-relaxed italic">
+                Immediate communication the moment a breakdown occurs. We refund or repair preemptively, before the guest has to ask.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <article tabindex="0" class="value-card group relative bg-forest-900/30 border border-forest-800 rounded-2xl p-6 min-h-[200px] transition hover:bg-forest-900/60 hover:border-gold-500/30 focus-within:border-gold-500/40">
+          <div class="flex items-center justify-between mb-4">
+            <h4 class="text-lg font-serif font-medium text-white group-hover:text-gold-400 group-focus-within:text-gold-400 transition">2. Ownership</h4>
+            <span class="text-xs font-mono text-gray-500">Responsabilidad</span>
+          </div>
+          <div class="relative">
+            <p class="value-face text-sm text-gray-300 leading-relaxed">
+              Extreme accountability is our baseline. Every host, VA, and operations team member owns the outcome of their actions. No excuses.
+            </p>
+            <div class="value-back absolute inset-0">
+              <span class="text-[10px] font-semibold uppercase tracking-[0.14em] text-gold-500 block mb-1.5">How we live it</span>
+              <p class="text-sm text-gold-300/90 leading-relaxed italic">
+                We never tell a guest it was the cleaning crew's fault. We apologize, resolve it within 45 minutes, then fix the internal process.
+              </p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ---------- Brand Portfolio ---------- -->
+    <section id="brand-portfolio" class="scroll-mt-24 space-y-6 pt-8 border-t border-forest-800/80">
+      <div class="space-y-2">
+        <h3 class="text-2xl font-serif font-semibold text-white">Brand Portfolio Hub</h3>
+        <p class="text-sm text-gray-400">Select a tab to swap between distinct system guidelines. Use the arrow keys to move between tabs.</p>
+      </div>
+
+      <div class="tab-rail border-b border-forest-800 overflow-x-auto">
+        <div role="tablist" aria-label="Brand portfolio" class="flex gap-6 pb-px min-w-max">
+          <button role="tab" id="tab-kush" data-tab="kush" aria-controls="panel-kush" aria-selected="true" tabindex="0"
+                  class="tab-btn py-3 px-1 text-sm font-medium whitespace-nowrap text-gold-500 transition-colors">KushKations</button>
+          <button role="tab" id="tab-exclusive" data-tab="exclusive" aria-controls="panel-exclusive" aria-selected="false" tabindex="-1"
+                  class="tab-btn py-3 px-1 text-sm font-medium whitespace-nowrap text-gray-400 hover:text-white transition-colors">All Exclusive</button>
+          <button role="tab" id="tab-sameday" data-tab="sameday" aria-controls="panel-sameday" aria-selected="false" tabindex="-1"
+                  class="tab-btn py-3 px-1 text-sm font-medium whitespace-nowrap text-gray-400 hover:text-white transition-colors">Same-Day BNB</button>
+          <button role="tab" id="tab-clearsite" data-tab="clearsite" aria-controls="panel-clearsite" aria-selected="false" tabindex="-1"
+                  class="tab-btn py-3 px-1 text-sm font-medium whitespace-nowrap text-gray-400 hover:text-white transition-colors">Clearsite</button>
+        </div>
+        <span class="tab-underline" aria-hidden="true"></span>
+      </div>
+
+      <!-- Tab 1: KushKations -->
+      <div id="panel-kush" role="tabpanel" aria-labelledby="tab-kush" tabindex="0" class="tab-content pt-4 animate-fadeUp">
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="md:col-span-2 space-y-4">
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 shrink-0 rounded-full bg-[#0F2D1E] border border-[#D4AF37]/40 text-[#D4AF37] flex items-center justify-center font-serif text-2xl font-bold">K</div>
+              <div>
+                <h4 class="text-xl font-serif font-semibold text-white">KushKations</h4>
+                <p class="text-xs text-gray-500 uppercase tracking-[0.12em]">Flagship · 420 Friendly</p>
+              </div>
+            </div>
+            <p class="text-sm text-gray-300 leading-relaxed max-w-2xl">
+              Our flagship luxury vacation rental program targeting millennial travelers and group getaways. Cultivated to provide high-vibe spaces with absolute privacy and distinct interior design.
+            </p>
+            <div class="flex flex-wrap gap-2 pt-1">
+              <span class="px-2.5 py-1 rounded bg-[#0F2D1E] border border-[#D4AF37]/25 text-[#D4AF37] text-xs font-medium">Boutique Luxury</span>
+              <span class="px-2.5 py-1 rounded bg-[#0F2D1E] border border-[#D4AF37]/25 text-[#D4AF37] text-xs font-medium">Group-Friendly</span>
+              <span class="px-2.5 py-1 rounded bg-[#0F2D1E] border border-[#D4AF37]/25 text-[#D4AF37] text-xs font-medium">Immersive Design</span>
+            </div>
+          </div>
+
+          <div class="bg-forest-900/20 border border-forest-800 p-4 rounded-xl space-y-3 self-start">
+            <span class="text-xs font-semibold text-gray-400 uppercase tracking-[0.12em] block">Palette Colors</span>
+            <div class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded bg-[#0F2D1E] border border-white/15 inline-block shrink-0"></span>
+              <span class="text-xs font-mono text-gray-300">#0F2D1E (Forest)</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded bg-[#D4AF37] border border-white/15 inline-block shrink-0"></span>
+              <span class="text-xs font-mono text-gray-300">#D4AF37 (Gold)</span>
+            </div>
+            <div class="pt-3 mt-1 border-t border-forest-800">
+              <span class="text-xs font-semibold text-gray-400 uppercase tracking-[0.12em] block mb-2">Logo Mark</span>
+              <p class="text-xs text-gray-500 leading-relaxed">Serif "K" in gold on a dark forest circle.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 2: All Exclusive -->
+      <div id="panel-exclusive" role="tabpanel" aria-labelledby="tab-exclusive" tabindex="0" class="tab-content pt-4 animate-fadeUp" hidden>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="md:col-span-2 space-y-4">
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 shrink-0 rounded-full bg-cream text-[#C8992F] flex items-center justify-center font-serif text-2xl font-bold">A</div>
+              <div>
+                <h4 class="text-xl font-serif font-semibold text-white">All Exclusive BNB</h4>
+                <p class="text-xs text-gray-500 uppercase tracking-[0.12em]">Premium Stays</p>
+              </div>
+            </div>
+            <p class="text-sm text-gray-300 leading-relaxed max-w-2xl">
+              Private, upscale short-term rentals featuring premium group amenities like hot tubs, home theaters, and gaming rooms. Built for multi-generational families, corporate travelers, and guests seeking a classic, high-end stay.
+            </p>
+            <div class="flex flex-wrap gap-2 pt-1">
+              <span class="px-2.5 py-1 rounded bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs font-medium">Corporate &amp; family friendly</span>
+              <span class="px-2.5 py-1 rounded bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs font-medium">Premium group homes</span>
+              <span class="px-2.5 py-1 rounded bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs font-medium">Strict non-smoking policy</span>
+            </div>
+          </div>
+
+          <div class="bg-forest-900/20 border border-forest-800 p-4 rounded-xl space-y-3 self-start">
+            <span class="text-xs font-semibold text-gray-400 uppercase tracking-[0.12em] block">Palette Colors</span>
+            <div class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded bg-[#C8992F] border border-white/15 inline-block shrink-0"></span>
+              <span class="text-xs font-mono text-gray-300">#C8992F (Gold)</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded bg-[#F2EFE6] border border-white/15 inline-block shrink-0"></span>
+              <span class="text-xs font-mono text-gray-300">#F2EFE6 (Cream)</span>
+            </div>
+            <div class="pt-3 mt-1 border-t border-forest-800">
+              <span class="text-xs font-semibold text-gray-400 uppercase tracking-[0.12em] block mb-2">Logo Mark</span>
+              <p class="text-xs text-gray-500 leading-relaxed">Elegant serif "A" in Cashaw Gold on a cream circle.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 3: Same-Day BNB -->
+      <div id="panel-sameday" role="tabpanel" aria-labelledby="tab-sameday" tabindex="0" class="tab-content pt-4 animate-fadeUp" hidden>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="md:col-span-2 space-y-4">
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 shrink-0 rounded-full bg-[#1E3120] border border-[#65BC7B]/40 text-[#65BC7B] flex items-center justify-center font-sans text-2xl font-black">S</div>
+              <div>
+                <h4 class="text-xl font-serif font-semibold text-white">Same-Day BNB</h4>
+                <p class="text-xs text-gray-500 uppercase tracking-[0.12em]">Fast Turnaround</p>
+              </div>
+            </div>
+            <p class="text-sm text-gray-300 leading-relaxed max-w-2xl">
+              Hassle-free, instantly bookable properties optimized for rapid turnaround and spontaneous travelers. Engineered for speed of booking, instant communication, and immediate digital check-in.
+            </p>
+            <div class="flex flex-wrap gap-2 pt-1">
+              <span class="px-2.5 py-1 rounded bg-[#65BC7B]/10 border border-[#65BC7B]/30 text-[#65BC7B] text-xs font-medium">Instant booking</span>
+              <span class="px-2.5 py-1 rounded bg-[#65BC7B]/10 border border-[#65BC7B]/30 text-[#65BC7B] text-xs font-medium">Fast digital check-in</span>
+              <span class="px-2.5 py-1 rounded bg-[#65BC7B]/10 border border-[#65BC7B]/30 text-[#65BC7B] text-xs font-medium">Transit corridor properties</span>
+            </div>
+          </div>
+
+          <div class="bg-forest-900/20 border border-forest-800 p-4 rounded-xl space-y-3 self-start">
+            <span class="text-xs font-semibold text-gray-400 uppercase tracking-[0.12em] block">Palette Colors</span>
+            <div class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded bg-[#65BC7B] border border-white/15 inline-block shrink-0"></span>
+              <span class="text-xs font-mono text-gray-300">#65BC7B (Bright Green)</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded bg-[#1E3120] border border-white/15 inline-block shrink-0"></span>
+              <span class="text-xs font-mono text-gray-300">#1E3120 (Dark Green)</span>
+            </div>
+            <div class="pt-3 mt-1 border-t border-forest-800">
+              <span class="text-xs font-semibold text-gray-400 uppercase tracking-[0.12em] block mb-2">Logo Mark</span>
+              <p class="text-xs text-gray-500 leading-relaxed">Bold modern sans-serif "S" in bright green on a dark green circle.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 4: Clearsite -->
+      <div id="panel-clearsite" role="tabpanel" aria-labelledby="tab-clearsite" tabindex="0" class="tab-content pt-4 animate-fadeUp" hidden>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="md:col-span-2 space-y-4">
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 shrink-0 rounded-full bg-[#A8D5B5] text-[#1E3120] flex items-center justify-center font-sans text-2xl font-black">C</div>
+              <div>
+                <h4 class="text-xl font-serif font-semibold text-white">Clearsite</h4>
+                <p class="text-xs text-gray-500 uppercase tracking-[0.12em]">Services &amp; Operations</p>
+              </div>
+            </div>
+            <p class="text-sm text-gray-300 leading-relaxed max-w-2xl">
+              The professional cleaning, turnover, and property maintenance engine behind the entire portfolio. Delivering 100% photo-verified, hospitality-grade cleans and rapid-response maintenance to keep properties in five-star condition.
+            </p>
+            <div class="flex flex-wrap gap-2 pt-1">
+              <span class="px-2.5 py-1 rounded bg-[#A8D5B5]/10 border border-[#A8D5B5]/30 text-[#A8D5B5] text-xs font-medium">Turnover &amp; maintenance</span>
+              <span class="px-2.5 py-1 rounded bg-[#A8D5B5]/10 border border-[#A8D5B5]/30 text-[#A8D5B5] text-xs font-medium">100% photo-verified</span>
+              <span class="px-2.5 py-1 rounded bg-[#A8D5B5]/10 border border-[#A8D5B5]/30 text-[#A8D5B5] text-xs font-medium">B2B &amp; internal ops</span>
+            </div>
+          </div>
+
+          <div class="bg-forest-900/20 border border-forest-800 p-4 rounded-xl space-y-3 self-start">
+            <span class="text-xs font-semibold text-gray-400 uppercase tracking-[0.12em] block">Palette Colors</span>
+            <div class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded bg-[#1E3120] border border-white/15 inline-block shrink-0"></span>
+              <span class="text-xs font-mono text-gray-300">#1E3120 (Dark Green)</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded bg-[#A8D5B5] border border-white/15 inline-block shrink-0"></span>
+              <span class="text-xs font-mono text-gray-300">#A8D5B5 (Light Green)</span>
+            </div>
+            <div class="pt-3 mt-1 border-t border-forest-800">
+              <span class="text-xs font-semibold text-gray-400 uppercase tracking-[0.12em] block mb-2">Logo Mark</span>
+              <p class="text-xs text-gray-500 leading-relaxed">Sharp geometric "C" in dark green on a light green circle.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- Operating Standards ---------- -->
+    <section id="operating-standards" class="scroll-mt-24 space-y-6 pt-8 border-t border-forest-800/80">
+      <div class="space-y-2">
+        <h3 class="text-2xl font-serif font-semibold text-white">Operating Standards</h3>
+        <p class="text-sm text-gray-400">Where the brands diverge, and where they hold the same line.</p>
+      </div>
+
+      <div class="overflow-x-auto rounded-2xl border border-forest-800">
+        <table class="w-full min-w-[640px] text-left border-collapse">
+          <caption class="sr-only">Operating standards compared across KushKations, All Exclusive BNB, and Same-Day BNB</caption>
+          <thead>
+            <tr class="bg-forest-900/70">
+              <th scope="col" class="px-5 py-4 text-xs font-semibold uppercase tracking-[0.12em] text-gray-400 border-b border-forest-800 w-1/4">Standard</th>
+              <th scope="col" class="px-5 py-4 text-xs font-semibold uppercase tracking-[0.12em] text-gold-400 border-b border-l border-forest-800">KushKations</th>
+              <th scope="col" class="px-5 py-4 text-xs font-semibold uppercase tracking-[0.12em] text-gold-400 border-b border-l border-forest-800">All Exclusive &amp; Same-Day BNB</th>
+            </tr>
+          </thead>
+          <tbody class="text-sm">
+            <tr class="hover:bg-forest-900/40 transition-colors">
+              <th scope="row" class="px-5 py-4 font-medium text-white align-top border-b border-forest-800/70">Smoking policy</th>
+              <td class="px-5 py-4 text-gray-300 align-top border-b border-l border-forest-800/70">Permitted. 420 friendly by design.</td>
+              <td class="px-5 py-4 text-gray-300 align-top border-b border-l border-forest-800/70">Strictly non-smoking. No exceptions.</td>
+            </tr>
+            <tr class="hover:bg-forest-900/40 transition-colors">
+              <th scope="row" class="px-5 py-4 font-medium text-white align-top border-b border-forest-800/70">Minimum age to book</th>
+              <td class="px-5 py-4 text-gray-300 align-top border-b border-l border-forest-800/70">21+</td>
+              <td class="px-5 py-4 text-gray-300 align-top border-b border-l border-forest-800/70">25+</td>
+            </tr>
+            <tr class="hover:bg-forest-900/40 transition-colors">
+              <th scope="row" class="px-5 py-4 font-medium text-white align-top border-b border-forest-800/70">Primary guest</th>
+              <td class="px-5 py-4 text-gray-300 align-top border-b border-l border-forest-800/70">Millennial travelers, group getaways</td>
+              <td class="px-5 py-4 text-gray-300 align-top border-b border-l border-forest-800/70">Families, corporate travelers, spontaneous bookers</td>
+            </tr>
+            <tr class="hover:bg-forest-900/40 transition-colors">
+              <th scope="row" class="px-5 py-4 font-medium text-white align-top">Turnover standard</th>
+              <td colspan="2" class="px-5 py-4 align-top border-l border-forest-800/70 bg-[#A8D5B5]/[0.04]">
+                <span class="inline-flex items-center gap-2 mb-1.5">
+                  <span class="w-4 h-4 rounded-full bg-[#A8D5B5] text-[#1E3120] flex items-center justify-center font-sans text-[9px] font-black">C</span>
+                  <span class="text-[10px] font-semibold uppercase tracking-[0.12em] text-[#A8D5B5]">All brands</span>
+                </span>
+                <p class="text-gray-300">Clearsite handles every turnover across all brands. 100% photo-verified, hospitality-grade.</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="md:hidden text-xs text-gray-500 pt-2">Version 2.0 (2026) · Designed for internal alignment</p>
+    </section>
+
+  </main>
+
+  <script>
+    (function () {
+      'use strict';
+
+      /* ---------- Tabs ---------- */
+      const tablist   = document.querySelector('[role="tablist"]');
+      const tabs      = Array.from(document.querySelectorAll('.tab-btn'));
+      const underline = document.querySelector('.tab-underline');
+
+      function moveUnderline(tab) {
+        underline.style.left  = tab.offsetLeft + 'px';
+        underline.style.width = tab.offsetWidth + 'px';
+      }
+
+      function selectTab(tab, { focus = false } = {}) {
+        tabs.forEach(function (t) {
+          const selected = t === tab;
+          t.setAttribute('aria-selected', String(selected));
+          t.tabIndex = selected ? 0 : -1;
+          t.classList.toggle('text-gold-500', selected);
+          t.classList.toggle('text-gray-400', !selected);
+          t.classList.toggle('hover:text-white', !selected);
+          document.getElementById(t.getAttribute('aria-controls')).hidden = !selected;
+        });
+        moveUnderline(tab);
+        if (focus) tab.focus();
+      }
+
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () { selectTab(tab); });
+      });
+
+      tablist.addEventListener('keydown', function (e) {
+        const current = tabs.indexOf(document.activeElement);
+        if (current === -1) return;
+        let next = null;
+        if (e.key === 'ArrowRight') next = (current + 1) % tabs.length;
+        else if (e.key === 'ArrowLeft') next = (current - 1 + tabs.length) % tabs.length;
+        else if (e.key === 'Home') next = 0;
+        else if (e.key === 'End') next = tabs.length - 1;
+        if (next === null) return;
+        e.preventDefault();
+        selectTab(tabs[next], { focus: true });
+      });
+
+      /* ---------- Overview tiles jump into the matching tab ---------- */
+      document.querySelectorAll('[data-goto-brand]').forEach(function (tile) {
+        tile.addEventListener('click', function () {
+          const target = tabs.find(function (t) { return t.dataset.tab === tile.dataset.gotoBrand; });
+          if (!target) return;
+          selectTab(target);
+          document.getElementById('brand-portfolio')
+            .scrollIntoView({ behavior: prefersReduced() ? 'auto' : 'smooth', block: 'start' });
+        });
+      });
+
+      function prefersReduced() {
+        return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      }
+
+      /* ---------- Sidebar scroll-spy ---------- */
+      const navLinks = Array.from(document.querySelectorAll('[data-nav]'));
+      const sections = navLinks
+        .map(function (l) { return document.getElementById(l.dataset.nav); })
+        .filter(Boolean);
+
+      function setActive(id) {
+        navLinks.forEach(function (link) {
+          const on = link.dataset.nav === id;
+          link.classList.toggle('bg-forest-950/60', on);
+          link.classList.toggle('text-white', on);
+          link.classList.toggle('border-forest-800', on);
+          link.classList.toggle('text-gray-400', !on);
+          link.classList.toggle('border-transparent', !on);
+          if (on) link.setAttribute('aria-current', 'true');
+          else link.removeAttribute('aria-current');
+        });
+      }
+
+      // Pick the last section whose top has crossed the reading line. Geometry beats
+      // intersectionRatio here: ratio is area-over-target-area, so a short section
+      // outranks a tall one that actually fills the viewport.
+      function computeActive() {
+        const line = window.innerHeight * 0.3;
+        let current = sections[0].id;
+
+        sections.forEach(function (s) {
+          if (s.getBoundingClientRect().top <= line) current = s.id;
+        });
+
+        // The final section may be too short to ever reach the line.
+        const doc = document.documentElement;
+        if (window.innerHeight + window.scrollY >= doc.scrollHeight - 2) {
+          current = sections[sections.length - 1].id;
+        }
+        setActive(current);
+      }
+
+      window.addEventListener('scroll', computeActive, { passive: true });
+      window.addEventListener('resize', computeActive);
+      computeActive();
+
+      /* ---------- Keep the underline honest ---------- */
+      function syncUnderline() {
+        const active = tabs.find(function (t) { return t.getAttribute('aria-selected') === 'true'; });
+        if (active) moveUnderline(active);
+      }
+      window.addEventListener('resize', syncUnderline);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(syncUnderline);
+      syncUnderline();
+    })();
+  </script>
+</body>
+</html>
