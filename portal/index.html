@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cashaw Management — Brand Portal</title>
-  <meta name="description" content="The centralized brand portal for Cashaw Management: core values, brand portfolio, and operating standards.">
+  <meta name="description" content="Brand portal for Cashaw Management Inc.: the brand family, core values, and operating standards.">
 
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -21,25 +21,16 @@
             serif: ['"Playfair Display"', 'Georgia', 'serif'],
           },
           colors: {
-            cream: {
-              50:  '#FDFBF7',  /* warm off-white canvas */
-              100: '#F7F4EB',  /* sidebar + card tint */
-              200: '#EFECE1',  /* borders and dividers */
-            },
-            charcoal: '#1C2B24', /* deep forest-charcoal text — 14.8:1 on white */
-            gold: {
-              500: '#C8992F',  /* signature gold — ACCENTS ONLY (2.6:1, fails as text) */
-              600: '#A67D24',  /* deeper accent (3.8:1, still fails as body text) */
-              700: '#7A5C1B',  /* gold for TEXT — 6.2:1 on white, passes AA */
-            }
+            cream: { 50: '#FDFBF7', 100: '#F7F4EB', 200: '#EFECE1', 300: '#E2DCCB' },
+            charcoal: '#1C2B24',
+            /* Cashaw gold. 500 is the mark's own gold and is ACCENT ONLY (fails AA as text).
+               700 is the text-safe gold at 6.2:1 on white. */
+            gold: { 500: '#C8992F', 700: '#7A5C1B' },
           },
           keyframes: {
-            fadeUp: {
-              '0%':   { opacity: '0', transform: 'translateY(6px)' },
-              '100%': { opacity: '1', transform: 'translateY(0)' },
-            }
+            fadeUp: { '0%': { opacity: '0', transform: 'translateY(8px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } }
           },
-          animation: { fadeUp: 'fadeUp .28s ease-out both' }
+          animation: { fadeUp: 'fadeUp .3s ease-out both' }
         }
       }
     }
@@ -50,56 +41,35 @@
 
     ::-webkit-scrollbar { width: 10px; height: 10px; }
     ::-webkit-scrollbar-track { background: #F7F4EB; }
-    ::-webkit-scrollbar-thumb {
-      background: #DCD6C4;
-      border-radius: 5px;
-      border: 2px solid #F7F4EB;
-    }
+    ::-webkit-scrollbar-thumb { background: #E2DCCB; border-radius: 5px; border: 2px solid #F7F4EB; }
     ::-webkit-scrollbar-thumb:hover { background: #C8992F; }
-    * { scrollbar-width: thin; scrollbar-color: #DCD6C4 #F7F4EB; }
+    * { scrollbar-width: thin; scrollbar-color: #E2DCCB #F7F4EB; }
 
-    :focus-visible {
-      outline: 2px solid #7A5C1B;
-      outline-offset: 2px;
-      border-radius: 6px;
+    :focus-visible { outline: 2px solid #7A5C1B; outline-offset: 3px; border-radius: 6px; }
+
+    /* Editorial rule under section headings */
+    .rule::after {
+      content: ""; display: block; width: 44px; height: 2px;
+      background: #C8992F; margin-top: .75rem;
     }
 
-    /* Animated tab underline */
-    .tab-rail { position: relative; }
-    .tab-underline {
-      position: absolute;
-      bottom: -1px;
-      height: 2px;
-      background: #C8992F;
-      transition: left .3s cubic-bezier(.4,0,.2,1), width .3s cubic-bezier(.4,0,.2,1);
-      pointer-events: none;
-      border-radius: 2px 2px 0 0;
-    }
-
-    /* Core value reveal.
-       Both faces share one grid cell, so the card sizes to the taller of the two
-       and nothing overflows — no absolute positioning, no clipped text. */
+    /* Value cards: both faces share one grid cell, so the card sizes to the taller
+       of the two and nothing clips. */
     .value-body { display: grid; }
     .value-body > * { grid-area: 1 / 1; }
-    .value-face,
-    .value-back { transition: opacity .25s ease, transform .25s ease; }
+    .value-face, .value-back { transition: opacity .25s ease, transform .25s ease; }
     .value-back { opacity: 0; transform: translateY(4px); }
-    .value-card:hover .value-face,
-    .value-card:focus-within .value-face { opacity: 0; transform: translateY(-4px); }
-    .value-card:hover .value-back,
-    .value-card:focus-within .value-back { opacity: 1; transform: translateY(0); }
+    .value-card:hover .value-face, .value-card:focus-within .value-face { opacity: 0; transform: translateY(-4px); }
+    .value-card:hover .value-back, .value-card:focus-within .value-back { opacity: 1; transform: translateY(0); }
 
-    /* Touch devices can't hover: show both faces stacked instead of hiding
-       the execution guide behind an interaction that will never fire. */
+    /* Touch devices can't hover: show both faces rather than hiding the guide
+       behind an interaction that will never fire. */
     @media (hover: none) {
       .value-body { display: block; }
       .value-face { opacity: 1 !important; transform: none !important; }
       .value-back {
-        opacity: 1 !important;
-        transform: none !important;
-        margin-top: .75rem;
-        padding-top: .75rem;
-        border-top: 1px solid #EFECE1;
+        opacity: 1 !important; transform: none !important;
+        margin-top: .75rem; padding-top: .75rem; border-top: 1px solid #EFECE1;
       }
     }
 
@@ -109,8 +79,7 @@
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after {
-        animation-duration: .001ms !important;
-        animation-iteration-count: 1 !important;
+        animation-duration: .001ms !important; animation-iteration-count: 1 !important;
         transition-duration: .001ms !important;
       }
       .lift:hover { transform: none; }
@@ -118,7 +87,6 @@
 
     @media print {
       aside { display: none; }
-      .tab-content[hidden] { display: block !important; }
       .value-body { display: block; }
       .value-back { opacity: 1 !important; transform: none !important; }
     }
@@ -127,422 +95,331 @@
 
 <body class="bg-cream-50 text-charcoal font-sans min-h-screen flex flex-col md:flex-row">
 
-  <a href="#welcome" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-3 focus:left-3 focus:px-4 focus:py-2 focus:rounded-lg focus:bg-charcoal focus:text-cream-50 focus:font-semibold">Skip to content</a>
+  <a href="#overview" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-3 focus:left-3 focus:px-4 focus:py-2 focus:rounded-lg focus:bg-charcoal focus:text-cream-50 focus:font-semibold">Skip to content</a>
 
   <!-- ============ SIDEBAR ============ -->
   <aside class="w-full md:w-64 md:h-screen md:sticky md:top-0 bg-cream-100 border-b md:border-b-0 md:border-r border-cream-200 flex flex-col justify-between shrink-0 z-30">
     <div class="p-5 md:p-6">
-      <div class="flex items-center gap-3 mb-6 md:mb-8">
-        <div class="w-10 h-10 shrink-0 rounded-full bg-charcoal text-cream-50 flex items-center justify-center font-serif text-lg font-semibold shadow-sm">C</div>
-        <div>
-          <h1 class="font-serif font-bold leading-tight text-charcoal text-base">Cashaw Mgmt</h1>
-          <p class="text-[10px] text-gray-600 tracking-[0.18em] uppercase font-semibold">Brand Portal</p>
-        </div>
-      </div>
+      <img src="assets/cashaw-logo.png" alt="Cashaw Management Inc." class="w-40 md:w-full max-w-[180px] mb-1">
+      <p class="text-[10px] text-gray-600 tracking-[0.18em] uppercase font-semibold mb-6 md:mb-8">Brand Portal</p>
 
       <nav aria-label="Section navigation" class="flex flex-row md:flex-col gap-1 overflow-x-auto md:overflow-visible pb-1 md:pb-0">
-        <a href="#welcome" data-nav="welcome" class="nav-link whitespace-nowrap px-3 py-2.5 rounded-lg text-sm font-medium text-gray-600 border border-transparent transition hover:text-charcoal hover:bg-cream-50">Overview</a>
+        <a href="#overview" data-nav="overview" class="nav-link whitespace-nowrap px-3 py-2.5 rounded-lg text-sm font-medium text-gray-600 border border-transparent transition hover:text-charcoal hover:bg-cream-50">Overview</a>
+        <a href="#brand-family" data-nav="brand-family" class="nav-link whitespace-nowrap px-3 py-2.5 rounded-lg text-sm font-medium text-gray-600 border border-transparent transition hover:text-charcoal hover:bg-cream-50">Brand Family</a>
         <a href="#core-values" data-nav="core-values" class="nav-link whitespace-nowrap px-3 py-2.5 rounded-lg text-sm font-medium text-gray-600 border border-transparent transition hover:text-charcoal hover:bg-cream-50">Core Values</a>
-        <a href="#brand-portfolio" data-nav="brand-portfolio" class="nav-link whitespace-nowrap px-3 py-2.5 rounded-lg text-sm font-medium text-gray-600 border border-transparent transition hover:text-charcoal hover:bg-cream-50">Brand Portfolio</a>
         <a href="#operating-standards" data-nav="operating-standards" class="nav-link whitespace-nowrap px-3 py-2.5 rounded-lg text-sm font-medium text-gray-600 border border-transparent transition hover:text-charcoal hover:bg-cream-50">Operating Standards</a>
       </nav>
     </div>
 
     <div class="hidden md:block p-6 border-t border-cream-200">
-      <div class="text-[11px] text-gray-600 font-medium leading-relaxed">
-        <p>Version 2.0 (2026)</p>
-        <p class="mt-0.5">Designed for internal alignment</p>
-      </div>
+      <p class="text-[11px] text-gray-600 font-medium leading-relaxed">Version 3.0 (2026)</p>
+      <p class="text-[11px] text-gray-600 leading-relaxed">Designed for internal alignment</p>
     </div>
   </aside>
 
   <!-- ============ MAIN ============ -->
-  <main class="flex-1 min-w-0 p-6 md:p-12 max-w-6xl space-y-16">
+  <main class="flex-1 min-w-0 p-6 md:p-12 max-w-6xl space-y-20">
 
     <!-- ---------- Overview ---------- -->
-    <section id="welcome" class="scroll-mt-24 space-y-6">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-700 text-xs font-bold uppercase tracking-[0.12em]">
-        Operational Excellence
+    <section id="overview" class="scroll-mt-24 space-y-8">
+      <div class="space-y-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-700 text-xs font-bold uppercase tracking-[0.12em]">
+          Cashaw Management Inc.
+        </div>
+        <h1 class="text-4xl md:text-6xl font-serif font-bold text-charcoal leading-[1.1] max-w-3xl">
+          Committed to securing your success.
+        </h1>
+        <p class="text-base md:text-lg text-gray-600 max-w-2xl leading-relaxed">
+          Cashaw Management operates a portfolio of vacation rental properties across the Denver metro under the consumer brand KushKations&trade;, with in-house cleaning, maintenance, and virtual assistant teams. We build a business that runs on systems, not heroes.
+        </p>
       </div>
-      <h2 class="text-4xl md:text-5xl font-serif font-bold text-charcoal leading-tight">
-        The Collective Brand Packet
-      </h2>
-      <p class="text-base md:text-lg text-gray-600 max-w-3xl leading-relaxed">
-        Welcome to the centralized hub for Cashaw Management and its portfolio of hospitality brands. Use this interactive deck to explore our corporate vision, distinct brand systems, and operational parameters.
-      </p>
 
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4">
-        <button type="button" data-goto-brand="kush" class="lift bg-white border border-cream-200 p-5 rounded-xl shadow-sm hover:shadow-md hover:border-gold-500/50">
-          <div class="w-12 h-12 rounded-full bg-[#0F2D1E] text-[#D4AF37] flex items-center justify-center font-serif text-lg font-bold mx-auto mb-3">K</div>
-          <span class="text-xs text-charcoal font-semibold block">KushKations</span>
-          <span class="text-[10px] text-gray-500 block mt-0.5">Flagship</span>
-        </button>
-        <button type="button" data-goto-brand="exclusive" class="lift bg-white border border-cream-200 p-5 rounded-xl shadow-sm hover:shadow-md hover:border-gold-500/50">
-          <div class="w-12 h-12 rounded-full bg-[#F2EFE6] text-gold-700 border border-cream-200 flex items-center justify-center font-serif text-lg font-bold mx-auto mb-3">A</div>
-          <span class="text-xs text-charcoal font-semibold block">All Exclusive</span>
-          <span class="text-[10px] text-gray-500 block mt-0.5">Premium Stays</span>
-        </button>
-        <button type="button" data-goto-brand="sameday" class="lift bg-white border border-cream-200 p-5 rounded-xl shadow-sm hover:shadow-md hover:border-gold-500/50">
-          <div class="w-12 h-12 rounded-full bg-[#1E3120] text-[#65BC7B] flex items-center justify-center font-sans text-lg font-black mx-auto mb-3">S</div>
-          <span class="text-xs text-charcoal font-semibold block">Same-Day BNB</span>
-          <span class="text-[10px] text-gray-500 block mt-0.5">Fast Turnaround</span>
-        </button>
-        <button type="button" data-goto-brand="clearsite" class="lift bg-white border border-cream-200 p-5 rounded-xl shadow-sm hover:shadow-md hover:border-gold-500/50">
-          <div class="w-12 h-12 rounded-full bg-[#A8D5B5] text-[#1E3120] flex items-center justify-center font-sans text-lg font-black mx-auto mb-3">C</div>
-          <span class="text-xs text-charcoal font-semibold block">Clearsite</span>
-          <span class="text-[10px] text-gray-500 block mt-0.5">Services &amp; Ops</span>
-        </button>
+      <!-- Stats -->
+      <dl class="grid grid-cols-2 sm:grid-cols-4 gap-px bg-cream-200 border border-cream-200 rounded-xl overflow-hidden">
+        <div class="bg-cream-50 p-5">
+          <dt class="text-[10px] uppercase tracking-[0.12em] text-gray-600 font-bold">Properties</dt>
+          <dd class="text-3xl font-serif font-bold text-charcoal mt-1">21</dd>
+        </div>
+        <div class="bg-cream-50 p-5">
+          <dt class="text-[10px] uppercase tracking-[0.12em] text-gray-600 font-bold">Avg. Rating</dt>
+          <dd class="text-3xl font-serif font-bold text-charcoal mt-1">4.87<span class="text-gold-500 text-xl">&#9733;</span></dd>
+        </div>
+        <div class="bg-cream-50 p-5">
+          <dt class="text-[10px] uppercase tracking-[0.12em] text-gray-600 font-bold">Reviews</dt>
+          <dd class="text-3xl font-serif font-bold text-charcoal mt-1">1,773+</dd>
+        </div>
+        <div class="bg-cream-50 p-5">
+          <dt class="text-[10px] uppercase tracking-[0.12em] text-gray-600 font-bold">Core Values</dt>
+          <dd class="text-3xl font-serif font-bold text-charcoal mt-1">6</dd>
+        </div>
+      </dl>
+
+      <!-- The rule -->
+      <div class="bg-charcoal text-cream-50 rounded-2xl p-6 md:p-8">
+        <p class="text-[10px] uppercase tracking-[0.16em] text-gold-500 font-bold mb-3">The simple rule</p>
+        <p class="text-xl md:text-2xl font-serif leading-relaxed">
+          If a guest sees it: <span class="text-gold-500">KushKations&trade;</span>.<br>
+          If the team or a vendor sees it: <span class="text-gold-500">Cashaw Management</span>.
+        </p>
       </div>
     </section>
 
-    <!-- ---------- Core Values (the final six, 7/8/2026) ---------- -->
-    <section id="core-values" class="scroll-mt-24 space-y-6 pt-8 border-t border-cream-200">
+    <!-- ---------- Brand Family ---------- -->
+    <section id="brand-family" class="scroll-mt-24 space-y-8 pt-4">
       <div class="space-y-2">
-        <h3 class="text-2xl font-serif font-bold text-charcoal">Foundation &amp; Core Values</h3>
-        <p class="text-sm text-gray-600">Six words. They apply to everyone, including Shaquan. Every decision gets checked against them. Hover or focus any card to reveal the internal execution guide.</p>
+        <h2 class="text-2xl md:text-3xl font-serif font-bold text-charcoal rule">The Brand Family</h2>
+        <p class="text-sm text-gray-600 pt-2">Our names and when to use them. Two brands are active. Three are on file with their status still to be confirmed.</p>
       </div>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- ACTIVE -->
+      <div class="space-y-4">
+        <div class="flex items-center gap-3">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-green-100 border border-green-300 text-green-900 text-[10px] font-bold uppercase tracking-[0.12em]">
+            <span class="w-1.5 h-1.5 rounded-full bg-green-700"></span>Active
+          </span>
+          <span class="h-px flex-1 bg-cream-200"></span>
+        </div>
 
-        <!-- 1. Ownership -->
-        <article tabindex="0" class="value-card lift group bg-white border border-cream-200 p-6 rounded-xl shadow-sm hover:shadow-md hover:border-gold-500/40 focus-within:border-gold-500/60">
-          <div class="flex items-center justify-between mb-4 gap-2">
-            <h4 class="text-base font-serif font-bold text-charcoal group-hover:text-gold-700 group-focus-within:text-gold-700 transition">1. Ownership</h4>
+        <div class="grid md:grid-cols-2 gap-6">
+          <!-- Cashaw Management -->
+          <article class="lift bg-white border border-cream-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-gold-500/40">
+            <div class="h-20 flex items-center mb-5">
+              <img src="assets/cashaw-logo.png" alt="Cashaw Management Inc. logo" class="max-h-20 w-auto">
+            </div>
+            <h3 class="text-lg font-serif font-bold text-charcoal">Cashaw Management Inc.</h3>
+            <p class="text-xs text-gray-600 leading-relaxed mt-2">
+              Parent company. Contracts, payroll, vendors, team.
+            </p>
+            <dl class="mt-4 pt-4 border-t border-cream-200 space-y-2 text-xs">
+              <div class="flex gap-2">
+                <dt class="text-gray-600 font-semibold shrink-0 w-16">Tagline</dt>
+                <dd class="text-charcoal">"Committed to securing your success."</dd>
+              </div>
+              <div class="flex gap-2">
+                <dt class="text-gray-600 font-semibold shrink-0 w-16">Address</dt>
+                <dd class="text-charcoal">500 E. 84th Ave., Suite A1, Thornton, CO 80229</dd>
+              </div>
+            </dl>
+          </article>
+
+          <!-- KushKations -->
+          <article class="lift bg-white border border-cream-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-gold-500/40">
+            <div class="h-20 flex items-center mb-5">
+              <img src="assets/kushkations-logo.png" alt="KushKations trademark logo" class="max-h-20 w-auto">
+            </div>
+            <h3 class="text-lg font-serif font-bold text-charcoal">KushKations&trade;</h3>
+            <p class="text-xs text-gray-600 leading-relaxed mt-2">
+              Consumer brand. Guests, website, social, ads. Positioning: "Luxury Group Stays, 420-Friendly."
+            </p>
+            <div class="mt-4 pt-4 border-t border-cream-200">
+              <p class="text-[10px] uppercase tracking-[0.12em] text-gray-600 font-bold mb-2">Naming rule</p>
+              <p class="text-xs text-charcoal leading-relaxed">
+                Always one word, two capital Ks, &trade; in formal materials.
+                Never <span class="line-through text-gray-500">Kush Kations</span> or <span class="line-through text-gray-500">Kushkations</span>.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- Property photography -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <img src="assets/photo-exterior.jpg" alt="KushKations property exterior" loading="lazy" class="w-full h-32 md:h-40 object-cover rounded-xl border border-cream-200">
+        <img src="assets/photo-hottub.jpg" alt="Private hot tub at a KushKations property" loading="lazy" class="w-full h-32 md:h-40 object-cover rounded-xl border border-cream-200">
+        <img src="assets/photo-gameroom.jpg" alt="Game room at a KushKations property" loading="lazy" class="w-full h-32 md:h-40 object-cover rounded-xl border border-cream-200">
+        <img src="assets/photo-golf.jpg" alt="Golf simulator at a KushKations property" loading="lazy" class="w-full h-32 md:h-40 object-cover rounded-xl border border-cream-200">
+      </div>
+
+      <!-- TO CONFIRM -->
+      <div class="space-y-4 pt-4">
+        <div class="flex items-center gap-3">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-100 border border-amber-300 text-amber-900 text-[10px] font-bold uppercase tracking-[0.12em]">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-600"></span>Status to confirm
+          </span>
+          <span class="h-px flex-1 bg-cream-200"></span>
+        </div>
+        <p class="text-xs text-gray-600 max-w-2xl">
+          Logos are on file in Drive. Whether each of these is active, on hold, or retired has not been decided, so none of them should appear in guest-facing or vendor-facing material until it is.
+        </p>
+
+        <div class="grid sm:grid-cols-3 gap-6">
+          <article class="bg-cream-100/60 border border-dashed border-cream-300 rounded-2xl p-5">
+            <div class="h-16 flex items-center mb-4">
+              <img src="assets/aebnb-logo.png" alt="All Exclusive BNB logo" class="max-h-16 w-auto opacity-90">
+            </div>
+            <h3 class="text-sm font-serif font-bold text-charcoal">All Exclusive BNB</h3>
+            <p class="text-[11px] text-gray-600 mt-1">AEBNB, ESTD 2022.</p>
+            <p class="text-[11px] text-gray-600 mt-2">Status and current use to be confirmed.</p>
+          </article>
+
+          <article class="bg-cream-100/60 border border-dashed border-cream-300 rounded-2xl p-5">
+            <div class="h-16 flex items-center mb-4">
+              <img src="assets/sameday-logo.png" alt="Same-Day BNB Cleaners logo" class="max-h-16 w-auto opacity-90">
+            </div>
+            <h3 class="text-sm font-serif font-bold text-charcoal">Same-Day BNB</h3>
+            <p class="text-[11px] text-gray-600 mt-1">Mark on file reads "Same-Day BNB Cleaners."</p>
+            <p class="text-[11px] text-gray-600 mt-2">Status and current use to be confirmed.</p>
+          </article>
+
+          <article class="bg-cream-100/60 border border-dashed border-cream-300 rounded-2xl p-5">
+            <div class="h-16 flex items-center mb-4">
+              <img src="assets/clearsite-logo.png" alt="Clearsite logo" class="max-h-12 w-auto opacity-90">
+            </div>
+            <h3 class="text-sm font-serif font-bold text-charcoal">Clearsite</h3>
+            <p class="text-[11px] text-gray-600 mt-1">Recorded internally as a subsidiary cleaning company.</p>
+            <p class="text-[11px] text-gray-600 mt-2">Status and current use to be confirmed.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- Core Values ---------- -->
+    <section id="core-values" class="scroll-mt-24 space-y-8 pt-4">
+      <div class="space-y-2">
+        <h2 class="text-2xl md:text-3xl font-serif font-bold text-charcoal rule">Core Values</h2>
+        <p class="text-sm text-gray-600 pt-2">
+          <span class="font-semibold text-charcoal">Valores Fundamentales.</span>
+          Six words. They apply to everyone, including Shaquan. Every decision gets checked against them. Hover or focus a card for the execution guide.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+        <article tabindex="0" class="value-card lift group bg-white border border-cream-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-gold-500/40 focus-within:border-gold-500/60">
+          <div class="flex items-baseline justify-between mb-4 gap-2">
+            <h3 class="text-base font-serif font-bold text-charcoal">1. Ownership</h3>
             <span class="text-[10px] font-mono text-gray-600 bg-cream-100 px-2 py-0.5 rounded shrink-0">Responsabilidad</span>
           </div>
           <div class="value-body">
-            <p class="value-face text-xs text-gray-600 leading-relaxed">
-              If we see it, we solve it. No "not my job." Every unit you touch carries your name.
-            </p>
+            <p class="value-face text-xs text-gray-600 leading-relaxed">If we see it, we solve it. No "not my job." Every unit you touch carries your name.</p>
             <div class="value-back">
               <span class="text-[10px] font-bold uppercase tracking-[0.14em] text-gold-700 block mb-1.5">How we live it</span>
-              <p class="text-xs text-charcoal leading-relaxed italic">
-                We never tell a guest it was the cleaning crew's fault. We apologize, resolve it within 45 minutes, then fix the internal process.
-              </p>
+              <p class="text-xs text-charcoal leading-relaxed italic">We never tell a guest it was the cleaning crew's fault. We apologize, resolve it within 45 minutes, then fix the internal process.</p>
             </div>
           </div>
         </article>
 
-        <!-- 2. Integrity -->
-        <article tabindex="0" class="value-card lift group bg-white border border-cream-200 p-6 rounded-xl shadow-sm hover:shadow-md hover:border-gold-500/40 focus-within:border-gold-500/60">
-          <div class="flex items-center justify-between mb-4 gap-2">
-            <h4 class="text-base font-serif font-bold text-charcoal group-hover:text-gold-700 group-focus-within:text-gold-700 transition">2. Integrity</h4>
+        <article tabindex="0" class="value-card lift group bg-white border border-cream-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-gold-500/40 focus-within:border-gold-500/60">
+          <div class="flex items-baseline justify-between mb-4 gap-2">
+            <h3 class="text-base font-serif font-bold text-charcoal">2. Integrity</h3>
             <span class="text-[10px] font-mono text-gray-600 bg-cream-100 px-2 py-0.5 rounded shrink-0">Integridad</span>
           </div>
           <div class="value-body">
-            <p class="value-face text-xs text-gray-600 leading-relaxed">
-              Do it right even when nobody checks. An honest "not yet" beats a fake "done."
-            </p>
+            <p class="value-face text-xs text-gray-600 leading-relaxed">Do it right even when nobody checks. An honest "not yet" beats a fake "done."</p>
             <div class="value-back">
               <span class="text-[10px] font-bold uppercase tracking-[0.14em] text-gold-700 block mb-1.5">How we live it</span>
-              <p class="text-xs text-charcoal leading-relaxed italic">
-                Immediate communication the moment a breakdown occurs. We refund or repair preemptively, before the guest has to ask.
-              </p>
+              <p class="text-xs text-charcoal leading-relaxed italic">Immediate communication the moment a breakdown occurs. We refund or repair preemptively, before the guest has to ask.</p>
             </div>
           </div>
         </article>
 
-        <!-- 3. Persistence -->
-        <article tabindex="0" class="value-card lift group bg-white border border-cream-200 p-6 rounded-xl shadow-sm hover:shadow-md hover:border-gold-500/40 focus-within:border-gold-500/60">
-          <div class="flex items-center justify-between mb-4 gap-2">
-            <h4 class="text-base font-serif font-bold text-charcoal group-hover:text-gold-700 group-focus-within:text-gold-700 transition">3. Persistence</h4>
+        <article tabindex="0" class="value-card lift group bg-white border border-cream-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-gold-500/40 focus-within:border-gold-500/60">
+          <div class="flex items-baseline justify-between mb-4 gap-2">
+            <h3 class="text-base font-serif font-bold text-charcoal">3. Persistence</h3>
             <span class="text-[10px] font-mono text-gray-600 bg-cream-100 px-2 py-0.5 rounded shrink-0">Persistencia</span>
           </div>
           <div class="value-body">
-            <p class="value-face text-xs text-gray-600 leading-relaxed">
-              "No" is a starting point. We find a way. <span class="not-italic">(Encontramos la manera.)</span>
-            </p>
+            <p class="value-face text-xs text-gray-600 leading-relaxed">"No" is a starting point. We find a way. <span class="text-gray-500">(Encontramos la manera.)</span></p>
             <div class="value-back">
               <span class="text-[10px] font-bold uppercase tracking-[0.14em] text-gold-700 block mb-1.5">How we live it</span>
-              <p class="text-xs text-charcoal leading-relaxed italic">
-                An unfair review is not the end of the conversation. We document it, cite the policy it violates, and take it back to the platform until it is resolved.
-              </p>
+              <p class="text-xs text-charcoal leading-relaxed italic">An unfair review is not the end of the conversation. We document it, cite the policy it violates, and take it back to the platform until it is resolved.</p>
             </div>
           </div>
         </article>
 
-        <!-- 4. Team -->
-        <article tabindex="0" class="value-card lift group bg-white border border-cream-200 p-6 rounded-xl shadow-sm hover:shadow-md hover:border-gold-500/40 focus-within:border-gold-500/60">
-          <div class="flex items-center justify-between mb-4 gap-2">
-            <h4 class="text-base font-serif font-bold text-charcoal group-hover:text-gold-700 group-focus-within:text-gold-700 transition">4. Team</h4>
+        <article tabindex="0" class="value-card lift group bg-white border border-cream-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-gold-500/40 focus-within:border-gold-500/60">
+          <div class="flex items-baseline justify-between mb-4 gap-2">
+            <h3 class="text-base font-serif font-bold text-charcoal">4. Team</h3>
             <span class="text-[10px] font-mono text-gray-600 bg-cream-100 px-2 py-0.5 rounded shrink-0">Equipo</span>
           </div>
           <div class="value-body">
-            <p class="value-face text-xs text-gray-600 leading-relaxed">
-              Cleaners, maintenance, VAs — we win together. Nobody succeeds alone.
-            </p>
+            <p class="value-face text-xs text-gray-600 leading-relaxed">Cleaners, maintenance, VAs. We win together. Nobody succeeds alone.</p>
             <div class="value-back">
               <span class="text-[10px] font-bold uppercase tracking-[0.14em] text-gold-700 block mb-1.5">How we live it</span>
-              <p class="text-xs text-charcoal leading-relaxed italic">
-                A handoff is not finished until the next person can act on it. Every issue leaves the shift with an owner, not a mention.
-              </p>
+              <p class="text-xs text-charcoal leading-relaxed italic">A handoff is not finished until the next person can act on it. Every issue leaves the shift with an owner, not a mention.</p>
             </div>
           </div>
         </article>
 
-        <!-- 5. Growth -->
-        <article tabindex="0" class="value-card lift group bg-white border border-cream-200 p-6 rounded-xl shadow-sm hover:shadow-md hover:border-gold-500/40 focus-within:border-gold-500/60">
-          <div class="flex items-center justify-between mb-4 gap-2">
-            <h4 class="text-base font-serif font-bold text-charcoal group-hover:text-gold-700 group-focus-within:text-gold-700 transition">5. Growth</h4>
+        <article tabindex="0" class="value-card lift group bg-white border border-cream-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-gold-500/40 focus-within:border-gold-500/60">
+          <div class="flex items-baseline justify-between mb-4 gap-2">
+            <h3 class="text-base font-serif font-bold text-charcoal">5. Growth</h3>
             <span class="text-[10px] font-mono text-gray-600 bg-cream-100 px-2 py-0.5 rounded shrink-0">Crecimiento</span>
           </div>
           <div class="value-body">
-            <p class="value-face text-xs text-gray-600 leading-relaxed">
-              Better than yesterday. We don't repeat errors, we retire them.
-            </p>
+            <p class="value-face text-xs text-gray-600 leading-relaxed">Better than yesterday. We don't repeat errors, we retire them.</p>
             <div class="value-back">
               <span class="text-[10px] font-bold uppercase tracking-[0.14em] text-gold-700 block mb-1.5">How we live it</span>
-              <p class="text-xs text-charcoal leading-relaxed italic">
-                The same mistake twice is a process problem, not a people problem. We fix the system that allowed it and write it down.
-              </p>
+              <p class="text-xs text-charcoal leading-relaxed italic">The same mistake twice is a process problem, not a people problem. We fix the system that allowed it and write it down.</p>
             </div>
           </div>
         </article>
 
-        <!-- 6. Hospitality -->
-        <article tabindex="0" class="value-card lift group bg-white border border-cream-200 p-6 rounded-xl shadow-sm hover:shadow-md hover:border-gold-500/40 focus-within:border-gold-500/60">
-          <div class="flex items-center justify-between mb-4 gap-2">
-            <h4 class="text-base font-serif font-bold text-charcoal group-hover:text-gold-700 group-focus-within:text-gold-700 transition">6. Hospitality</h4>
+        <article tabindex="0" class="value-card lift group bg-white border border-cream-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-gold-500/40 focus-within:border-gold-500/60">
+          <div class="flex items-baseline justify-between mb-4 gap-2">
+            <h3 class="text-base font-serif font-bold text-charcoal">6. Hospitality</h3>
             <span class="text-[10px] font-mono text-gray-600 bg-cream-100 px-2 py-0.5 rounded shrink-0">Hospitalidad</span>
           </div>
           <div class="value-body">
-            <p class="value-face text-xs text-gray-600 leading-relaxed">
-              Success is measured by the guest experience. The guest feels our work.
-            </p>
+            <p class="value-face text-xs text-gray-600 leading-relaxed">Success is measured by the guest experience. The guest feels our work.</p>
             <div class="value-back">
               <span class="text-[10px] font-bold uppercase tracking-[0.14em] text-gold-700 block mb-1.5">How we live it</span>
-              <p class="text-xs text-charcoal leading-relaxed italic">
-                Custom design themes, a warm and professional voice, and answers that come from the house manual rather than a template.
-              </p>
+              <p class="text-xs text-charcoal leading-relaxed italic">Custom design themes, a warm and professional voice, and answers that come from the house manual rather than a template.</p>
             </div>
           </div>
         </article>
 
-      </div>
-    </section>
-
-    <!-- ---------- Brand Portfolio ---------- -->
-    <section id="brand-portfolio" class="scroll-mt-24 space-y-6 pt-8 border-t border-cream-200">
-      <div class="space-y-2">
-        <h3 class="text-2xl font-serif font-bold text-charcoal">Brand Portfolio Hub</h3>
-        <p class="text-sm text-gray-600">Select a tab to swap between distinct system guidelines. Use the arrow keys to move between tabs.</p>
-      </div>
-
-      <div class="tab-rail border-b border-cream-200 overflow-x-auto">
-        <div role="tablist" aria-label="Brand portfolio" class="flex gap-6 pb-px min-w-max">
-          <button role="tab" id="tab-kush" data-tab="kush" aria-controls="panel-kush" aria-selected="true" tabindex="0"
-                  class="tab-btn py-3 px-1 text-sm whitespace-nowrap font-semibold text-gold-700 transition-colors">KushKations</button>
-          <button role="tab" id="tab-exclusive" data-tab="exclusive" aria-controls="panel-exclusive" aria-selected="false" tabindex="-1"
-                  class="tab-btn py-3 px-1 text-sm whitespace-nowrap font-medium text-gray-600 hover:text-charcoal transition-colors">All Exclusive</button>
-          <button role="tab" id="tab-sameday" data-tab="sameday" aria-controls="panel-sameday" aria-selected="false" tabindex="-1"
-                  class="tab-btn py-3 px-1 text-sm whitespace-nowrap font-medium text-gray-600 hover:text-charcoal transition-colors">Same-Day BNB</button>
-          <button role="tab" id="tab-clearsite" data-tab="clearsite" aria-controls="panel-clearsite" aria-selected="false" tabindex="-1"
-                  class="tab-btn py-3 px-1 text-sm whitespace-nowrap font-medium text-gray-600 hover:text-charcoal transition-colors">Clearsite</button>
-        </div>
-        <span class="tab-underline" aria-hidden="true"></span>
-      </div>
-
-      <!-- Tab 1: KushKations -->
-      <div id="panel-kush" role="tabpanel" aria-labelledby="tab-kush" tabindex="0" class="tab-content pt-4 animate-fadeUp">
-        <div class="grid md:grid-cols-3 gap-6">
-          <div class="md:col-span-2 space-y-4">
-            <div class="flex items-center gap-4">
-              <div class="w-14 h-14 shrink-0 rounded-full bg-[#0F2D1E] text-[#D4AF37] flex items-center justify-center font-serif text-2xl font-bold">K</div>
-              <div>
-                <h4 class="text-xl font-serif font-bold text-charcoal">KushKations</h4>
-                <p class="text-[11px] text-gray-500 uppercase tracking-[0.12em] font-semibold">Flagship · 420 Friendly</p>
-              </div>
-            </div>
-            <p class="text-sm text-gray-600 leading-relaxed max-w-2xl">
-              Our flagship luxury vacation rental program targeting millennial travelers and group getaways. Cultivated to provide high-vibe spaces with absolute privacy and distinct interior design.
-            </p>
-            <div class="flex flex-wrap gap-2 pt-1">
-              <span class="px-2.5 py-1 rounded-full bg-cream-100 border border-cream-200 text-charcoal text-xs font-semibold">Boutique Luxury</span>
-              <span class="px-2.5 py-1 rounded-full bg-cream-100 border border-cream-200 text-charcoal text-xs font-semibold">Group-Friendly</span>
-              <span class="px-2.5 py-1 rounded-full bg-cream-100 border border-cream-200 text-charcoal text-xs font-semibold">Immersive Design</span>
-            </div>
-          </div>
-          <div class="bg-white border border-cream-200 p-5 rounded-xl space-y-3 shadow-sm self-start">
-            <span class="text-[10px] font-bold text-gray-600 uppercase tracking-[0.12em] block">Palette Colors</span>
-            <div class="flex items-center gap-2">
-              <span class="w-5 h-5 rounded-full bg-[#0F2D1E] border border-cream-200 inline-block shrink-0"></span>
-              <span class="text-xs font-mono text-gray-600">#0F2D1E (Forest)</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <span class="w-5 h-5 rounded-full bg-[#D4AF37] border border-cream-200 inline-block shrink-0"></span>
-              <span class="text-xs font-mono text-gray-600">#D4AF37 (Gold)</span>
-            </div>
-            <div class="pt-3 border-t border-cream-200">
-              <span class="text-[10px] font-bold text-gray-600 uppercase tracking-[0.12em] block mb-1.5">Logo Mark</span>
-              <p class="text-xs text-gray-600 leading-relaxed">Serif "K" in gold on a dark forest circle.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tab 2: All Exclusive -->
-      <div id="panel-exclusive" role="tabpanel" aria-labelledby="tab-exclusive" tabindex="0" class="tab-content pt-4 animate-fadeUp" hidden>
-        <div class="grid md:grid-cols-3 gap-6">
-          <div class="md:col-span-2 space-y-4">
-            <div class="flex items-center gap-4">
-              <div class="w-14 h-14 shrink-0 rounded-full bg-[#F2EFE6] text-gold-700 border border-cream-200 flex items-center justify-center font-serif text-2xl font-bold">A</div>
-              <div>
-                <h4 class="text-xl font-serif font-bold text-charcoal">All Exclusive BNB</h4>
-                <p class="text-[11px] text-gray-500 uppercase tracking-[0.12em] font-semibold">Premium Stays</p>
-              </div>
-            </div>
-            <p class="text-sm text-gray-600 leading-relaxed max-w-2xl">
-              Private, upscale short-term rentals featuring premium group amenities like hot tubs, home theaters, and gaming rooms. Built for multi-generational families, corporate travelers, and guests seeking a classic, high-end stay.
-            </p>
-            <div class="flex flex-wrap gap-2 pt-1">
-              <span class="px-2.5 py-1 rounded-full bg-cream-100 border border-cream-200 text-charcoal text-xs font-semibold">Corporate &amp; family friendly</span>
-              <span class="px-2.5 py-1 rounded-full bg-cream-100 border border-cream-200 text-charcoal text-xs font-semibold">Premium group homes</span>
-              <span class="px-2.5 py-1 rounded-full bg-red-50 border border-red-200 text-red-800 text-xs font-semibold">Strict non-smoking policy</span>
-            </div>
-          </div>
-          <div class="bg-white border border-cream-200 p-5 rounded-xl space-y-3 shadow-sm self-start">
-            <span class="text-[10px] font-bold text-gray-600 uppercase tracking-[0.12em] block">Palette Colors</span>
-            <div class="flex items-center gap-2">
-              <span class="w-5 h-5 rounded-full bg-[#C8992F] border border-cream-200 inline-block shrink-0"></span>
-              <span class="text-xs font-mono text-gray-600">#C8992F (Gold)</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <span class="w-5 h-5 rounded-full bg-[#F2EFE6] border border-cream-200 inline-block shrink-0"></span>
-              <span class="text-xs font-mono text-gray-600">#F2EFE6 (Cream)</span>
-            </div>
-            <div class="pt-3 border-t border-cream-200">
-              <span class="text-[10px] font-bold text-gray-600 uppercase tracking-[0.12em] block mb-1.5">Logo Mark</span>
-              <p class="text-xs text-gray-600 leading-relaxed">Elegant serif "A" in Cashaw Gold on a cream circle.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tab 3: Same-Day BNB -->
-      <div id="panel-sameday" role="tabpanel" aria-labelledby="tab-sameday" tabindex="0" class="tab-content pt-4 animate-fadeUp" hidden>
-        <div class="grid md:grid-cols-3 gap-6">
-          <div class="md:col-span-2 space-y-4">
-            <div class="flex items-center gap-4">
-              <div class="w-14 h-14 shrink-0 rounded-full bg-[#1E3120] text-[#65BC7B] flex items-center justify-center font-sans text-2xl font-black">S</div>
-              <div>
-                <h4 class="text-xl font-serif font-bold text-charcoal">Same-Day BNB</h4>
-                <p class="text-[11px] text-gray-500 uppercase tracking-[0.12em] font-semibold">Fast Turnaround</p>
-              </div>
-            </div>
-            <p class="text-sm text-gray-600 leading-relaxed max-w-2xl">
-              Hassle-free, instantly bookable properties optimized for rapid turnaround and spontaneous travelers. Engineered for speed of booking, instant communication, and immediate digital check-in.
-            </p>
-            <div class="flex flex-wrap gap-2 pt-1">
-              <span class="px-2.5 py-1 rounded-full bg-cream-100 border border-cream-200 text-charcoal text-xs font-semibold">Instant booking</span>
-              <span class="px-2.5 py-1 rounded-full bg-cream-100 border border-cream-200 text-charcoal text-xs font-semibold">Fast digital check-in</span>
-              <span class="px-2.5 py-1 rounded-full bg-cream-100 border border-cream-200 text-charcoal text-xs font-semibold">Transit corridor properties</span>
-            </div>
-          </div>
-          <div class="bg-white border border-cream-200 p-5 rounded-xl space-y-3 shadow-sm self-start">
-            <span class="text-[10px] font-bold text-gray-600 uppercase tracking-[0.12em] block">Palette Colors</span>
-            <div class="flex items-center gap-2">
-              <span class="w-5 h-5 rounded-full bg-[#65BC7B] border border-cream-200 inline-block shrink-0"></span>
-              <span class="text-xs font-mono text-gray-600">#65BC7B (Bright Green)</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <span class="w-5 h-5 rounded-full bg-[#1E3120] border border-cream-200 inline-block shrink-0"></span>
-              <span class="text-xs font-mono text-gray-600">#1E3120 (Dark Green)</span>
-            </div>
-            <div class="pt-3 border-t border-cream-200">
-              <span class="text-[10px] font-bold text-gray-600 uppercase tracking-[0.12em] block mb-1.5">Logo Mark</span>
-              <p class="text-xs text-gray-600 leading-relaxed">Bold modern sans-serif "S" in bright green on a dark green circle.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tab 4: Clearsite -->
-      <div id="panel-clearsite" role="tabpanel" aria-labelledby="tab-clearsite" tabindex="0" class="tab-content pt-4 animate-fadeUp" hidden>
-        <div class="grid md:grid-cols-3 gap-6">
-          <div class="md:col-span-2 space-y-4">
-            <div class="flex items-center gap-4">
-              <div class="w-14 h-14 shrink-0 rounded-full bg-[#A8D5B5] text-[#1E3120] flex items-center justify-center font-sans text-2xl font-black">C</div>
-              <div>
-                <h4 class="text-xl font-serif font-bold text-charcoal">Clearsite</h4>
-                <p class="text-[11px] text-gray-500 uppercase tracking-[0.12em] font-semibold">Services &amp; Operations</p>
-              </div>
-            </div>
-            <p class="text-sm text-gray-600 leading-relaxed max-w-2xl">
-              The professional cleaning, turnover, and property maintenance engine behind the entire portfolio. Delivering 100% photo-verified, hospitality-grade cleans and rapid-response maintenance to keep properties in five-star condition.
-            </p>
-            <div class="flex flex-wrap gap-2 pt-1">
-              <span class="px-2.5 py-1 rounded-full bg-cream-100 border border-cream-200 text-charcoal text-xs font-semibold">Turnover &amp; maintenance</span>
-              <span class="px-2.5 py-1 rounded-full bg-cream-100 border border-cream-200 text-charcoal text-xs font-semibold">100% photo-verified</span>
-              <span class="px-2.5 py-1 rounded-full bg-cream-100 border border-cream-200 text-charcoal text-xs font-semibold">B2B &amp; internal ops</span>
-            </div>
-          </div>
-          <div class="bg-white border border-cream-200 p-5 rounded-xl space-y-3 shadow-sm self-start">
-            <span class="text-[10px] font-bold text-gray-600 uppercase tracking-[0.12em] block">Palette Colors</span>
-            <div class="flex items-center gap-2">
-              <span class="w-5 h-5 rounded-full bg-[#1E3120] border border-cream-200 inline-block shrink-0"></span>
-              <span class="text-xs font-mono text-gray-600">#1E3120 (Dark Green)</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <span class="w-5 h-5 rounded-full bg-[#A8D5B5] border border-cream-200 inline-block shrink-0"></span>
-              <span class="text-xs font-mono text-gray-600">#A8D5B5 (Light Green)</span>
-            </div>
-            <div class="pt-3 border-t border-cream-200">
-              <span class="text-[10px] font-bold text-gray-600 uppercase tracking-[0.12em] block mb-1.5">Logo Mark</span>
-              <p class="text-xs text-gray-600 leading-relaxed">Sharp geometric "C" in dark green on a light green circle.</p>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
 
     <!-- ---------- Operating Standards ---------- -->
-    <section id="operating-standards" class="scroll-mt-24 space-y-6 pt-8 border-t border-cream-200">
+    <section id="operating-standards" class="scroll-mt-24 space-y-8 pt-4">
       <div class="space-y-2">
-        <h3 class="text-2xl font-serif font-bold text-charcoal">Operating Standards</h3>
-        <p class="text-sm text-gray-600">Where the brands diverge, and where they hold the same line.</p>
+        <h2 class="text-2xl md:text-3xl font-serif font-bold text-charcoal rule">Operating Standards</h2>
+        <p class="text-sm text-gray-600 pt-2">
+          The standing rules across all KushKations&trade; properties. These are the guest-facing defaults; a property may carry exceptions noted in its own manual.
+        </p>
       </div>
 
-      <div class="overflow-x-auto rounded-xl border border-cream-200 bg-white shadow-sm">
-        <table class="w-full min-w-[640px] text-left border-collapse text-sm">
-          <caption class="sr-only">Operating standards compared across KushKations, All Exclusive BNB, and Same-Day BNB</caption>
+      <div class="overflow-x-auto rounded-2xl border border-cream-200 bg-white shadow-sm">
+        <table class="w-full min-w-[520px] text-left border-collapse text-sm">
+          <caption class="sr-only">Standing operating standards for KushKations properties</caption>
           <thead>
             <tr class="bg-cream-100 border-b border-cream-200">
-              <th scope="col" class="p-4 text-[10px] font-bold uppercase tracking-[0.12em] text-gray-600 w-1/4">Standard</th>
-              <th scope="col" class="p-4 text-[10px] font-bold uppercase tracking-[0.12em] text-gold-700 border-l border-cream-200">KushKations</th>
-              <th scope="col" class="p-4 text-[10px] font-bold uppercase tracking-[0.12em] text-gold-700 border-l border-cream-200">All Exclusive &amp; Same-Day BNB</th>
+              <th scope="col" class="p-4 text-[10px] font-bold uppercase tracking-[0.12em] text-gray-600 w-1/3">Standard</th>
+              <th scope="col" class="p-4 text-[10px] font-bold uppercase tracking-[0.12em] text-gold-700">All KushKations&trade; properties</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-cream-200">
             <tr class="hover:bg-cream-50 transition">
-              <th scope="row" class="p-4 font-serif font-bold text-charcoal align-top">Smoking policy</th>
-              <td class="p-4 text-gray-600 align-top border-l border-cream-200">Permitted. 420 friendly by design.</td>
-              <td class="p-4 text-gray-600 align-top border-l border-cream-200">Strictly non-smoking. No exceptions.</td>
+              <th scope="row" class="p-4 font-serif font-bold text-charcoal align-top">Smoking</th>
+              <td class="p-4 text-gray-600 align-top border-l border-cream-200">Permitted indoors. 420 friendly by design.</td>
             </tr>
             <tr class="hover:bg-cream-50 transition">
               <th scope="row" class="p-4 font-serif font-bold text-charcoal align-top">Minimum age to book</th>
               <td class="p-4 text-gray-600 align-top border-l border-cream-200">21+</td>
-              <td class="p-4 text-gray-600 align-top border-l border-cream-200">25+</td>
+            </tr>
+            <tr class="hover:bg-cream-50 transition">
+              <th scope="row" class="p-4 font-serif font-bold text-charcoal align-top">Pets</th>
+              <td class="p-4 text-gray-600 align-top border-l border-cream-200">Welcome.</td>
+            </tr>
+            <tr class="hover:bg-cream-50 transition">
+              <th scope="row" class="p-4 font-serif font-bold text-charcoal align-top">Check-in / Check-out</th>
+              <td class="p-4 text-gray-600 align-top border-l border-cream-200">4:00 PM in, 10:00 AM out.</td>
             </tr>
             <tr class="hover:bg-cream-50 transition">
               <th scope="row" class="p-4 font-serif font-bold text-charcoal align-top">Primary guest</th>
-              <td class="p-4 text-gray-600 align-top border-l border-cream-200">Millennial travelers, group getaways</td>
-              <td class="p-4 text-gray-600 align-top border-l border-cream-200">Families, corporate travelers, spontaneous bookers</td>
+              <td class="p-4 text-gray-600 align-top border-l border-cream-200">Millennial travelers and group getaways.</td>
             </tr>
             <tr class="hover:bg-cream-50 transition">
-              <th scope="row" class="p-4 font-serif font-bold text-charcoal align-top">Turnover standard</th>
-              <td colspan="2" class="p-4 align-top border-l border-cream-200 bg-[#A8D5B5]/10">
-                <span class="inline-flex items-center gap-2 mb-1.5">
-                  <span class="w-4 h-4 rounded-full bg-[#A8D5B5] text-[#1E3120] flex items-center justify-center font-sans text-[9px] font-black">C</span>
-                  <span class="text-[10px] font-bold uppercase tracking-[0.12em] text-charcoal">All brands</span>
-                </span>
-                <p class="text-gray-600">Clearsite handles every turnover across all brands. 100% photo-verified, hospitality-grade.</p>
-              </td>
+              <th scope="row" class="p-4 font-serif font-bold text-charcoal align-top">Turnover</th>
+              <td class="p-4 text-gray-600 align-top border-l border-cream-200">Handled by our in-house cleaning team. 100% photo-verified, hospitality-grade.</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <p class="md:hidden text-[11px] text-gray-500 pt-2">Version 2.0 (2026) · Designed for internal alignment</p>
+      <p class="md:hidden text-[11px] text-gray-600 pt-2">Version 3.0 (2026) · Designed for internal alignment</p>
     </section>
 
   </main>
@@ -551,66 +428,6 @@
     (function () {
       'use strict';
 
-      /* ---------- Tabs ---------- */
-      const tablist   = document.querySelector('[role="tablist"]');
-      const tabs      = Array.from(document.querySelectorAll('.tab-btn'));
-      const underline = document.querySelector('.tab-underline');
-
-      function moveUnderline(tab) {
-        underline.style.left  = tab.offsetLeft + 'px';
-        underline.style.width = tab.offsetWidth + 'px';
-      }
-
-      function selectTab(tab, opts) {
-        const focus = opts && opts.focus;
-        tabs.forEach(function (t) {
-          const selected = t === tab;
-          t.setAttribute('aria-selected', String(selected));
-          t.tabIndex = selected ? 0 : -1;
-          t.classList.toggle('text-gold-700', selected);
-          t.classList.toggle('font-semibold', selected);
-          t.classList.toggle('text-gray-600', !selected);
-          t.classList.toggle('font-medium', !selected);
-          t.classList.toggle('hover:text-charcoal', !selected);
-          document.getElementById(t.getAttribute('aria-controls')).hidden = !selected;
-        });
-        moveUnderline(tab);
-        if (focus) tab.focus();
-      }
-
-      tabs.forEach(function (tab) {
-        tab.addEventListener('click', function () { selectTab(tab); });
-      });
-
-      tablist.addEventListener('keydown', function (e) {
-        const current = tabs.indexOf(document.activeElement);
-        if (current === -1) return;
-        let next = null;
-        if (e.key === 'ArrowRight') next = (current + 1) % tabs.length;
-        else if (e.key === 'ArrowLeft') next = (current - 1 + tabs.length) % tabs.length;
-        else if (e.key === 'Home') next = 0;
-        else if (e.key === 'End') next = tabs.length - 1;
-        if (next === null) return;
-        e.preventDefault();
-        selectTab(tabs[next], { focus: true });
-      });
-
-      /* ---------- Overview tiles jump into the matching tab ---------- */
-      function prefersReduced() {
-        return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      }
-
-      document.querySelectorAll('[data-goto-brand]').forEach(function (tile) {
-        tile.addEventListener('click', function () {
-          const target = tabs.find(function (t) { return t.dataset.tab === tile.dataset.gotoBrand; });
-          if (!target) return;
-          selectTab(target);
-          document.getElementById('brand-portfolio')
-            .scrollIntoView({ behavior: prefersReduced() ? 'auto' : 'smooth', block: 'start' });
-        });
-      });
-
-      /* ---------- Sidebar scroll-spy ---------- */
       const navLinks = Array.from(document.querySelectorAll('[data-nav]'));
       const sections = navLinks
         .map(function (l) { return document.getElementById(l.dataset.nav); })
@@ -630,10 +447,11 @@
         });
       }
 
-      // Pick the last section whose top has crossed the reading line. Geometry beats
-      // intersectionRatio here: ratio is area-over-target-area, so a short section
+      // Last section whose top has crossed the reading line. Geometry rather than
+      // intersectionRatio: ratio is area-over-target-area, so a short section
       // outranks a tall one that actually fills the viewport.
       function computeActive() {
+        if (!sections.length) return;
         const line = window.innerHeight * 0.3;
         let current = sections[0].id;
 
@@ -642,8 +460,7 @@
         });
 
         // The final section may be too short to ever reach the line.
-        const doc = document.documentElement;
-        if (window.innerHeight + window.scrollY >= doc.scrollHeight - 2) {
+        if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
           current = sections[sections.length - 1].id;
         }
         setActive(current);
@@ -652,15 +469,6 @@
       window.addEventListener('scroll', computeActive, { passive: true });
       window.addEventListener('resize', computeActive);
       computeActive();
-
-      /* ---------- Keep the underline honest ---------- */
-      function syncUnderline() {
-        const active = tabs.find(function (t) { return t.getAttribute('aria-selected') === 'true'; });
-        if (active) moveUnderline(active);
-      }
-      window.addEventListener('resize', syncUnderline);
-      if (document.fonts && document.fonts.ready) document.fonts.ready.then(syncUnderline);
-      syncUnderline();
     })();
   </script>
 </body>
