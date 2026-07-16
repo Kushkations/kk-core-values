@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cashaw Management — Brand Portal</title>
+  <title>Cashaw Management · Brand Portal</title>
   <meta name="description" content="Brand portal for Cashaw Management Inc.: the brand family, core values, and operating standards.">
+  <link rel="canonical" href="https://kushkations.github.io/kk-core-values/portal/">
 
   <script src="https://cdn.tailwindcss.com"></script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
@@ -21,23 +22,14 @@
             serif: ['"Playfair Display"', 'Georgia', 'serif'],
           },
           colors: {
-            forest: {
-              950: '#0A1710',  /* deepest, hero + footer */
-              900: '#12261A',
-              800: '#1E3120',  /* KK dark green */
-              700: '#2C4A32',
-              600: '#3D6F42',  /* KK mid green */
-            },
-            cream: { 50: '#FDFBF7', 100: '#F7F4EB', 200: '#EFECE1', 300: '#E2DCCB' },
-            charcoal: '#1C2B24',
-            /* gold-500 = the Cashaw mark's gold. On DARK it is text-safe (5.7:1).
-               On cream it is accent-only; use gold-700 for gold text on light. */
-            gold: { 400: '#D4A944', 500: '#C8992F', 700: '#7A5C1B' },
-          },
-          keyframes: {
-            fadeUp: { '0%': { opacity: '0', transform: 'translateY(10px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } }
-          },
-          animation: { fadeUp: 'fadeUp .4s ease-out both' }
+            navy: { DEFAULT: '#0b162c', dark: '#050b16', light: '#162543' },
+            cream: { 50: '#fbfaf7', 100: '#f3ede0' },
+            /* gold-500 is the Cashaw mark's gold: text-safe on NAVY (6.9:1),
+               accent-only on cream (2.5:1). gold-700 is gold text for light
+               backgrounds (6.0:1 on cream). */
+            gold: { 500: '#c8992f', 600: '#b08425', 700: '#7a5c1b' },
+            charcoal: '#2d3139',
+          }
         }
       }
     }
@@ -45,63 +37,45 @@
 
   <style>
     html { scroll-behavior: smooth; }
-    body { background: #FDFBF7; }
 
-    ::-webkit-scrollbar { width: 11px; }
-    ::-webkit-scrollbar-track { background: #12261A; }
-    ::-webkit-scrollbar-thumb { background: #3D6F42; border-radius: 6px; border: 2px solid #12261A; }
-    ::-webkit-scrollbar-thumb:hover { background: #C8992F; }
-    * { scrollbar-width: thin; scrollbar-color: #3D6F42 #12261A; }
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #f3ede0; }
+    ::-webkit-scrollbar-thumb { background: #0b162c; border-radius: 5px; border: 2px solid #f3ede0; }
+    ::-webkit-scrollbar-thumb:hover { background: #c8992f; }
+    * { scrollbar-width: thin; scrollbar-color: #0b162c #f3ede0; }
 
-    :focus-visible { outline: 2px solid #C8992F; outline-offset: 3px; border-radius: 4px; }
+    :focus-visible { outline: 2px solid #c8992f; outline-offset: 3px; border-radius: 4px; }
 
-    /* Fine grain so the flat fields read as paper, not as empty divs */
-    .grain { position: relative; }
-    .grain::before {
-      content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .5;
-      background-image: radial-gradient(rgba(200,153,47,.13) 1px, transparent 1px);
-      background-size: 22px 22px;
-    }
-
-    .eyebrow {
-      font-size: 10px; letter-spacing: .18em; text-transform: uppercase; font-weight: 700;
-    }
-    .gold-rule::after {
-      content: ""; display: block; width: 52px; height: 3px; background: #C8992F; margin-top: 1rem;
-    }
-
-    /* Nav underline */
     .navlink { position: relative; }
     .navlink::after {
-      content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px;
-      background: #C8992F; transform: scaleX(0); transform-origin: left;
+      content: ""; position: absolute; left: 0; right: 0; bottom: -5px; height: 2px;
+      background: #c8992f; transform: scaleX(0); transform-origin: left;
       transition: transform .28s cubic-bezier(.4,0,.2,1);
     }
     .navlink:hover::after, .navlink[aria-current="true"]::after { transform: scaleX(1); }
 
-    /* Value cards: both faces share one grid cell, so the card sizes to the
-       taller of the two and nothing clips. */
+    /* Value cards. Both faces share one grid cell so the card sizes to the
+       taller of the two and neither clips. */
     .value-body { display: grid; }
     .value-body > * { grid-area: 1 / 1; }
-    .value-face, .value-back { transition: opacity .25s ease, transform .25s ease; }
+    .value-face, .value-back { transition: opacity .3s ease, transform .3s ease; }
     .value-back { opacity: 0; transform: translateY(4px); }
     .value-card:hover .value-face, .value-card:focus-within .value-face { opacity: 0; transform: translateY(-4px); }
     .value-card:hover .value-back, .value-card:focus-within .value-back { opacity: 1; transform: translateY(0); }
-    .value-card { transition: background-color .25s ease, border-color .25s ease; }
+    /* Spanish label settles into navy as the card comes forward */
+    .value-es { transition: color .3s ease; }
+    .value-card:hover .value-es, .value-card:focus-within .value-es { color: #0b162c; }
 
-    /* Touch devices can't hover: show both faces rather than hiding the guide
-       behind an interaction that will never fire. */
+    /* Touch devices cannot hover: show both faces rather than hiding the
+       execution guide behind an interaction that will never fire. */
     @media (hover: none) {
       .value-body { display: block; }
       .value-face { opacity: 1 !important; transform: none !important; }
       .value-back {
         opacity: 1 !important; transform: none !important;
-        margin-top: .85rem; padding-top: .85rem; border-top: 1px solid rgba(200,153,47,.3);
+        margin-top: .85rem; padding-top: .85rem; border-top: 1px solid #f3ede0;
       }
     }
-
-    .lift { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
-    .lift:hover { transform: translateY(-4px); }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -109,349 +83,396 @@
         animation-duration: .001ms !important; animation-iteration-count: 1 !important;
         transition-duration: .001ms !important;
       }
-      .lift:hover { transform: none; }
     }
 
     @media print {
-      header { position: static; }
+      nav { position: static; }
       .value-body { display: block; }
       .value-back { opacity: 1 !important; transform: none !important; }
     }
   </style>
 </head>
 
-<body class="text-charcoal font-sans antialiased">
+<body class="bg-cream-50 text-charcoal font-sans antialiased min-h-screen flex flex-col selection:bg-gold-500 selection:text-white">
 
-  <a href="#hero" class="sr-only focus:not-sr-only focus:absolute focus:z-[60] focus:top-3 focus:left-3 focus:px-4 focus:py-2 focus:rounded focus:bg-gold-500 focus:text-forest-950 focus:font-bold">Skip to content</a>
+  <a href="#hero" class="sr-only focus:not-sr-only focus:absolute focus:z-[60] focus:top-3 focus:left-3 focus:px-4 focus:py-2 focus:rounded focus:bg-gold-500 focus:text-navy focus:font-bold">Skip to content</a>
 
-  <!-- ============ TOP NAV ============ -->
-  <header class="sticky top-0 z-50 bg-forest-950/95 backdrop-blur border-b border-forest-700">
-    <div class="max-w-6xl mx-auto px-5 md:px-10 h-16 flex items-center justify-between gap-6">
-      <a href="#hero" class="flex items-center shrink-0">
-        <img src="assets/cashaw-logo.png?v=3" alt="Cashaw Management Inc." class="h-11 w-auto">
+  <!-- ============ NAV ============ -->
+  <nav class="sticky top-0 z-50 bg-navy/95 backdrop-blur-md border-b border-white/10 px-6 py-3">
+    <div class="max-w-6xl mx-auto flex justify-between items-center gap-6">
+      <a href="#hero" class="flex items-center gap-2.5 shrink-0">
+        <img src="assets/cashaw-logo.png?v=4" alt="Cashaw Management Inc." class="h-8 w-auto">
+        <span class="text-[9px] font-mono bg-gold-500 text-navy font-bold px-1.5 py-0.5 rounded">PORTAL</span>
       </a>
-      <nav aria-label="Sections" class="flex items-center gap-5 md:gap-8 overflow-x-auto">
-        <a href="#brand-family"        data-nav="brand-family"        class="navlink text-[13px] font-medium text-cream-200 hover:text-white whitespace-nowrap transition">Brand Family</a>
-        <a href="#core-values"         data-nav="core-values"         class="navlink text-[13px] font-medium text-cream-200 hover:text-white whitespace-nowrap transition">Core Values</a>
-        <a href="#operating-standards" data-nav="operating-standards" class="navlink text-[13px] font-medium text-cream-200 hover:text-white whitespace-nowrap transition">Standards</a>
-      </nav>
+      <div class="flex gap-5 md:gap-7 text-[11px] font-medium tracking-wider uppercase overflow-x-auto">
+        <a href="#brand-family"        data-nav="brand-family"        class="navlink text-white/70 hover:text-white whitespace-nowrap transition">Brand Family</a>
+        <a href="#core-values"         data-nav="core-values"         class="navlink text-white/70 hover:text-white whitespace-nowrap transition">Core Values</a>
+        <a href="#operating-standards" data-nav="operating-standards" class="navlink text-white/70 hover:text-white whitespace-nowrap transition">Standards</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <header id="hero" class="bg-navy text-white px-6 py-20 md:py-28 relative overflow-hidden scroll-mt-14">
+    <div class="absolute inset-0 bg-gradient-to-b from-navy-light/40 via-navy to-navy-dark pointer-events-none"></div>
+
+    <div class="max-w-4xl mx-auto space-y-8 relative z-10 text-center">
+      <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 px-3.5 py-1 rounded-full text-[10px] font-mono tracking-widest text-gold-500 uppercase">
+        <span class="w-1.5 h-1.5 rounded-full bg-gold-500"></span> Cashaw Management Inc.
+      </div>
+
+      <h1 class="text-4xl md:text-6xl font-serif font-semibold leading-tight tracking-tight max-w-3xl mx-auto">
+        Committed to <br>securing your <span class="italic text-gold-500">success.</span>
+      </h1>
+
+      <p class="text-sm md:text-base text-white/70 max-w-2xl mx-auto leading-relaxed font-light">
+        Cashaw Management operates a portfolio of vacation rental properties across the Denver metro under our consumer brand KushKations&trade;, with in-house cleaning, maintenance, and virtual assistant teams.
+      </p>
+
+      <!-- Metrics -->
+      <dl class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto pt-8 border-t border-white/10">
+        <div class="text-center">
+          <dd class="text-2xl md:text-3xl font-sans font-bold text-gold-500">21</dd>
+          <dt class="text-[10px] uppercase tracking-widest text-white/60 mt-1">Properties</dt>
+        </div>
+        <div class="text-center">
+          <dd class="text-2xl md:text-3xl font-sans font-bold text-gold-500">4.87&#9733;</dd>
+          <dt class="text-[10px] uppercase tracking-widest text-white/60 mt-1">Avg. Rating</dt>
+        </div>
+        <div class="text-center">
+          <dd class="text-2xl md:text-3xl font-sans font-bold text-gold-500">1,773+</dd>
+          <dt class="text-[10px] uppercase tracking-widest text-white/60 mt-1">Guest Reviews</dt>
+        </div>
+        <div class="text-center">
+          <dd class="text-2xl md:text-3xl font-sans font-bold text-gold-500">6</dd>
+          <dt class="text-[10px] uppercase tracking-widest text-white/60 mt-1">Core Values</dt>
+        </div>
+      </dl>
     </div>
   </header>
 
-  <main>
+  <!-- ============ THE SIMPLE RULE ============ -->
+  <section class="bg-gold-500 text-navy py-5 px-6">
+    <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
+      <p class="text-[10px] font-mono uppercase tracking-widest font-bold border-b md:border-b-0 md:border-r border-navy/25 pb-2 md:pb-0 md:pr-6 shrink-0">The Simple Rule</p>
+      <p class="text-sm md:text-base font-serif text-center md:text-right leading-relaxed">
+        If a guest sees it: <strong class="font-bold">KushKations&trade;</strong>.
+        <span class="mx-2 text-navy/40">/</span>
+        If the team or a vendor sees it: <strong class="font-bold">Cashaw Management</strong>.
+      </p>
+    </div>
+  </section>
 
-    <!-- ============ HERO — deep forest ============ -->
-    <section id="hero" class="grain relative bg-forest-950 text-cream-50 overflow-hidden scroll-mt-16">
-      <div class="absolute -top-32 -right-24 w-[34rem] h-[34rem] rounded-full bg-forest-600/20 blur-3xl pointer-events-none"></div>
-      <div class="absolute -bottom-40 -left-32 w-[30rem] h-[30rem] rounded-full bg-gold-500/10 blur-3xl pointer-events-none"></div>
+  <main class="flex-1 max-w-6xl mx-auto px-6 py-16 md:py-24 space-y-28 w-full">
 
-      <div class="relative max-w-6xl mx-auto px-5 md:px-10 py-20 md:py-32 animate-fadeUp">
-        <p class="eyebrow text-gold-500 mb-6">Cashaw Management Inc. &middot; Brand Portal</p>
-        <h1 class="font-serif font-bold leading-[1.05] text-[2.6rem] sm:text-6xl md:text-7xl max-w-4xl">
-          Committed to<br>securing your <em class="text-gold-500 not-italic">success</em>.
-        </h1>
-        <p class="mt-8 text-base md:text-lg text-cream-200/80 max-w-2xl leading-relaxed">
-          Cashaw Management operates a portfolio of vacation rental properties across the Denver metro under the consumer brand KushKations&trade;, with in-house cleaning, maintenance, and virtual assistant teams. We build a business that runs on systems, not heroes.
-        </p>
-
-        <!-- Stats -->
-        <dl class="mt-14 grid grid-cols-2 sm:grid-cols-4 gap-y-8 gap-x-4 border-t border-forest-700 pt-10">
-          <div>
-            <dd class="font-serif font-bold text-4xl md:text-5xl text-gold-500">21</dd>
-            <dt class="eyebrow text-cream-200/60 mt-2">Properties</dt>
-          </div>
-          <div>
-            <dd class="font-serif font-bold text-4xl md:text-5xl text-gold-500">4.87<span class="text-2xl align-top">&#9733;</span></dd>
-            <dt class="eyebrow text-cream-200/60 mt-2">Avg. Rating</dt>
-          </div>
-          <div>
-            <dd class="font-serif font-bold text-4xl md:text-5xl text-gold-500">1,773<span class="text-2xl align-top">+</span></dd>
-            <dt class="eyebrow text-cream-200/60 mt-2">Reviews</dt>
-          </div>
-          <div>
-            <dd class="font-serif font-bold text-4xl md:text-5xl text-gold-500">6</dd>
-            <dt class="eyebrow text-cream-200/60 mt-2">Core Values</dt>
-          </div>
-        </dl>
-      </div>
-    </section>
-
-    <!-- ============ THE SIMPLE RULE — gold band ============ -->
-    <section class="bg-gold-500 text-forest-950">
-      <div class="max-w-6xl mx-auto px-5 md:px-10 py-12 md:py-16 grid md:grid-cols-[auto,1fr] gap-6 md:gap-12 items-center">
-        <p class="eyebrow text-forest-950/90 md:border-r md:border-forest-950/25 md:pr-12">The simple rule</p>
-        <p class="font-serif text-2xl md:text-4xl leading-snug font-semibold">
-          If a guest sees it: <span class="italic">KushKations&trade;</span>.<br class="hidden sm:block">
-          If the team or a vendor sees it: <span class="italic">Cashaw Management</span>.
+    <!-- ============ BRAND FAMILY ============ -->
+    <section id="brand-family" class="scroll-mt-24 space-y-12">
+      <div class="space-y-4">
+        <p class="text-[11px] font-bold uppercase tracking-widest text-gold-700">01 / Nuestras Marcas</p>
+        <h2 class="text-3xl md:text-4xl font-serif font-bold tracking-tight text-navy">The Brand Family</h2>
+        <p class="text-sm text-charcoal/70 max-w-2xl leading-relaxed">
+          Our names and when to use them. Two brands are active. Three are on file with their status still to be confirmed.
         </p>
       </div>
-    </section>
 
-    <!-- ============ BRAND FAMILY — cream ============ -->
-    <section id="brand-family" class="bg-cream-50 scroll-mt-16">
-      <div class="max-w-6xl mx-auto px-5 md:px-10 py-20 md:py-28">
-        <div class="max-w-2xl">
-          <p class="eyebrow text-gold-700">01 &mdash; Nuestras Marcas</p>
-          <h2 class="mt-3 font-serif font-bold text-3xl md:text-5xl text-charcoal gold-rule">The Brand Family</h2>
-          <p class="mt-6 text-sm md:text-base text-gray-600 leading-relaxed">
-            Our names and when to use them. Two brands are active. Three are on file with their status still to be confirmed.
-          </p>
+      <!-- ACTIVE -->
+      <div class="space-y-5">
+        <div class="inline-block bg-emerald-500/10 text-emerald-800 text-[10px] font-bold tracking-wider uppercase px-2.5 py-1 rounded-full border border-emerald-600/25">
+          Active Operations
         </div>
 
-        <!-- ACTIVE -->
-        <div class="mt-14 flex items-center gap-4">
-          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-forest-800 text-cream-50 eyebrow">
-            <span class="w-1.5 h-1.5 rounded-full bg-gold-500"></span>Active
-          </span>
-          <span class="h-px flex-1 bg-cream-300"></span>
-        </div>
-
-        <div class="mt-8 grid md:grid-cols-2 gap-6">
-          <!-- Cashaw -->
-          <article class="lift group relative bg-forest-950 text-cream-50 rounded-3xl p-8 overflow-hidden border border-forest-800">
-            <span class="absolute top-0 left-0 w-full h-1 bg-gold-500"></span>
-            <div class="h-24 flex items-center mb-6">
-              <img src="assets/cashaw-logo.png?v=3" alt="Cashaw Management Inc. logo" class="max-h-24 w-auto">
+        <div class="grid md:grid-cols-2 gap-6">
+          <!-- Cashaw Management -->
+          <article class="bg-white border border-cream-100 p-8 rounded-2xl shadow-sm hover:shadow-md transition duration-300 flex flex-col justify-between gap-6">
+            <div class="space-y-5">
+              <div class="h-12 flex items-center">
+                <img src="assets/cashaw-logo.png?v=4" alt="Cashaw Management Inc. logo" class="max-h-12 w-auto">
+              </div>
+              <div>
+                <h3 class="text-base font-serif font-bold text-navy">Cashaw Management Inc.</h3>
+                <p class="text-[9px] font-mono uppercase tracking-wider text-gold-700 font-bold mt-0.5">Parent Entity</p>
+              </div>
+              <p class="text-xs text-charcoal/80 leading-relaxed">
+                Parent company. Contracts, payroll, vendors, and team.
+              </p>
             </div>
-            <h3 class="font-serif font-bold text-2xl">Cashaw Management Inc.</h3>
-            <p class="mt-3 text-sm text-cream-200/75 leading-relaxed">Parent company. Contracts, payroll, vendors, team.</p>
-            <dl class="mt-6 pt-6 border-t border-forest-700 space-y-3 text-sm">
-              <div>
-                <dt class="eyebrow text-gold-500">Tagline</dt>
-                <dd class="mt-1 font-serif italic text-lg text-cream-50">"Committed to securing your success."</dd>
-              </div>
-              <div>
-                <dt class="eyebrow text-gold-500">Address</dt>
-                <dd class="mt-1 text-cream-200/75">500 E. 84th Ave., Suite A1, Thornton, CO 80229</dd>
-              </div>
-            </dl>
+            <div class="pt-4 border-t border-cream-100 space-y-2 text-[11px]">
+              <p class="text-charcoal/70"><strong class="text-navy font-semibold">Tagline:</strong> "Committed to securing your success."</p>
+              <p class="text-charcoal/70"><strong class="text-navy font-semibold">Location:</strong> 500 E. 84th Ave., Suite A1, Thornton, CO 80229</p>
+            </div>
           </article>
 
           <!-- KushKations -->
-          <article class="lift group relative bg-white rounded-3xl p-8 overflow-hidden border border-cream-200 shadow-sm">
-            <span class="absolute top-0 left-0 w-full h-1 bg-forest-600"></span>
-            <div class="h-24 flex items-center mb-6">
-              <img src="assets/kushkations-logo.png?v=3" alt="KushKations trademark logo" class="max-h-24 w-auto">
+          <article class="bg-white border border-cream-100 p-8 rounded-2xl shadow-sm hover:shadow-md transition duration-300 flex flex-col justify-between gap-6">
+            <div class="space-y-5">
+              <div class="h-12 flex items-center">
+                <img src="assets/kushkations-logo.png?v=4" alt="KushKations trademark logo" class="max-h-12 w-auto">
+              </div>
+              <div>
+                <h3 class="text-base font-serif font-bold text-navy">KushKations&trade;</h3>
+                <p class="text-[9px] font-mono uppercase tracking-wider text-gold-700 font-bold mt-0.5">Consumer Brand</p>
+              </div>
+              <p class="text-xs text-charcoal/80 leading-relaxed">
+                Consumer brand. Guests, website, social, and ads.
+              </p>
             </div>
-            <h3 class="font-serif font-bold text-2xl text-charcoal">KushKations&trade;</h3>
-            <p class="mt-3 text-sm text-gray-600 leading-relaxed">Consumer brand. Guests, website, social, ads.</p>
-            <div class="mt-6 pt-6 border-t border-cream-200 space-y-3 text-sm">
-              <div>
-                <p class="eyebrow text-gold-700">Positioning</p>
-                <p class="mt-1 font-serif italic text-lg text-charcoal">"Luxury Group Stays, 420-Friendly."</p>
-              </div>
-              <div>
-                <p class="eyebrow text-gold-700">Naming rule</p>
-                <p class="mt-1 text-gray-600 leading-relaxed">
-                  Always one word, two capital Ks, &trade; in formal materials.
-                  Never <span class="line-through decoration-red-500/70">Kush Kations</span> or <span class="line-through decoration-red-500/70">Kushkations</span>.
-                </p>
-              </div>
+            <div class="pt-4 border-t border-cream-100 space-y-2 text-[11px]">
+              <p class="text-charcoal/70"><strong class="text-navy font-semibold">Positioning:</strong> "Luxury Group Stays, 420-Friendly."</p>
+              <p class="text-charcoal/70"><strong class="text-navy font-semibold">Naming rule:</strong> Always one word, two capital Ks, &trade; in formal materials. Never "Kush Kations" or "Kushkations".</p>
             </div>
           </article>
         </div>
+      </div>
 
-        <!-- TO CONFIRM -->
-        <div class="mt-16 flex items-center gap-4">
-          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cream-300 text-charcoal eyebrow">
-            <span class="w-1.5 h-1.5 rounded-full bg-gold-700"></span>Status to confirm
-          </span>
-          <span class="h-px flex-1 bg-cream-300"></span>
+      <!-- STATUS TO CONFIRM -->
+      <div class="space-y-5 pt-6">
+        <div class="inline-block bg-amber-500/10 text-amber-800 text-[10px] font-bold tracking-wider uppercase px-2.5 py-1 rounded-full border border-amber-600/25">
+          Status to Confirm
         </div>
-        <p class="mt-5 text-xs text-gray-600 max-w-2xl leading-relaxed">
+        <p class="text-xs text-charcoal/70 max-w-2xl leading-relaxed">
           Logos are on file in Drive. Whether each of these is active, on hold, or retired has not been decided, so none of them should appear in guest-facing or vendor-facing material until it is.
         </p>
 
-        <div class="mt-8 grid sm:grid-cols-3 gap-5">
-          <article class="bg-cream-100 border border-dashed border-cream-300 rounded-2xl p-6">
-            <div class="h-14 flex items-center mb-5">
-              <img src="assets/aebnb-logo.png?v=3" alt="All Exclusive BNB logo" class="max-h-14 w-auto">
+        <div class="grid sm:grid-cols-3 gap-6">
+          <article class="bg-white/70 border border-cream-100 p-6 rounded-xl flex flex-col justify-between gap-4">
+            <div class="space-y-3">
+              <span class="text-[10px] font-mono font-bold text-gold-700">01</span>
+              <div class="h-12 flex items-center">
+                <img src="assets/aebnb-logo.png?v=4" alt="All Exclusive BNB logo" class="max-h-12 w-auto">
+              </div>
+              <h3 class="text-sm font-serif font-bold text-navy">All Exclusive BNB</h3>
+              <p class="text-xs text-charcoal/70 leading-relaxed">AEBNB, ESTD 2022. Logos on file in Drive.</p>
             </div>
-            <h3 class="font-serif font-bold text-base text-charcoal">All Exclusive BNB</h3>
-            <p class="mt-1.5 text-xs text-gray-600">AEBNB, ESTD 2022.</p>
-            <p class="mt-3 text-xs text-gray-600 italic">Status and current use to be confirmed.</p>
+            <p class="text-[9px] font-mono uppercase text-charcoal/60 pt-3 border-t border-cream-100">Status and current use to be confirmed</p>
           </article>
-          <article class="bg-cream-100 border border-dashed border-cream-300 rounded-2xl p-6">
-            <div class="h-14 flex items-center mb-5">
-              <img src="assets/sameday-logo.png?v=3" alt="Same-Day BNB Cleaners logo" class="max-h-14 w-auto">
+
+          <article class="bg-white/70 border border-cream-100 p-6 rounded-xl flex flex-col justify-between gap-4">
+            <div class="space-y-3">
+              <span class="text-[10px] font-mono font-bold text-gold-700">02</span>
+              <div class="h-12 flex items-center">
+                <img src="assets/sameday-logo.png?v=4" alt="Same-Day BNB Cleaners logo" class="max-h-12 w-auto">
+              </div>
+              <h3 class="text-sm font-serif font-bold text-navy">Same-Day BNB</h3>
+              <p class="text-xs text-charcoal/70 leading-relaxed">The mark on file reads "Same-Day BNB Cleaners." Recorded internally as a subsidiary cleaning company.</p>
             </div>
-            <h3 class="font-serif font-bold text-base text-charcoal">Same-Day BNB</h3>
-            <p class="mt-1.5 text-xs text-gray-600">Mark on file reads "Same-Day BNB Cleaners."</p>
-            <p class="mt-3 text-xs text-gray-600 italic">Status and current use to be confirmed.</p>
+            <p class="text-[9px] font-mono uppercase text-charcoal/60 pt-3 border-t border-cream-100">Status and current use to be confirmed</p>
           </article>
-          <article class="bg-cream-100 border border-dashed border-cream-300 rounded-2xl p-6">
-            <div class="h-14 flex items-center mb-5">
-              <img src="assets/clearsite-logo.png?v=3" alt="Clearsite logo" class="max-h-11 w-auto">
+
+          <article class="bg-white/70 border border-cream-100 p-6 rounded-xl flex flex-col justify-between gap-4">
+            <div class="space-y-3">
+              <span class="text-[10px] font-mono font-bold text-gold-700">03</span>
+              <div class="h-12 flex items-center">
+                <img src="assets/clearsite-logo.png?v=4" alt="Clearsite logo" class="max-h-9 w-auto">
+              </div>
+              <h3 class="text-sm font-serif font-bold text-navy">Clearsite</h3>
+              <p class="text-xs text-charcoal/70 leading-relaxed">Recorded internally as a subsidiary cleaning company. Logo files on file in Drive.</p>
             </div>
-            <h3 class="font-serif font-bold text-base text-charcoal">Clearsite</h3>
-            <p class="mt-1.5 text-xs text-gray-600">Recorded internally as a subsidiary cleaning company.</p>
-            <p class="mt-3 text-xs text-gray-600 italic">Status and current use to be confirmed.</p>
+            <p class="text-[9px] font-mono uppercase text-charcoal/60 pt-3 border-t border-cream-100">Status and current use to be confirmed</p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- ============ CORE VALUES — deep forest ============ -->
-    <section id="core-values" class="grain bg-forest-900 text-cream-50 scroll-mt-16">
-      <div class="max-w-6xl mx-auto px-5 md:px-10 py-20 md:py-28 relative">
-        <div class="max-w-2xl">
-          <p class="eyebrow text-gold-500">02 &mdash; Valores Fundamentales</p>
-          <h2 class="mt-3 font-serif font-bold text-3xl md:text-5xl gold-rule">Core Values</h2>
-          <p class="mt-6 text-sm md:text-base text-cream-200/75 leading-relaxed">
-            Six words. They apply to everyone, including Shaquan. Every decision gets checked against them.
-            <span class="text-cream-200/70">Hover or focus a card for the execution guide.</span>
-          </p>
-        </div>
+    <!-- ============ CORE VALUES ============ -->
+    <section id="core-values" class="scroll-mt-24 space-y-12">
+      <div class="space-y-4">
+        <p class="text-[11px] font-bold uppercase tracking-widest text-gold-700">02 / Valores Fundamentales</p>
+        <h2 class="text-3xl md:text-4xl font-serif font-bold tracking-tight text-navy">Core Values</h2>
+        <p class="text-sm text-charcoal/70 max-w-2xl leading-relaxed">
+          Six words. They apply to everyone, including Shaquan. Every decision gets checked against them.
+          Hover or focus a card to reveal the execution guide.
+        </p>
+      </div>
 
-        <div class="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="grid md:grid-cols-3 gap-px bg-cream-100 rounded-2xl overflow-hidden shadow-sm border border-cream-100">
 
-          <article tabindex="0" class="value-card group relative bg-forest-950/70 border border-forest-700 rounded-2xl p-7 hover:bg-forest-950 hover:border-gold-500/50 focus-within:border-gold-500">
-            <div class="flex items-baseline justify-between gap-3 mb-5">
-              <h3 class="font-serif font-bold text-xl"><span class="text-gold-500">01</span> Ownership</h3>
-              <span class="text-[10px] font-mono text-cream-200/50 shrink-0">Responsabilidad</span>
+        <article tabindex="0" class="value-card bg-white p-8 hover:bg-cream-50 focus-within:bg-cream-50 transition duration-300">
+          <span class="text-xs font-sans font-bold text-gold-700">01</span>
+          <div class="mt-2 mb-3">
+            <h3 class="text-base font-serif font-bold text-navy">Ownership</h3>
+            <p class="value-es text-[9px] font-mono uppercase tracking-wider text-charcoal/70">Responsabilidad</p>
+          </div>
+          <div class="value-body">
+            <p class="value-face text-xs text-charcoal/70 leading-relaxed">If we see it, we solve it. No "not my job." Every unit you touch carries your name.</p>
+            <div class="value-back">
+              <span class="text-[9px] font-bold uppercase tracking-widest text-gold-700 block mb-1.5">How we live it</span>
+              <p class="text-xs text-navy leading-relaxed italic">We never tell a guest it was the cleaning crew's fault. We apologize, resolve it within 45 minutes, then fix the internal process.</p>
             </div>
-            <div class="value-body">
-              <p class="value-face text-sm text-cream-200/80 leading-relaxed">If we see it, we solve it. No "not my job." Every unit you touch carries your name.</p>
-              <div class="value-back">
-                <span class="eyebrow text-gold-500 block mb-2">How we live it</span>
-                <p class="text-sm text-cream-50 leading-relaxed italic">We never tell a guest it was the cleaning crew's fault. We apologize, resolve it within 45 minutes, then fix the internal process.</p>
-              </div>
-            </div>
-          </article>
+          </div>
+        </article>
 
-          <article tabindex="0" class="value-card group relative bg-forest-950/70 border border-forest-700 rounded-2xl p-7 hover:bg-forest-950 hover:border-gold-500/50 focus-within:border-gold-500">
-            <div class="flex items-baseline justify-between gap-3 mb-5">
-              <h3 class="font-serif font-bold text-xl"><span class="text-gold-500">02</span> Integrity</h3>
-              <span class="text-[10px] font-mono text-cream-200/50 shrink-0">Integridad</span>
+        <article tabindex="0" class="value-card bg-white p-8 hover:bg-cream-50 focus-within:bg-cream-50 transition duration-300">
+          <span class="text-xs font-sans font-bold text-gold-700">02</span>
+          <div class="mt-2 mb-3">
+            <h3 class="text-base font-serif font-bold text-navy">Integrity</h3>
+            <p class="value-es text-[9px] font-mono uppercase tracking-wider text-charcoal/70">Integridad</p>
+          </div>
+          <div class="value-body">
+            <p class="value-face text-xs text-charcoal/70 leading-relaxed">Do it right even when nobody checks. An honest "not yet" beats a fake "done."</p>
+            <div class="value-back">
+              <span class="text-[9px] font-bold uppercase tracking-widest text-gold-700 block mb-1.5">How we live it</span>
+              <p class="text-xs text-navy leading-relaxed italic">Immediate communication the moment a breakdown occurs. We refund or repair preemptively, before the guest has to ask.</p>
             </div>
-            <div class="value-body">
-              <p class="value-face text-sm text-cream-200/80 leading-relaxed">Do it right even when nobody checks. An honest "not yet" beats a fake "done."</p>
-              <div class="value-back">
-                <span class="eyebrow text-gold-500 block mb-2">How we live it</span>
-                <p class="text-sm text-cream-50 leading-relaxed italic">Immediate communication the moment a breakdown occurs. We refund or repair preemptively, before the guest has to ask.</p>
-              </div>
-            </div>
-          </article>
+          </div>
+        </article>
 
-          <article tabindex="0" class="value-card group relative bg-forest-950/70 border border-forest-700 rounded-2xl p-7 hover:bg-forest-950 hover:border-gold-500/50 focus-within:border-gold-500">
-            <div class="flex items-baseline justify-between gap-3 mb-5">
-              <h3 class="font-serif font-bold text-xl"><span class="text-gold-500">03</span> Persistence</h3>
-              <span class="text-[10px] font-mono text-cream-200/50 shrink-0">Persistencia</span>
+        <article tabindex="0" class="value-card bg-white p-8 hover:bg-cream-50 focus-within:bg-cream-50 transition duration-300">
+          <span class="text-xs font-sans font-bold text-gold-700">03</span>
+          <div class="mt-2 mb-3">
+            <h3 class="text-base font-serif font-bold text-navy">Persistence</h3>
+            <p class="value-es text-[9px] font-mono uppercase tracking-wider text-charcoal/70">Persistencia</p>
+          </div>
+          <div class="value-body">
+            <p class="value-face text-xs text-charcoal/70 leading-relaxed">"No" is a starting point. We find a way. (Encontramos la manera.)</p>
+            <div class="value-back">
+              <span class="text-[9px] font-bold uppercase tracking-widest text-gold-700 block mb-1.5">How we live it</span>
+              <p class="text-xs text-navy leading-relaxed italic">An unfair review is not the end of the conversation. We document it, cite the policy it violates, and take it back to the platform until it is resolved.</p>
             </div>
-            <div class="value-body">
-              <p class="value-face text-sm text-cream-200/80 leading-relaxed">"No" is a starting point. We find a way. <span class="text-cream-200/50">(Encontramos la manera.)</span></p>
-              <div class="value-back">
-                <span class="eyebrow text-gold-500 block mb-2">How we live it</span>
-                <p class="text-sm text-cream-50 leading-relaxed italic">An unfair review is not the end of the conversation. We document it, cite the policy it violates, and take it back to the platform until it is resolved.</p>
-              </div>
-            </div>
-          </article>
+          </div>
+        </article>
 
-          <article tabindex="0" class="value-card group relative bg-forest-950/70 border border-forest-700 rounded-2xl p-7 hover:bg-forest-950 hover:border-gold-500/50 focus-within:border-gold-500">
-            <div class="flex items-baseline justify-between gap-3 mb-5">
-              <h3 class="font-serif font-bold text-xl"><span class="text-gold-500">04</span> Team</h3>
-              <span class="text-[10px] font-mono text-cream-200/50 shrink-0">Equipo</span>
+        <article tabindex="0" class="value-card bg-white p-8 hover:bg-cream-50 focus-within:bg-cream-50 transition duration-300">
+          <span class="text-xs font-sans font-bold text-gold-700">04</span>
+          <div class="mt-2 mb-3">
+            <h3 class="text-base font-serif font-bold text-navy">Team</h3>
+            <p class="value-es text-[9px] font-mono uppercase tracking-wider text-charcoal/70">Equipo</p>
+          </div>
+          <div class="value-body">
+            <p class="value-face text-xs text-charcoal/70 leading-relaxed">Cleaners, maintenance, VAs. We win together. Nobody succeeds alone.</p>
+            <div class="value-back">
+              <span class="text-[9px] font-bold uppercase tracking-widest text-gold-700 block mb-1.5">How we live it</span>
+              <p class="text-xs text-navy leading-relaxed italic">A handoff is not finished until the next person can act on it. Every issue leaves the shift with an owner, not a mention.</p>
             </div>
-            <div class="value-body">
-              <p class="value-face text-sm text-cream-200/80 leading-relaxed">Cleaners, maintenance, VAs. We win together. Nobody succeeds alone.</p>
-              <div class="value-back">
-                <span class="eyebrow text-gold-500 block mb-2">How we live it</span>
-                <p class="text-sm text-cream-50 leading-relaxed italic">A handoff is not finished until the next person can act on it. Every issue leaves the shift with an owner, not a mention.</p>
-              </div>
-            </div>
-          </article>
+          </div>
+        </article>
 
-          <article tabindex="0" class="value-card group relative bg-forest-950/70 border border-forest-700 rounded-2xl p-7 hover:bg-forest-950 hover:border-gold-500/50 focus-within:border-gold-500">
-            <div class="flex items-baseline justify-between gap-3 mb-5">
-              <h3 class="font-serif font-bold text-xl"><span class="text-gold-500">05</span> Growth</h3>
-              <span class="text-[10px] font-mono text-cream-200/50 shrink-0">Crecimiento</span>
+        <article tabindex="0" class="value-card bg-white p-8 hover:bg-cream-50 focus-within:bg-cream-50 transition duration-300">
+          <span class="text-xs font-sans font-bold text-gold-700">05</span>
+          <div class="mt-2 mb-3">
+            <h3 class="text-base font-serif font-bold text-navy">Growth</h3>
+            <p class="value-es text-[9px] font-mono uppercase tracking-wider text-charcoal/70">Crecimiento</p>
+          </div>
+          <div class="value-body">
+            <p class="value-face text-xs text-charcoal/70 leading-relaxed">Better than yesterday. We don't repeat errors, we retire them.</p>
+            <div class="value-back">
+              <span class="text-[9px] font-bold uppercase tracking-widest text-gold-700 block mb-1.5">How we live it</span>
+              <p class="text-xs text-navy leading-relaxed italic">The same mistake twice is a process problem, not a people problem. We fix the system that allowed it and write it down.</p>
             </div>
-            <div class="value-body">
-              <p class="value-face text-sm text-cream-200/80 leading-relaxed">Better than yesterday. We don't repeat errors, we retire them.</p>
-              <div class="value-back">
-                <span class="eyebrow text-gold-500 block mb-2">How we live it</span>
-                <p class="text-sm text-cream-50 leading-relaxed italic">The same mistake twice is a process problem, not a people problem. We fix the system that allowed it and write it down.</p>
-              </div>
-            </div>
-          </article>
+          </div>
+        </article>
 
-          <article tabindex="0" class="value-card group relative bg-forest-950/70 border border-forest-700 rounded-2xl p-7 hover:bg-forest-950 hover:border-gold-500/50 focus-within:border-gold-500">
-            <div class="flex items-baseline justify-between gap-3 mb-5">
-              <h3 class="font-serif font-bold text-xl"><span class="text-gold-500">06</span> Hospitality</h3>
-              <span class="text-[10px] font-mono text-cream-200/50 shrink-0">Hospitalidad</span>
+        <article tabindex="0" class="value-card bg-white p-8 hover:bg-cream-50 focus-within:bg-cream-50 transition duration-300">
+          <span class="text-xs font-sans font-bold text-gold-700">06</span>
+          <div class="mt-2 mb-3">
+            <h3 class="text-base font-serif font-bold text-navy">Hospitality</h3>
+            <p class="value-es text-[9px] font-mono uppercase tracking-wider text-charcoal/70">Hospitalidad</p>
+          </div>
+          <div class="value-body">
+            <p class="value-face text-xs text-charcoal/70 leading-relaxed">Success is measured by the guest experience. The guest feels our work.</p>
+            <div class="value-back">
+              <span class="text-[9px] font-bold uppercase tracking-widest text-gold-700 block mb-1.5">How we live it</span>
+              <p class="text-xs text-navy leading-relaxed italic">Custom design themes, a warm and professional voice, and answers that come from the house manual rather than a template.</p>
             </div>
-            <div class="value-body">
-              <p class="value-face text-sm text-cream-200/80 leading-relaxed">Success is measured by the guest experience. The guest feels our work.</p>
-              <div class="value-back">
-                <span class="eyebrow text-gold-500 block mb-2">How we live it</span>
-                <p class="text-sm text-cream-50 leading-relaxed italic">Custom design themes, a warm and professional voice, and answers that come from the house manual rather than a template.</p>
-              </div>
-            </div>
-          </article>
+          </div>
+        </article>
 
-        </div>
       </div>
     </section>
 
-    <!-- ============ OPERATING STANDARDS — cream ============ -->
-    <section id="operating-standards" class="bg-cream-100 scroll-mt-16">
-      <div class="max-w-6xl mx-auto px-5 md:px-10 py-20 md:py-28">
-        <div class="max-w-2xl">
-          <p class="eyebrow text-gold-700">03 &mdash; Estándares</p>
-          <h2 class="mt-3 font-serif font-bold text-3xl md:text-5xl text-charcoal gold-rule">Operating Standards</h2>
-          <p class="mt-6 text-sm md:text-base text-gray-600 leading-relaxed">
-            The standing rules across all KushKations&trade; properties. These are the guest-facing defaults; a property may carry exceptions noted in its own manual.
-          </p>
-        </div>
+    <!-- ============ OPERATING STANDARDS ============ -->
+    <section id="operating-standards" class="scroll-mt-24 space-y-12">
+      <div class="space-y-4">
+        <p class="text-[11px] font-bold uppercase tracking-widest text-gold-700">03 / Estándares</p>
+        <h2 class="text-3xl md:text-4xl font-serif font-bold tracking-tight text-navy">Operating Standards</h2>
+        <p class="text-sm text-charcoal/70 max-w-2xl leading-relaxed">
+          The standing rules across all KushKations&trade; properties. These are the guest-facing defaults; a property may carry exceptions noted in its own manual.
+        </p>
+      </div>
 
-        <div class="mt-12 overflow-x-auto rounded-2xl border border-cream-300 bg-white shadow-sm">
-          <table class="w-full min-w-[520px] text-left border-collapse">
+      <div class="overflow-hidden border border-cream-100 rounded-2xl bg-white shadow-sm">
+        <div class="overflow-x-auto">
+          <table class="w-full min-w-[520px] text-left border-collapse text-xs">
             <caption class="sr-only">Standing operating standards for KushKations properties</caption>
             <thead>
-              <tr class="bg-forest-950 text-cream-50">
-                <th scope="col" class="p-5 eyebrow text-cream-200/70 w-1/3">Standard</th>
-                <th scope="col" class="p-5 eyebrow text-gold-500">All KushKations&trade; properties</th>
+              <tr class="bg-navy text-white font-mono uppercase tracking-wider text-[10px]">
+                <th scope="col" class="p-5 w-1/3 font-bold">Standard</th>
+                <th scope="col" class="p-5 font-semibold text-gold-500">Guidelines &amp; Execution Rules</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-cream-200 text-sm">
+            <tbody class="divide-y divide-cream-100">
               <tr class="hover:bg-cream-50 transition">
-                <th scope="row" class="p-5 font-serif font-bold text-charcoal align-top text-base">Smoking</th>
-                <td class="p-5 text-gray-600 align-top border-l border-cream-200">Permitted indoors. 420 friendly by design.</td>
+                <th scope="row" class="p-5 font-serif font-bold text-navy text-sm text-left align-top">Smoking Policy</th>
+                <td class="p-5 text-charcoal/80 leading-relaxed border-l border-cream-100">Permitted indoors. 420 friendly by design.</td>
               </tr>
               <tr class="hover:bg-cream-50 transition">
-                <th scope="row" class="p-5 font-serif font-bold text-charcoal align-top text-base">Minimum age to book</th>
-                <td class="p-5 text-gray-600 align-top border-l border-cream-200">21+</td>
+                <th scope="row" class="p-5 font-serif font-bold text-navy text-sm text-left align-top">Age Requirement</th>
+                <td class="p-5 text-charcoal/80 leading-relaxed border-l border-cream-100">Primary booker must be 21 years of age or older.</td>
               </tr>
               <tr class="hover:bg-cream-50 transition">
-                <th scope="row" class="p-5 font-serif font-bold text-charcoal align-top text-base">Pets</th>
-                <td class="p-5 text-gray-600 align-top border-l border-cream-200">Welcome.</td>
+                <th scope="row" class="p-5 font-serif font-bold text-navy text-sm text-left align-top">Pet Policy</th>
+                <td class="p-5 text-charcoal/80 leading-relaxed border-l border-cream-100">Pets are welcome.</td>
               </tr>
               <tr class="hover:bg-cream-50 transition">
-                <th scope="row" class="p-5 font-serif font-bold text-charcoal align-top text-base">Check-in / Check-out</th>
-                <td class="p-5 text-gray-600 align-top border-l border-cream-200">4:00 PM in, 10:00 AM out.</td>
+                <th scope="row" class="p-5 font-serif font-bold text-navy text-sm text-left align-top">Check-in / Checkout</th>
+                <td class="p-5 text-charcoal/80 leading-relaxed border-l border-cream-100">Check-in begins at 4:00 PM. Checkout is 10:00 AM to preserve the cleaning window.</td>
               </tr>
               <tr class="hover:bg-cream-50 transition">
-                <th scope="row" class="p-5 font-serif font-bold text-charcoal align-top text-base">Primary guest</th>
-                <td class="p-5 text-gray-600 align-top border-l border-cream-200">Millennial travelers and group getaways.</td>
+                <th scope="row" class="p-5 font-serif font-bold text-navy text-sm text-left align-top">Primary Audience</th>
+                <td class="p-5 text-charcoal/80 leading-relaxed border-l border-cream-100">Millennial travelers and group getaways.</td>
               </tr>
               <tr class="hover:bg-cream-50 transition">
-                <th scope="row" class="p-5 font-serif font-bold text-charcoal align-top text-base">Turnover</th>
-                <td class="p-5 text-gray-600 align-top border-l border-cream-200">Handled by our in-house cleaning team. 100% photo-verified, hospitality-grade.</td>
+                <th scope="row" class="p-5 font-serif font-bold text-navy text-sm text-left align-top">Property Turnovers</th>
+                <td class="p-5 text-charcoal/80 leading-relaxed border-l border-cream-100">Handled by our in-house cleaning team. 100% photo-verified, hospitality-grade.</td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
     </section>
+
   </main>
 
   <!-- ============ FOOTER ============ -->
-  <footer class="bg-forest-950 text-cream-200/60">
-    <div class="max-w-6xl mx-auto px-5 md:px-10 py-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-      <img src="assets/cashaw-logo.png?v=3" alt="Cashaw Management Inc." class="h-12 w-auto">
-      <div class="text-xs leading-relaxed sm:text-right">
-        <p>Version 3.1 (2026) &middot; Designed for internal alignment</p>
-        <p class="mt-1">500 E. 84th Ave., Suite A1, Thornton, CO 80229</p>
+  <footer class="bg-navy text-white/90 px-6 py-16 border-t border-white/10 mt-auto">
+    <div class="max-w-6xl mx-auto space-y-12">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-b border-white/10 pb-10">
+        <div class="space-y-2">
+          <p class="text-[10px] font-bold uppercase tracking-widest text-gold-500">Corporate Portal</p>
+          <h2 class="text-2xl font-serif text-white font-medium">Securing our standards together.</h2>
+        </div>
+        <img src="assets/cashaw-logo.png?v=4" alt="Cashaw Management Inc." class="h-10 w-auto">
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-xs text-white/70">
+        <div class="space-y-3">
+          <h3 class="text-xs font-bold uppercase tracking-wider text-white">Central Operations</h3>
+          <p class="leading-relaxed">
+            Cashaw Management Inc.<br>
+            500 E. 84th Ave., Suite A1<br>
+            Thornton, CO 80229
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          <h3 class="text-xs font-bold uppercase tracking-wider text-white">Digital Assets</h3>
+          <p class="leading-relaxed">
+            Live site: <a href="https://kushkations.com" target="_blank" rel="noopener" class="text-gold-500 hover:underline">kushkations.com</a><br>
+            This portal: <a href="https://kushkations.github.io/kk-core-values/portal/" class="text-gold-500 hover:underline">kushkations.github.io/kk-core-values/portal/</a>
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          <h3 class="text-xs font-bold uppercase tracking-wider text-white">Internal Version Control</h3>
+          <p class="leading-relaxed">
+            Version 3.2 · Updated July 2026<br>
+            Design, assets, and variables reserved for Cashaw Management and operational partners.
+          </p>
+        </div>
+      </div>
+
+      <div class="text-[10px] text-white/60 pt-4 border-t border-white/10 flex flex-col md:flex-row justify-between gap-4">
+        <p>&copy; 2026 Cashaw Management Inc. All rights reserved. KushKations&trade; is a trademark of Cashaw Management Inc.</p>
+        <p>Built for system integrity.</p>
       </div>
     </div>
   </footer>
@@ -469,7 +490,7 @@
         navLinks.forEach(function (link) {
           const on = link.dataset.nav === id;
           link.classList.toggle('text-white', on);
-          link.classList.toggle('text-cream-200', !on);
+          link.classList.toggle('text-white/70', !on);
           if (on) link.setAttribute('aria-current', 'true');
           else link.removeAttribute('aria-current');
         });
@@ -491,7 +512,7 @@
         if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
           current = sections[sections.length - 1].id;
         }
-        setActive(current);   // null above the first section = nothing highlighted
+        setActive(current);
       }
 
       window.addEventListener('scroll', computeActive, { passive: true });
