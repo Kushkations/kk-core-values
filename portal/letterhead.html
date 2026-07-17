@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cashaw Management · Letterhead</title>
+<style>
+  :root { --navy:#0b162c; --gold:#c8992f; --gold-ink:#7a5c1b; --sand:#faf6ee; --ink:#22262f; --rule:#e8dec9; }
+
+  * { box-sizing:border-box; }
+  body {
+    margin:0; background:#e9e4d8; color:var(--ink);
+    font-family:Inter,system-ui,-apple-system,sans-serif;
+    padding:2rem 1rem;
+  }
+
+  /* Screen-only instructions. Never printed. */
+  .howto {
+    max-width:8.5in; margin:0 auto 1.25rem; background:var(--navy); color:#fff;
+    border-radius:12px; padding:1.25rem 1.5rem;
+  }
+  .howto p { margin:0 0 .5rem; font-size:.8rem; line-height:1.6; color:#ffffffcc; }
+  .howto strong { color:var(--gold); }
+  .howto p:last-child { margin:0; }
+
+  /* The sheet. 8.5x11 with real print margins. */
+  .sheet {
+    width:8.5in; min-height:11in; margin:0 auto; background:#fff;
+    padding:0.9in 0.9in 1in; position:relative;
+    box-shadow:0 8px 40px #0b162c22;
+    display:flex; flex-direction:column;
+  }
+  .sheet::before {
+    content:""; position:absolute; top:0; left:0; right:0; height:6px;
+    background:var(--gold);
+  }
+
+  header.head {
+    display:flex; align-items:flex-start; justify-content:space-between;
+    gap:2rem; padding-bottom:1.1rem; border-bottom:1px solid var(--rule);
+  }
+  .head img { width:2.5in; height:auto; display:block; }
+  .head .meta {
+    text-align:right; font-size:8.5pt; line-height:1.65; color:#22262fbb;
+  }
+  .head .meta strong { color:var(--navy); display:block; font-size:9pt; }
+
+  .body { flex:1; padding:2rem 0 0; }
+  .date { font-size:9.5pt; color:#22262f99; margin:0 0 1.75rem; }
+  .to { font-size:10.5pt; line-height:1.6; margin:0 0 1.75rem; }
+  .to strong { color:var(--navy); }
+  .content { font-size:10.5pt; line-height:1.85; }
+  .content p { margin:0 0 1rem; }
+  .sign { margin-top:2.5rem; font-size:10.5pt; line-height:1.7; }
+  .sign .name { font-weight:600; color:var(--navy); margin-top:2.5rem; }
+  .sign .title { font-size:8.5pt; letter-spacing:.1em; text-transform:uppercase; color:var(--gold-ink); font-weight:700; }
+
+  footer.foot {
+    border-top:1px solid var(--rule); padding-top:.7rem; margin-top:2rem;
+    display:flex; justify-content:space-between; gap:1rem;
+    font-size:7.5pt; color:#22262f88; letter-spacing:.04em;
+  }
+  footer.foot .tag { font-style:italic; color:var(--gold-ink); }
+
+  /* Anything editable gets a faint guide on screen only. */
+  [contenteditable]:focus { outline:2px solid var(--gold); outline-offset:3px; border-radius:3px; }
+  [contenteditable]:hover { background:#c8992f10; border-radius:3px; }
+
+  @media print {
+    @page { size:letter; margin:0; }
+    body { background:#fff; padding:0; }
+    .howto { display:none; }
+    .sheet { box-shadow:none; margin:0; width:auto; min-height:100vh; }
+    [contenteditable]:hover { background:none; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="howto">
+    <p><strong>How to use.</strong> Click any text and type over it. Nothing is locked.</p>
+    <p><strong>To send:</strong> Cmd&#8209;P (Ctrl&#8209;P on Windows) &rarr; Destination <em>Save as PDF</em> &rarr; Margins <em>None</em> &rarr; tick <em>Background graphics</em>. That last one matters: without it the gold bar and rules disappear.</p>
+    <p>This box does not print.</p>
+  </div>
+
+  <div class="sheet">
+    <header class="head">
+      <img src="assets/cashaw-logo.svg" alt="Cashaw Management Inc.">
+      <div class="meta">
+        <strong>Cashaw Management Inc.</strong>
+        500 E. 84th Ave., Suite A1<br>
+        Thornton, CO 80229<br>
+        1-800-880-2157<br>
+        cashawmanagement.com
+      </div>
+    </header>
+
+    <div class="body">
+      <p class="date" contenteditable="true">17 July 2026</p>
+
+      <p class="to" contenteditable="true">
+        <strong>Recipient Name</strong><br>
+        Company or Title<br>
+        Street Address<br>
+        City, State ZIP
+      </p>
+
+      <div class="content" contenteditable="true">
+        <p>Dear [Name],</p>
+        <p>Replace this with the body of your letter. Keep paragraphs short and say the thing in the first line: this is a Cashaw letter, so the reader is a vendor, an owner, a lender, or a partner, not a guest.</p>
+        <p>Two families only, Playfair for headings and Inter for everything else, are already set. Do not paste styled text in from elsewhere, it will drag its own fonts with it. Paste as plain text with Cmd-Shift-V.</p>
+      </div>
+
+      <div class="sign" contenteditable="true">
+        <p>Sincerely,</p>
+        <p class="name">Shaquan Pratt</p>
+        <p class="title">Founder &amp; Operator</p>
+      </div>
+    </div>
+
+    <footer class="foot">
+      <span>Cashaw Management Inc. &middot; Thornton, Colorado</span>
+      <span class="tag">Committed to securing your success.</span>
+    </footer>
+  </div>
+
+</body>
+</html>
