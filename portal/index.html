@@ -7,6 +7,25 @@
   <meta name="description" content="Brand portal for Cashaw Management Inc.: brand family, core values, identity, operating standards, and assets.">
   <link rel="canonical" href="https://kushkations.github.io/kk-core-values/portal/">
 
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png?v=6">
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/icon-512.png?v=6">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png?v=6">
+  <meta name="theme-color" content="#0b162c">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Cashaw Management Inc.">
+  <meta property="og:title" content="Cashaw Management · Brand Portal">
+  <meta property="og:description" content="The brand family, core values, identity, and operating standards. If a guest sees it: KushKations. If the team or a vendor sees it: Cashaw Management.">
+  <meta property="og:url" content="https://kushkations.github.io/kk-core-values/portal/">
+  <meta property="og:image" content="https://kushkations.github.io/kk-core-values/portal/assets/og-card.png?v=6">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cashaw Management · Brand Portal">
+  <meta name="twitter:description" content="The brand family, core values, identity, and operating standards.">
+  <meta name="twitter:image" content="https://kushkations.github.io/kk-core-values/portal/assets/og-card.png?v=6">
+
+
   <script src="https://cdn.tailwindcss.com"></script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -108,9 +127,18 @@
     }
 
     @media print {
-      nav { position: static; }
+      /* A sticky nav is dead weight on paper and overflows the page box. */
+      nav[aria-label="Sections"], body > nav { display: none; }
+      /* Both faces of a value card must print; hover cannot happen on paper. */
       .value-body { display: block; }
-      .value-back { opacity: 1 !important; transform: none !important; }
+      .value-face { opacity: 1 !important; transform: none !important; }
+      .value-back {
+        opacity: 1 !important; transform: none !important;
+        margin-top: .5rem; padding-top: .5rem; border-top: 1px solid rgba(255,255,255,.2);
+      }
+      section, article, .value-card, tr { break-inside: avoid; }
+      h2, h3 { break-after: avoid; }
+      a[download], a[href^="#"] { display: none; }
     }
   </style>
 </head>
@@ -152,11 +180,11 @@
 
       <dl class="max-w-2xl mx-auto text-left divide-y divide-white/10 border-y border-white/10">
         <div class="py-6 md:py-7 grid md:grid-cols-[1fr,auto] items-baseline gap-2 md:gap-8">
-          <dt class="text-[11px] font-mono uppercase tracking-widest text-white/60">If a guest sees it</dt>
+          <dt class="text-[11px] font-mono uppercase tracking-widest text-white/60">If a guest sees it<span lang="es" class="block normal-case tracking-normal text-white/50 italic mt-1">Si lo ve un huésped</span></dt>
           <dd class="font-serif text-2xl md:text-4xl text-gold-500 md:text-right">KushKations&trade;</dd>
         </div>
         <div class="py-6 md:py-7 grid md:grid-cols-[1fr,auto] items-baseline gap-2 md:gap-8">
-          <dt class="text-[11px] font-mono uppercase tracking-widest text-white/60">If the team or a vendor sees it</dt>
+          <dt class="text-[11px] font-mono uppercase tracking-widest text-white/60">If the team or a vendor sees it<span lang="es" class="block normal-case tracking-normal text-white/50 italic mt-1">Si lo ve el equipo o un proveedor</span></dt>
           <dd class="font-serif text-2xl md:text-4xl text-gold-500 md:text-right">Cashaw Management</dd>
         </div>
       </dl>
@@ -210,6 +238,13 @@
           <p class="text-sm text-charcoal/70 max-w-2xl leading-relaxed">
             Our names and when to use them. Two brands are active. Three are on file with their status still to be confirmed.
           </p>
+          <div class="max-w-2xl bg-white border-l-2 border-gold-500 rounded-r-xl px-6 py-5 mt-2">
+            <p class="text-[11px] font-mono uppercase tracking-widest text-gold-700 font-bold mb-2">Positioning</p>
+            <p class="font-serif text-lg text-navy italic mb-2">"Luxury Group Stays, 420-Friendly."</p>
+            <p class="text-[14px] text-charcoal/80 leading-relaxed">
+              A boutique portfolio of 420-friendly luxury rentals built for groups: hot tubs, game rooms, theaters, and a real host on the other end. Book direct and save 5%.
+            </p>
+          </div>
         </div>
 
         <!-- ACTIVE -->
@@ -335,9 +370,9 @@
             <div aria-hidden="true" class="absolute -bottom-6 -right-2 text-8xl font-serif font-bold text-gold-500/10 select-none pointer-events-none group-hover:text-gold-500/20 transition-colors">01</div>
             <div class="relative z-10">
               <h3 class="text-lg font-serif font-bold text-white tracking-wide">Ownership</h3>
-              <p class="text-[13px] font-serif italic text-gold-500 font-medium mb-3">Responsabilidad</p>
+              <p class="text-[13px] font-serif italic text-gold-500 font-medium mb-3" lang="es">Responsabilidad</p>
               <div class="value-body">
-                <p class="value-face text-[13px] text-white/80 leading-relaxed">If we see it, we solve it. No "not my job." Every unit you touch carries your name.</p>
+                <p class="value-face text-[13px] text-white/80 leading-relaxed">If we see it, we solve it. No "not my job." Every unit you touch carries your name.<span lang="es" class="block mt-2 text-white/60 italic">Si lo vemos, lo resolvemos. Nada de "no es mi trabajo". Cada unidad que tocas lleva tu nombre.</span></p>
                 <div class="value-back">
                   <span class="text-[11px] font-bold uppercase tracking-widest text-gold-500 block mb-1.5">How we live it</span>
                   <p class="text-[13px] text-white leading-relaxed italic">We never tell a guest it was the cleaning crew's fault. We apologize, resolve it within 45 minutes, then fix the internal process.</p>
@@ -350,9 +385,9 @@
             <div aria-hidden="true" class="absolute -bottom-6 -right-2 text-8xl font-serif font-bold text-gold-500/10 select-none pointer-events-none group-hover:text-gold-500/20 transition-colors">02</div>
             <div class="relative z-10">
               <h3 class="text-lg font-serif font-bold text-white tracking-wide">Integrity</h3>
-              <p class="text-[13px] font-serif italic text-gold-500 font-medium mb-3">Integridad</p>
+              <p class="text-[13px] font-serif italic text-gold-500 font-medium mb-3" lang="es">Integridad</p>
               <div class="value-body">
-                <p class="value-face text-[13px] text-white/80 leading-relaxed">Do it right even when nobody checks. An honest "not yet" beats a fake "done."</p>
+                <p class="value-face text-[13px] text-white/80 leading-relaxed">Do it right even when nobody checks. An honest "not yet" beats a fake "done."<span lang="es" class="block mt-2 text-white/60 italic">Hazlo bien aunque nadie te revise. Un "todavía no" honesto vale más que un "listo" falso.</span></p>
                 <div class="value-back">
                   <span class="text-[11px] font-bold uppercase tracking-widest text-gold-500 block mb-1.5">How we live it</span>
                   <p class="text-[13px] text-white leading-relaxed italic">Immediate communication the moment a breakdown occurs. We refund or repair preemptively, before the guest has to ask.</p>
@@ -365,9 +400,9 @@
             <div aria-hidden="true" class="absolute -bottom-6 -right-2 text-8xl font-serif font-bold text-gold-500/10 select-none pointer-events-none group-hover:text-gold-500/20 transition-colors">03</div>
             <div class="relative z-10">
               <h3 class="text-lg font-serif font-bold text-white tracking-wide">Persistence</h3>
-              <p class="text-[13px] font-serif italic text-gold-500 font-medium mb-3">Persistencia</p>
+              <p class="text-[13px] font-serif italic text-gold-500 font-medium mb-3" lang="es">Persistencia</p>
               <div class="value-body">
-                <p class="value-face text-[13px] text-white/80 leading-relaxed">"No" is a starting point. We find a way. (Encontramos la manera.)</p>
+                <p class="value-face text-[13px] text-white/80 leading-relaxed">"No" is a starting point. We find a way. (Encontramos la manera.)<span lang="es" class="block mt-2 text-white/60 italic">El "no" es un punto de partida. Encontramos la manera.</span></p>
                 <div class="value-back">
                   <span class="text-[11px] font-bold uppercase tracking-widest text-gold-500 block mb-1.5">How we live it</span>
                   <p class="text-[13px] text-white leading-relaxed italic">An unfair review is not the end of the conversation. We document it, cite the policy it violates, and take it back to the platform until it is resolved.</p>
@@ -380,9 +415,9 @@
             <div aria-hidden="true" class="absolute -bottom-6 -right-2 text-8xl font-serif font-bold text-gold-500/10 select-none pointer-events-none group-hover:text-gold-500/20 transition-colors">04</div>
             <div class="relative z-10">
               <h3 class="text-lg font-serif font-bold text-white tracking-wide">Team</h3>
-              <p class="text-[13px] font-serif italic text-gold-500 font-medium mb-3">Equipo</p>
+              <p class="text-[13px] font-serif italic text-gold-500 font-medium mb-3" lang="es">Equipo</p>
               <div class="value-body">
-                <p class="value-face text-[13px] text-white/80 leading-relaxed">Cleaners, maintenance, VAs. We win together. Nobody succeeds alone.</p>
+                <p class="value-face text-[13px] text-white/80 leading-relaxed">Cleaners, maintenance, VAs. We win together. Nobody succeeds alone.<span lang="es" class="block mt-2 text-white/60 italic">Limpieza, mantenimiento, VAs: ganamos juntos. Nadie triunfa solo.</span></p>
                 <div class="value-back">
                   <span class="text-[11px] font-bold uppercase tracking-widest text-gold-500 block mb-1.5">How we live it</span>
                   <p class="text-[13px] text-white leading-relaxed italic">A handoff is not finished until the next person can act on it. Every issue leaves the shift with an owner, not a mention.</p>
@@ -395,9 +430,9 @@
             <div aria-hidden="true" class="absolute -bottom-6 -right-2 text-8xl font-serif font-bold text-gold-500/10 select-none pointer-events-none group-hover:text-gold-500/20 transition-colors">05</div>
             <div class="relative z-10">
               <h3 class="text-lg font-serif font-bold text-white tracking-wide">Growth</h3>
-              <p class="text-[13px] font-serif italic text-gold-500 font-medium mb-3">Crecimiento</p>
+              <p class="text-[13px] font-serif italic text-gold-500 font-medium mb-3" lang="es">Crecimiento</p>
               <div class="value-body">
-                <p class="value-face text-[13px] text-white/80 leading-relaxed">Better than yesterday. We don't repeat errors, we retire them.</p>
+                <p class="value-face text-[13px] text-white/80 leading-relaxed">Better than yesterday. We don't repeat errors, we retire them.<span lang="es" class="block mt-2 text-white/60 italic">Mejor que ayer. No repetimos errores, los retiramos.</span></p>
                 <div class="value-back">
                   <span class="text-[11px] font-bold uppercase tracking-widest text-gold-500 block mb-1.5">How we live it</span>
                   <p class="text-[13px] text-white leading-relaxed italic">The same mistake twice is a process problem, not a people problem. We fix the system that allowed it and write it down.</p>
@@ -410,9 +445,9 @@
             <div aria-hidden="true" class="absolute -bottom-6 -right-2 text-8xl font-serif font-bold text-gold-500/10 select-none pointer-events-none group-hover:text-gold-500/20 transition-colors">06</div>
             <div class="relative z-10">
               <h3 class="text-lg font-serif font-bold text-white tracking-wide">Hospitality</h3>
-              <p class="text-[13px] font-serif italic text-gold-500 font-medium mb-3">Hospitalidad</p>
+              <p class="text-[13px] font-serif italic text-gold-500 font-medium mb-3" lang="es">Hospitalidad</p>
               <div class="value-body">
-                <p class="value-face text-[13px] text-white/80 leading-relaxed">Success is measured by the guest experience. The guest feels our work.</p>
+                <p class="value-face text-[13px] text-white/80 leading-relaxed">Success is measured by the guest experience. The guest feels our work.<span lang="es" class="block mt-2 text-white/60 italic">El éxito se mide por la experiencia del huésped. El huésped siente nuestro trabajo.</span></p>
                 <div class="value-back">
                   <span class="text-[11px] font-bold uppercase tracking-widest text-gold-500 block mb-1.5">How we live it</span>
                   <p class="text-[13px] text-white leading-relaxed italic">Custom design themes, a warm and professional voice, and answers that come from the house manual rather than a template.</p>
@@ -439,11 +474,17 @@
           <p class="text-[15px] md:text-base text-charcoal/80 max-w-2xl leading-relaxed">
             Logos, colour, and type. If you are making something with our name on it, the rules on this page are the whole brief.
           </p>
+        <nav aria-label="Identity subsections" class="flex flex-wrap gap-2 pt-2">
+          <a href="#logo-usage" class="text-[11px] font-mono uppercase tracking-wider px-3 py-1.5 rounded-full border border-sand-200 bg-white text-charcoal/80 hover:border-gold-500 hover:text-navy transition">Logo usage</a>
+          <a href="#colour" class="text-[11px] font-mono uppercase tracking-wider px-3 py-1.5 rounded-full border border-sand-200 bg-white text-charcoal/80 hover:border-gold-500 hover:text-navy transition">Colour</a>
+          <a href="#typography" class="text-[11px] font-mono uppercase tracking-wider px-3 py-1.5 rounded-full border border-sand-200 bg-white text-charcoal/80 hover:border-gold-500 hover:text-navy transition">Typography</a>
+          <a href="#voice" class="text-[11px] font-mono uppercase tracking-wider px-3 py-1.5 rounded-full border border-sand-200 bg-white text-charcoal/80 hover:border-gold-500 hover:text-navy transition">Voice</a>
+        </nav>
         </div>
 
         <!-- ---- LOGO USAGE ---- -->
         <div class="space-y-6">
-          <h3 class="text-xl font-serif font-bold text-navy">Logo usage</h3>
+          <h3 id="logo-usage" class="text-xl font-serif font-bold text-navy scroll-mt-20">Logo usage</h3>
 
           <div class="grid md:grid-cols-2 gap-6">
             <div class="bg-white border border-sand-200 rounded-2xl p-8 space-y-5">
@@ -476,22 +517,90 @@
             </div>
           </div>
 
+
+          <div class="bg-white border border-sand-200 rounded-2xl overflow-hidden">
+            <div class="px-8 py-5 border-b border-sand-200">
+              <h4 class="text-[15px] font-serif font-bold text-navy">Variants on file</h4>
+              <p class="text-[13px] text-charcoal/70 mt-1">What exists today, and what has to be commissioned. The packet roadmap already records this gap: "Vector (SVG/AI) versions of all logos. Only PNG/JPEG exist today."</p>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full min-w-[640px] text-left border-collapse">
+                <caption class="sr-only">Logo variants available per brand</caption>
+                <thead>
+                  <tr class="bg-sand-100 text-[11px] font-mono uppercase tracking-wider text-charcoal/80">
+                    <th scope="col" class="p-4 font-bold">Brand</th>
+                    <th scope="col" class="p-4 text-center border-l border-sand-200">Full colour</th>
+                    <th scope="col" class="p-4 text-center border-l border-sand-200">Vector</th>
+                    <th scope="col" class="p-4 text-center border-l border-sand-200">Reversed</th>
+                    <th scope="col" class="p-4 text-center border-l border-sand-200">Small size</th>
+                    <th scope="col" class="p-4 border-l border-sand-200">Gap</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-sand-200">
+              <tr class="hover:bg-sand-50 transition">
+                <th scope="row" class="p-4 text-[13px] font-semibold text-navy text-left align-top">Cashaw Management</th>
+                <td class="p-4 text-center border-l border-sand-200"><span class="text-sage-500 font-bold">PNG</span></td>
+                <td class="p-4 text-center border-l border-sand-200 text-charcoal/40">&mdash;</td>
+                <td class="p-4 text-center border-l border-sand-200 text-charcoal/40">&mdash;</td>
+                <td class="p-4 text-center border-l border-sand-200 text-charcoal/40">&mdash;</td>
+                <td class="p-4 text-[12px] text-charcoal/70 border-l border-sand-200 align-top">Wordmark only. No stacked lockup for square placements.</td>
+              </tr>
+              <tr class="hover:bg-sand-50 transition">
+                <th scope="row" class="p-4 text-[13px] font-semibold text-navy text-left align-top">KushKations&trade;</th>
+                <td class="p-4 text-center border-l border-sand-200"><span class="text-sage-500 font-bold">PNG</span></td>
+                <td class="p-4 text-center border-l border-sand-200 text-charcoal/40">&mdash;</td>
+                <td class="p-4 text-center border-l border-sand-200 text-charcoal/40">&mdash;</td>
+                <td class="p-4 text-center border-l border-sand-200 text-charcoal/40">&mdash;</td>
+                <td class="p-4 text-[12px] text-charcoal/70 border-l border-sand-200 align-top">Badge is illegible below 64px. Needs a simplified small-size mark.</td>
+              </tr>
+              <tr class="hover:bg-sand-50 transition">
+                <th scope="row" class="p-4 text-[13px] font-semibold text-navy text-left align-top">All Exclusive BNB</th>
+                <td class="p-4 text-center border-l border-sand-200"><span class="text-sage-500 font-bold">PNG</span></td>
+                <td class="p-4 text-center border-l border-sand-200 text-charcoal/40">&mdash;</td>
+                <td class="p-4 text-center border-l border-sand-200 text-charcoal/40">&mdash;</td>
+                <td class="p-4 text-center border-l border-sand-200 text-charcoal/40">&mdash;</td>
+                <td class="p-4 text-[12px] text-charcoal/70 border-l border-sand-200 align-top">Art is built on a black field. Unusable on light without a reversed cut.</td>
+              </tr>
+              <tr class="hover:bg-sand-50 transition">
+                <th scope="row" class="p-4 text-[13px] font-semibold text-navy text-left align-top">Same-Day BNB</th>
+                <td class="p-4 text-center border-l border-sand-200"><span class="text-sage-500 font-bold">PNG</span></td>
+                <td class="p-4 text-center border-l border-sand-200 text-charcoal/40">&mdash;</td>
+                <td class="p-4 text-center border-l border-sand-200 text-charcoal/40">&mdash;</td>
+                <td class="p-4 text-center border-l border-sand-200 text-charcoal/40">&mdash;</td>
+                <td class="p-4 text-[12px] text-charcoal/70 border-l border-sand-200 align-top">Circular text fails at small sizes. Same problem as KushKations.</td>
+              </tr>
+              <tr class="hover:bg-sand-50 transition">
+                <th scope="row" class="p-4 text-[13px] font-semibold text-navy text-left align-top">Clearsite</th>
+                <td class="p-4 text-center border-l border-sand-200"><span class="text-sage-500 font-bold">PNG</span></td>
+                <td class="p-4 text-center border-l border-sand-200 text-charcoal/40">&mdash;</td>
+                <td class="p-4 text-center border-l border-sand-200 text-charcoal/40">&mdash;</td>
+                <td class="p-4 text-center border-l border-sand-200 text-charcoal/40">&mdash;</td>
+                <td class="p-4 text-[12px] text-charcoal/70 border-l border-sand-200 align-top">Mark is black. Invisible on navy. No reversed version exists.</td>
+              </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="px-8 py-4 text-[12px] text-charcoal/70 border-t border-sand-200 bg-sand-50">
+              Every gap above needs a designer, not a developer. Until a reversed or small-size cut exists, do not improvise one: ask, or use the mark at a size and on a background where it works.
+            </p>
+          </div>
+
           <div class="bg-white border border-sand-200 rounded-2xl p-8 space-y-4">
             <p class="text-[11px] font-mono uppercase tracking-widest text-gold-700 font-bold">Do not</p>
             <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-2.5 text-[13px] text-charcoal/80 leading-relaxed">
-              <li>Do not stretch, squash, or rotate a mark.</li>
-              <li>Do not recolour a mark or add effects.</li>
-              <li>Do not put the KushKations green badge on a green field.</li>
-              <li>Do not rebuild a mark from scratch. Use the files in Drive.</li>
-              <li>Do not write "Kush Kations" or "Kushkations".</li>
-              <li>Do not use a sub-brand mark in guest-facing work until its status is confirmed.</li>
+              <li>Do not stretch, squash, or rotate a mark.<span lang="es" class="block text-charcoal/60 italic">No estirar, aplastar ni rotar un logo.</span></li>
+              <li>Do not recolour a mark or add effects.<span lang="es" class="block text-charcoal/60 italic">No cambiar el color de un logo ni agregar efectos.</span></li>
+              <li>Do not put the KushKations green badge on a green field.<span lang="es" class="block text-charcoal/60 italic">No poner el escudo verde de KushKations sobre fondo verde.</span></li>
+              <li>Do not rebuild a mark from scratch. Use the files in Drive.<span lang="es" class="block text-charcoal/60 italic">No rehacer un logo desde cero. Usa los archivos de Drive.</span></li>
+              <li>Do not write "Kush Kations" or "Kushkations".<span lang="es" class="block text-charcoal/60 italic">No escribir "Kush Kations" ni "Kushkations".</span></li>
+              <li>Do not use a sub-brand mark in guest-facing work until its status is confirmed.<span lang="es" class="block text-charcoal/60 italic">No usar un logo de submarca con huéspedes hasta confirmar su estado.</span></li>
             </ul>
           </div>
         </div>
 
         <!-- ---- COLOURS ---- -->
         <div class="space-y-6">
-          <h3 class="text-xl font-serif font-bold text-navy">Colour</h3>
+          <h3 id="colour" class="text-xl font-serif font-bold text-navy scroll-mt-20">Colour</h3>
 
           <!-- KushKations palette, verbatim from the packet -->
           <div class="bg-white border border-sand-200 rounded-2xl overflow-hidden">
@@ -580,8 +689,8 @@
           <div class="bg-navy text-white rounded-2xl p-8 space-y-4">
             <p class="text-[11px] font-mono uppercase tracking-widest text-gold-500 font-bold">Colour rules</p>
             <ul class="space-y-2.5 text-[14px] text-white/85 leading-relaxed">
-              <li><strong class="text-white">Never red or orange.</strong> Off-brand.</li>
-              <li><strong class="text-white">Gold is used sparingly:</strong> core values and premium moments only.</li>
+              <li><strong class="text-white">Never red or orange.</strong> Off-brand.<span lang="es" class="block text-white/60 italic">Nunca rojo ni naranja. Fuera de marca.</span></li>
+              <li><strong class="text-white">Gold is used sparingly:</strong> core values and premium moments only.<span lang="es" class="block text-white/60 italic">El dorado se usa con moderación: solo valores fundamentales y momentos premium.</span></li>
               <li><strong class="text-white">Two golds exist.</strong> KK Gold <span class="font-mono text-[#d4a944]">#d4a944</span> belongs to KushKations. Cashaw Gold <span class="font-mono text-gold-500">#c8992f</span> is the wordmark's own. Do not mix them in one piece.</li>
             </ul>
             <div class="pt-4 mt-2 border-t border-white/15 space-y-2">
@@ -598,7 +707,7 @@
 
         <!-- ---- TYPOGRAPHY ---- -->
         <div class="space-y-6">
-          <h3 class="text-xl font-serif font-bold text-navy">Typography</h3>
+          <h3 id="typography" class="text-xl font-serif font-bold text-navy scroll-mt-20">Typography</h3>
           <div class="grid md:grid-cols-2 gap-6">
             <div class="bg-white border border-sand-200 rounded-2xl p-8 space-y-4">
               <p class="text-[11px] font-mono uppercase tracking-widest text-gold-700 font-bold">Playfair Display</p>
@@ -620,7 +729,7 @@
 
         <!-- ---- VOICE ---- -->
         <div class="space-y-6">
-          <h3 class="text-xl font-serif font-bold text-navy">Voice &amp; slogans</h3>
+          <h3 id="voice" class="text-xl font-serif font-bold text-navy scroll-mt-20">Voice &amp; slogans</h3>
           <div class="grid md:grid-cols-3 gap-6">
             <div class="bg-white border border-sand-200 rounded-2xl p-7 space-y-3">
               <p class="text-[11px] font-mono uppercase tracking-widest text-gold-700 font-bold">Taglines</p>
@@ -738,6 +847,16 @@
           </div>
         </div>
 
+          <div class="bg-navy text-white rounded-2xl p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+            <div class="space-y-1.5">
+              <p class="text-[11px] font-mono uppercase tracking-widest text-gold-500 font-bold">Offline copy</p>
+              <p class="text-[14px] text-white/85 leading-relaxed max-w-md">The whole packet as a PDF, for vendors, printers, and contractors who will not open a link.</p>
+            </div>
+            <a href="cashaw-brand-packet.pdf" download class="shrink-0 bg-gold-500 text-navy font-bold text-[13px] uppercase tracking-wider px-6 py-3.5 rounded-xl hover:bg-gold-600 transition shadow-lg shadow-gold-500/10">
+              Download PDF
+            </a>
+          </div>
+
         <!-- Source folders + approval -->
         <div class="grid md:grid-cols-2 gap-6">
           <div class="bg-white border border-sand-200 rounded-2xl p-8 space-y-4">
@@ -754,6 +873,11 @@
                 <a href="https://drive.google.com/drive/folders/1AFFtk-u9Cfipyk1e8RA62u8WsKQu--PC" target="_blank" rel="noopener" class="text-gold-700 hover:underline break-all">Open in Google Drive</a>
               </li>
               <li>
+                <strong class="text-navy">KushKations logo (web)</strong><br>
+                <span class="text-charcoal/70 break-all">kushkations.com/wp-content/uploads/2021/10/KushKations-Trademark-logo.png</span><br>
+                <span class="text-[12px] text-charcoal/60">Hotlinking this URL returns 403. Download it, or use the Drive copies above.</span>
+              </li>
+              <li>
                 <strong class="text-navy">Core Values live page</strong><br>
                 <a href="https://kushkations.github.io/kk-core-values/" target="_blank" rel="noopener" class="text-gold-700 hover:underline break-all">kushkations.github.io/kk-core-values</a>
               </li>
@@ -768,8 +892,8 @@
           <div class="bg-white border border-sand-200 rounded-2xl p-8 space-y-4">
             <p class="text-[11px] font-mono uppercase tracking-widest text-gold-700 font-bold">Use &amp; approval / Uso y Aprobación</p>
             <ul class="space-y-3 text-[14px] text-charcoal/80 leading-relaxed">
-              <li>All public materials (ads, flyers, posts, pages) get <strong class="text-navy">Shaquan's approval</strong> before release.</li>
-              <li>Internal team materials follow this packet: correct colours, fonts, and names.</li>
+              <li>All public materials (ads, flyers, posts, pages) get <strong class="text-navy">Shaquan's approval</strong> before release.<span lang="es" class="block text-charcoal/60 italic">Todo material público (anuncios, volantes, publicaciones, páginas) requiere la aprobación de Shaquan antes de publicarse.</span></li>
+              <li>Internal team materials follow this packet: correct colours, fonts, and names.<span lang="es" class="block text-charcoal/60 italic">El material interno sigue este paquete: colores, tipografías y nombres correctos.</span></li>
               <li>Brand questions: <a href="mailto:info@kushkations.com" class="text-gold-700 hover:underline">info@kushkations.com</a>.</li>
             </ul>
             <div class="pt-4 border-t border-sand-200 space-y-1.5 text-[14px] text-charcoal/80">
@@ -779,6 +903,78 @@
             </div>
           </div>
         </div>
+
+        <!-- Ported from the approved brand packet so retiring it loses nothing. -->
+        <div class="space-y-6 pt-4">
+          <h3 id="roadmap" class="text-xl font-serif font-bold text-navy scroll-mt-20">Roadmap</h3>
+          <p class="text-[13px] text-charcoal/70 max-w-2xl">What we have, what is missing, what still needs a decision.</p>
+          <ul class="bg-white border border-sand-200 rounded-2xl p-8 space-y-3.5">
+            <li class="flex gap-3 items-start">
+              <span class="shrink-0 mt-0.5 text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded border bg-sage-500/15 text-sage-500 border-sage-500/30">Have</span>
+              <span class="text-[14px] text-charcoal/80 leading-relaxed">Core values, final and live (6 values, bilingual).</span>
+            </li>
+            <li class="flex gap-3 items-start">
+              <span class="shrink-0 mt-0.5 text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded border bg-sage-500/15 text-sage-500 border-sage-500/30">Have</span>
+              <span class="text-[14px] text-charcoal/80 leading-relaxed">KushKations colour palette, fonts, tagline, logo files.</span>
+            </li>
+            <li class="flex gap-3 items-start">
+              <span class="shrink-0 mt-0.5 text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded border bg-sage-500/15 text-sage-500 border-sage-500/30">Have</span>
+              <span class="text-[14px] text-charcoal/80 leading-relaxed">Logo files for all 5 brands in Drive.</span>
+            </li>
+            <li class="flex gap-3 items-start">
+              <span class="shrink-0 mt-0.5 text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded border bg-sage-500/15 text-sage-500 border-sage-500/30">Have</span>
+              <span class="text-[14px] text-charcoal/80 leading-relaxed">Proof points: 4.87&#9733;, 1,773+ reviews, 21 properties.</span>
+            </li>
+            <li class="flex gap-3 items-start">
+              <span class="shrink-0 mt-0.5 text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded border bg-gold-500/15 text-gold-700 border-gold-500/40">Need</span>
+              <span class="text-[14px] text-charcoal/80 leading-relaxed">Formal one-paragraph mission statement, approved by Shaquan.</span>
+            </li>
+            <li class="flex gap-3 items-start">
+              <span class="shrink-0 mt-0.5 text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded border bg-gold-500/15 text-gold-700 border-gold-500/40">Need</span>
+              <span class="text-[14px] text-charcoal/80 leading-relaxed">Vector (SVG/AI) versions of all logos. Only PNG/JPEG exist today.</span>
+            </li>
+            <li class="flex gap-3 items-start">
+              <span class="shrink-0 mt-0.5 text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded border bg-gold-500/15 text-gold-700 border-gold-500/40">Need</span>
+              <span class="text-[14px] text-charcoal/80 leading-relaxed">Photography style guide (what KushKations listing photos should look like).</span>
+            </li>
+            <li class="flex gap-3 items-start">
+              <span class="shrink-0 mt-0.5 text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded border bg-gold-500/15 text-gold-700 border-gold-500/40">Need</span>
+              <span class="text-[14px] text-charcoal/80 leading-relaxed">Email signature and letterhead templates using this system.</span>
+            </li>
+            <li class="flex gap-3 items-start">
+              <span class="shrink-0 mt-0.5 text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded border bg-navy/10 text-navy border-navy/25">Decide</span>
+              <span class="text-[14px] text-charcoal/80 leading-relaxed">Cashaw colour identity: align to the KushKations greens, or keep blue. This portal assumes blue is Cashaw's own.</span>
+            </li>
+            <li class="flex gap-3 items-start">
+              <span class="shrink-0 mt-0.5 text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded border bg-navy/10 text-navy border-navy/25">Decide</span>
+              <span class="text-[14px] text-charcoal/80 leading-relaxed">AEBNB, Same-Day BNB, Clearsite: active, on hold, or retired? Also settles whether Same-Day BNB is the cleaning company its mark says it is.</span>
+            </li>
+            <li class="flex gap-3 items-start">
+              <span class="shrink-0 mt-0.5 text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded border bg-navy/10 text-navy border-navy/25">Decide</span>
+              <span class="text-[14px] text-charcoal/80 leading-relaxed">Custom domain for this packet (e.g. brand.cashawmanagement.com).</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 7. Changelog: "living document" needs a record, or re-sharing is meaningless. -->
+        <div class="space-y-6 pt-4">
+          <h3 id="changelog" class="text-xl font-serif font-bold text-navy scroll-mt-20">What changed</h3>
+          <div class="bg-white border border-sand-200 rounded-2xl divide-y divide-sand-200">
+            <div class="p-6 flex flex-col sm:flex-row gap-2 sm:gap-6">
+              <span class="text-[11px] font-mono uppercase tracking-wider text-gold-700 font-bold shrink-0 sm:w-40">v4.1 · July 2026</span>
+              <p class="text-[14px] text-charcoal/80 leading-relaxed">Added logo usage rules, colour specs, typography, voice, downloadable marks, roadmap, and this changelog. Spanish added to the rule, the values, and the do-nots. Share card and favicon added. The old /brand-packet/ page now redirects here.</p>
+            </div>
+            <div class="p-6 flex flex-col sm:flex-row gap-2 sm:gap-6">
+              <span class="text-[11px] font-mono uppercase tracking-wider text-gold-700 font-bold shrink-0 sm:w-40">v4.0 · July 2026</span>
+              <p class="text-[14px] text-charcoal/80 leading-relaxed">The simple rule became the hero. Real logos replaced placeholder letter marks. Sub-brand status corrected to "to be confirmed".</p>
+            </div>
+            <div class="p-6 flex flex-col sm:flex-row gap-2 sm:gap-6">
+              <span class="text-[11px] font-mono uppercase tracking-wider text-gold-700 font-bold shrink-0 sm:w-40">v2 · 9 July 2026</span>
+              <p class="text-[14px] text-charcoal/80 leading-relaxed">Original digital brand packet. Its content lives on in this portal.</p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
