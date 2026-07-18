@@ -116,6 +116,33 @@
       pointer-events: none;
     }
 
+    /* ---- Endorsement lockup: the one mark that ties five logos into a family.
+       The roof peak echoes the Cashaw wordmark; the words are set in the
+       packet's label system (Inter, all-caps, tracked). ---- */
+    .endorse { display: inline-flex; align-items: center; gap: .45rem; }
+    .endorse svg { width: 15px; height: auto; flex: none; }
+    .endorse span {
+      font-family: Inter, system-ui, sans-serif;
+      font-size: 9px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+      white-space: nowrap;
+    }
+    /* On light: gold-700 roof + charcoal .82 text (both pass AA). */
+    .endorse svg { color: #7a5c1b; }
+    .endorse span { color: rgba(34,38,47,.82); }
+    /* On dark: gold-500 roof + cream text. */
+    .endorse--dark svg { color: #c8992f; }
+    .endorse--dark span { color: rgba(248,250,248,.72); }
+    .endorse--center { justify-content: center; }
+
+    /* ---- Brand-architecture tree connectors (SVG-free, pure border) ---- */
+    .arch-stem { width: 2px; height: 28px; background: #e8dec9; margin: 0 auto; }
+    .arch-bar { height: 2px; background: #e8dec9; }
+    .arch-drop { width: 2px; height: 20px; background: #e8dec9; margin: 0 auto; }
+    @media (max-width: 767px) {
+      .arch-bar, .arch-drop { display: none; }
+      .arch-stem { height: 20px; }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after {
@@ -247,6 +274,58 @@
           </div>
         </div>
 
+        <!-- BRAND ARCHITECTURE DIAGRAM: the family at a glance -->
+        <div class="bg-white border border-sand-200 rounded-2xl shadow-sm p-8 md:p-10">
+          <div class="text-center space-y-4">
+            <img src="assets/cashaw-logo.png?v=6" alt="Cashaw Management Inc." class="h-11 w-auto mx-auto">
+            <div class="endorse endorse--center">
+              <svg viewBox="0 0 22 9" aria-hidden="true"><path d="M1.5 8 L11 1.8 L20.5 8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>A Cashaw Management Brand</span>
+            </div>
+            <p class="text-[13px] text-charcoal/75 max-w-md mx-auto leading-relaxed">
+              Five brands, one parent. Each keeps its own logo and colours, and each carries the endorsement line above. That shared line is what makes them a family instead of five strangers.
+            </p>
+          </div>
+
+          <div class="arch-stem"></div>
+          <div class="grid grid-cols-[1fr,auto,1fr] items-center">
+            <div class="arch-bar"></div><div class="w-0.5 h-0.5"></div><div class="arch-bar"></div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6 md:gap-10 pt-1">
+            <!-- STAYS -->
+            <div class="space-y-4">
+              <div class="arch-drop"></div>
+              <p class="text-center text-[11px] font-mono uppercase tracking-widest text-sage-500 font-bold">Stays</p>
+              <div class="grid sm:grid-cols-2 gap-3">
+                <div class="bg-sand-50 border border-sand-200 rounded-xl px-4 py-4 flex flex-col items-center gap-2 text-center">
+                  <span class="h-9 flex items-center"><img src="assets/kushkations-logo.png?v=6" alt="KushKations" class="max-h-9 w-auto"></span>
+                  <span class="text-[12px] font-serif font-bold text-navy">KushKations&trade;</span>
+                </div>
+                <div class="bg-sand-50 border border-sand-200 rounded-xl px-4 py-4 flex flex-col items-center gap-2 text-center">
+                  <span class="h-9 flex items-center"><img src="assets/aebnb-logo.png?v=6" alt="All Exclusive BNB" class="max-h-9 w-auto"></span>
+                  <span class="text-[12px] font-serif font-bold text-navy">All Exclusive BNB</span>
+                </div>
+              </div>
+            </div>
+            <!-- SERVICES -->
+            <div class="space-y-4">
+              <div class="arch-drop"></div>
+              <p class="text-center text-[11px] font-mono uppercase tracking-widest text-sage-500 font-bold">Services</p>
+              <div class="grid sm:grid-cols-2 gap-3">
+                <div class="bg-sand-50 border border-sand-200 rounded-xl px-4 py-4 flex flex-col items-center gap-2 text-center">
+                  <span class="h-9 flex items-center"><img src="assets/sameday-logo.png?v=6" alt="Same-Day BNB Cleaners" class="max-h-9 w-auto"></span>
+                  <span class="text-[12px] font-serif font-bold text-navy">Same-Day BNB</span>
+                </div>
+                <div class="bg-sand-50 border border-sand-200 rounded-xl px-4 py-4 flex flex-col items-center gap-2 text-center">
+                  <span class="h-9 flex items-center"><img src="assets/clearsite-logo.png?v=6" alt="Clearsite" class="max-h-8 w-auto"></span>
+                  <span class="text-[12px] font-serif font-bold text-navy">Clearsite</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- GROUP: PARENT -->
         <div class="space-y-5">
           <div class="inline-flex items-center gap-2 bg-navy/10 text-navy text-[11px] font-bold tracking-wider uppercase px-3 py-1 rounded-full border border-navy/20">
@@ -302,6 +381,7 @@
               <div class="pt-6 border-t border-white/15 space-y-2.5 text-[13px] relative z-10">
                 <p class="text-white/80"><strong class="text-gold-500 font-semibold">Positioning:</strong> "Luxury Group Stays, 420-Friendly."</p>
                 <p class="text-white/80"><strong class="text-gold-500 font-semibold">Naming rule:</strong> Always one word, two capital Ks, &trade; in formal materials. Never "Kush Kations" or "Kushkations".</p>
+                <div class="pt-3 mt-1 border-t border-white/10"><div class="endorse endorse--dark"><svg viewBox="0 0 22 9" aria-hidden="true"><path d="M1.5 8 L11 1.8 L20.5 8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><span>A Cashaw Management Brand</span></div></div>
               </div>
             </article>
 
@@ -322,6 +402,7 @@
               <div class="pt-6 border-t border-sand-200 space-y-2.5 text-[13px]">
                 <p class="text-charcoal/75"><strong class="text-navy font-semibold">Do not:</strong> mix its listings or marketing with KushKations. The point of a second brand is separation.</p>
                 <p class="text-charcoal/75 italic">Formal positioning line still to be written with Shaquan.</p>
+                <div class="pt-3 mt-1 border-t border-sand-200"><div class="endorse"><svg viewBox="0 0 22 9" aria-hidden="true"><path d="M1.5 8 L11 1.8 L20.5 8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><span>A Cashaw Management Brand</span></div></div>
               </div>
             </article>
           </div>
@@ -351,6 +432,7 @@
               <div class="pt-6 border-t border-sand-200 space-y-2.5 text-[13px]">
                 <p class="text-charcoal/75"><strong class="text-navy">Market:</strong> Short-term rental turnovers for external clients.</p>
                 <p class="text-charcoal/75"><strong class="text-navy">Do not:</strong> use this mark on Cashaw or KushKations properties. It exists to sell cleaning outward.</p>
+                <div class="pt-3 mt-1 border-t border-sand-200"><div class="endorse"><svg viewBox="0 0 22 9" aria-hidden="true"><path d="M1.5 8 L11 1.8 L20.5 8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><span>A Cashaw Management Brand</span></div></div>
               </div>
             </article>
 
@@ -371,6 +453,7 @@
               <div class="pt-6 border-t border-sand-200 space-y-2.5 text-[13px]">
                 <p class="text-charcoal/75"><strong class="text-navy">Market:</strong> Residential and post-construction cleaning.</p>
                 <p class="text-charcoal/75 italic">Its orange belongs to Clearsite. It is exempt from the "never orange" rule, which governs KushKations and Cashaw.</p>
+                <div class="pt-3 mt-1 border-t border-sand-200"><div class="endorse"><svg viewBox="0 0 22 9" aria-hidden="true"><path d="M1.5 8 L11 1.8 L20.5 8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><span>A Cashaw Management Brand</span></div></div>
               </div>
             </article>
           </div>
@@ -628,6 +711,35 @@
               <li>Do not rebuild a mark from scratch. Use the files in Drive.<span lang="es" class="block text-charcoal/75 italic">No rehacer un logo desde cero. Usa los archivos de Drive.</span></li>
               <li>Do not write "Kush Kations" or "Kushkations".<span lang="es" class="block text-charcoal/75 italic">No escribir "Kush Kations" ni "Kushkations".</span></li>
               <li>Do not use one brand's mark on another brand's property, listing, or marketing. Each brand stays in its own lane.<span lang="es" class="block text-charcoal/75 italic">No usar el logo de una marca en la propiedad, anuncio o publicidad de otra. Cada marca en su carril.</span></li>
+            </ul>
+          </div>
+
+          <!-- The endorsement lockup -->
+          <div class="bg-white border border-sand-200 rounded-2xl p-8 space-y-5">
+            <div class="space-y-1">
+              <p class="text-[11px] font-mono uppercase tracking-widest text-gold-700 font-bold">The endorsement lockup</p>
+              <p class="text-[13px] text-charcoal/75 leading-relaxed max-w-2xl">
+                Every brand except the Cashaw parent carries this line beneath its logo. It is the one shared element across the family, so five different marks still read as one company. The roof peak echoes the Cashaw wordmark; the words use the label type (Inter, all caps, tracked).
+              </p>
+            </div>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div class="bg-sand-50 border border-sand-200 rounded-xl p-6 flex items-center justify-center">
+                <div class="endorse endorse--center">
+                  <svg viewBox="0 0 22 9" aria-hidden="true"><path d="M1.5 8 L11 1.8 L20.5 8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <span>A Cashaw Management Brand</span>
+                </div>
+              </div>
+              <div class="bg-navy border border-navy rounded-xl p-6 flex items-center justify-center">
+                <div class="endorse endorse--center endorse--dark">
+                  <svg viewBox="0 0 22 9" aria-hidden="true"><path d="M1.5 8 L11 1.8 L20.5 8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <span>A Cashaw Management Brand</span>
+                </div>
+              </div>
+            </div>
+            <ul class="text-[13px] text-charcoal/80 leading-relaxed space-y-1.5 pt-2 border-t border-sand-200">
+              <li><strong class="text-navy">Placement:</strong> centred or left-aligned beneath the brand logo, in its clear space.</li>
+              <li><strong class="text-navy">Colour:</strong> gold roof with charcoal text on light; gold roof with cream text on dark.</li>
+              <li><strong class="text-navy">Do not</strong> resize the words larger than the brand's own name, or use it on the Cashaw parent mark itself.</li>
             </ul>
           </div>
         </div>
@@ -910,6 +1022,18 @@
               <span class="text-[11px] font-mono uppercase tracking-wider text-charcoal/80 text-center">Clearsite<br><span class="text-gold-700 group-hover:underline">PNG</span></span>
             </a>
           </div>
+
+          <p class="text-[13px] text-charcoal/75 max-w-2xl pt-2">Endorsement lockup, for placing beneath a brand mark. Light cut for pale backgrounds, dark cut for navy.</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a href="assets/endorsement-light.png?v=6" download="cashaw-endorsement-light.png" class="group bg-white border border-sand-200 rounded-xl p-5 flex items-center justify-between gap-4 hover:border-gold-500 hover:shadow-md transition">
+              <img src="assets/endorsement-light.png?v=6" alt="Endorsement lockup, dark text" class="h-4 w-auto">
+              <span class="text-[11px] font-mono uppercase tracking-wider text-charcoal/80 shrink-0">Light <span class="text-gold-700 group-hover:underline">PNG</span></span>
+            </a>
+            <a href="assets/endorsement-dark.png?v=6" download="cashaw-endorsement-dark.png" class="group bg-navy border border-navy rounded-xl p-5 flex items-center justify-between gap-4 hover:border-gold-500 hover:shadow-md transition">
+              <img src="assets/endorsement-dark.png?v=6" alt="Endorsement lockup, cream text" class="h-4 w-auto">
+              <span class="text-[11px] font-mono uppercase tracking-wider text-white/80 shrink-0">Dark <span class="text-gold-500 group-hover:underline">PNG</span></span>
+            </a>
+          </div>
         </div>
 
           <div class="bg-white border border-sand-200 rounded-2xl p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
@@ -1045,6 +1169,10 @@
           <h3 id="changelog" class="text-xl font-serif font-bold text-navy scroll-mt-20">What changed</h3>
           <div class="bg-white border border-sand-200 rounded-2xl divide-y divide-sand-200">
             <div class="p-6 flex flex-col sm:flex-row gap-2 sm:gap-6">
+              <span class="text-[11px] font-mono uppercase tracking-wider text-gold-700 font-bold shrink-0 sm:w-40">v4.4 · July 2026</span>
+              <p class="text-[14px] text-charcoal/80 leading-relaxed"><strong class="text-navy">Endorsement system added.</strong> A shared "A Cashaw Management Brand" lockup (roof peak echoing the wordmark) now sits under all four child brands, with a brand-architecture diagram showing the family at a glance. This is the piece that makes five different logos read as one company. Both cuts (light, dark) are downloadable.</p>
+            </div>
+            <div class="p-6 flex flex-col sm:flex-row gap-2 sm:gap-6">
               <span class="text-[11px] font-mono uppercase tracking-wider text-gold-700 font-bold shrink-0 sm:w-40">v4.3 · July 2026</span>
               <p class="text-[14px] text-charcoal/80 leading-relaxed"><strong class="text-navy">All five brands confirmed active.</strong> The Brand Family is now grouped by function: the parent, two stays brands (KushKations, All Exclusive BNB), and two cleaning arms (Same-Day BNB Cleaners, Clearsite). The "status to confirm" section is gone. The "never orange" rule was scoped to KushKations and Cashaw; the sub-brands keep their own palettes.</p>
             </div>
@@ -1109,7 +1237,7 @@
         <div class="space-y-3">
           <h3 class="text-[13px] font-bold uppercase tracking-wider text-white">Internal Version Control</h3>
           <p class="leading-relaxed">
-            Version 4.3 · Updated July 2026<br>
+            Version 4.4 · Updated July 2026<br>
             Living document. Design, assets, and variables reserved for Cashaw Management and operational partners.
           </p>
         </div>
